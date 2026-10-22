@@ -167,7 +167,7 @@ export default function About() {
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: 0.05 * (i + pi * 4), duration: 0.4 }}
-                            className="text-base leading-7 opacity-80 pl-4 relative before:content-[''] before:absolute before:left-0 before:top-[13px] before:w-1.5 before:h-px before:bg-[var(--muted-fg)]"
+                            className="text-[15px] leading-7 opacity-80 pl-4 relative before:content-[''] before:absolute before:left-0 before:top-[13px] before:w-1.5 before:h-px before:bg-[var(--muted-fg)]"
                           >
                             {item}
                           </motion.li>
