@@ -29,9 +29,9 @@ export default function Header() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
         <Link
           href="/"
-          className="text-sm font-medium tracking-widest text-[var(--fg)] hover:text-[var(--accent)] transition-colors"
+          className="font-display text-sm font-light tracking-[0.25em] uppercase text-[var(--fg)] hover:text-[var(--accent)] transition-colors"
         >
-          Takatoshi Hirokawa
+          T.Hirokawa
         </Link>
 
         {/* Desktop nav */}

@@ -1,11 +1,44 @@
 "use client"
 
+import { useEffect, useRef, useState } from "react"
 import { motion } from "framer-motion"
 
+function useCountUp(target: number, duration = 1.6) {
+  const [value, setValue] = useState(0)
+  const ref = useRef<HTMLSpanElement>(null)
+  const triggered = useRef(false)
+
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !triggered.current) {
+          triggered.current = true
+          const start = performance.now()
+          const tick = (now: number) => {
+            const t = Math.min((now - start) / (duration * 1000), 1)
+            const eased = 1 - Math.pow(1 - t, 3)
+            setValue(Math.floor(eased * target))
+            if (t < 1) requestAnimationFrame(tick)
+            else setValue(target)
+          }
+          requestAnimationFrame(tick)
+        }
+      },
+      { threshold: 0.6 }
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [target, duration])
+
+  return { value, ref }
+}
+
 const stats = [
-  { num: "15+", label: "Years\nExperience" },
-  { num: "50+", label: "Projects\nDelivered" },
-  { num: "2009", label: "電通\nCREATIVE X" },
+  { target: 15, suffix: "+", label: "Years\nExperience" },
+  { target: 50, suffix: "+", label: "Projects\nDelivered" },
+  { target: 2009, suffix: "",  label: "Started at\n電通 Creative X" },
 ]
 
 const fields = [
@@ -21,6 +54,20 @@ const fields = [
 const tools = {
   Design: ["Adobe XD", "Illustrator", "Photoshop"],
   Development: ["Bubble", "Studio", "Dify", "Next.js"],
+}
+
+function StatBox({ target, suffix, label }: { target: number; suffix: string; label: string }) {
+  const { value, ref } = useCountUp(target)
+  return (
+    <div className="flex flex-col items-center justify-center py-10 gap-2">
+      <span ref={ref} className="font-display text-3xl sm:text-4xl font-light text-[var(--accent)] tracking-wide tabular-nums">
+        {value}{suffix}
+      </span>
+      <span className="text-[9px] tracking-[0.2em] uppercase text-[var(--muted-fg)] text-center leading-relaxed whitespace-pre-line">
+        {label}
+      </span>
+    </div>
+  )
 }
 
 function FadeUp({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
@@ -44,28 +91,16 @@ export default function About() {
         <FadeUp>
           <div className="mb-16">
             <p className="text-[10px] tracking-[0.4em] uppercase text-[var(--accent)] mb-2">[01] About</p>
-            <p className="font-display text-3xl sm:text-4xl font-light tracking-wide text-[var(--fg)]">
-              Who I Am
-            </p>
+            <p className="font-display text-3xl sm:text-4xl font-light tracking-wide">Who I Am</p>
           </div>
         </FadeUp>
 
-        {/* Stats row */}
+        {/* Stats — count-up on scroll */}
         <FadeUp delay={0.1}>
           <div className="grid grid-cols-3 border border-[var(--border)] mb-20">
-            {stats.map((stat, i) => (
-              <div
-                key={stat.num}
-                className={`flex flex-col items-center justify-center py-10 gap-2 ${
-                  i < stats.length - 1 ? "border-r border-[var(--border)]" : ""
-                }`}
-              >
-                <span className="font-display text-3xl sm:text-4xl font-light text-[var(--accent)] tracking-wide">
-                  {stat.num}
-                </span>
-                <span className="text-[9px] tracking-[0.2em] uppercase text-[var(--muted-fg)] text-center leading-relaxed whitespace-pre-line">
-                  {stat.label}
-                </span>
+            {stats.map((s, i) => (
+              <div key={s.label} className={i < stats.length - 1 ? "border-r border-[var(--border)]" : ""}>
+                <StatBox {...s} />
               </div>
             ))}
           </div>
@@ -75,8 +110,8 @@ export default function About() {
           {/* Profile */}
           <div className="flex flex-col gap-10">
             <FadeUp delay={0.1}>
-              <div className="flex flex-col gap-1">
-                <span className="text-[9px] tracking-[0.4em] uppercase text-[var(--muted-fg)] mb-3">Name</span>
+              <div>
+                <span className="text-[9px] tracking-[0.4em] uppercase text-[var(--muted-fg)] mb-3 block">Name</span>
                 <p className="font-display text-2xl font-light tracking-wide">廣川 貴理</p>
                 <p className="text-xs text-[var(--muted-fg)] tracking-[0.2em] mt-1">Takatoshi Hirokawa</p>
               </div>
@@ -85,7 +120,7 @@ export default function About() {
             <FadeUp delay={0.15}>
               <div>
                 <span className="text-[9px] tracking-[0.4em] uppercase text-[var(--muted-fg)] mb-3 block">Profile</span>
-                <p className="text-sm leading-8 text-[var(--fg)] opacity-80">
+                <p className="text-sm leading-8 opacity-80">
                   山梨県・河口湖を拠点に、企業やサービスのWeb・デジタル課題を支援。
                   サイト、アプリ、SNS、広告、採用コンテンツ、業務効率化、AI活用など、
                   企画から制作・開発まで一貫して対応。
@@ -96,7 +131,7 @@ export default function About() {
             <FadeUp delay={0.2}>
               <div>
                 <span className="text-[9px] tracking-[0.4em] uppercase text-[var(--muted-fg)] mb-3 block">Background</span>
-                <p className="text-sm leading-8 text-[var(--fg)] opacity-80">
+                <p className="text-sm leading-8 opacity-80">
                   2009年、電通クリエーティブXに入社しTVCM制作に従事。
                   その後、代理店・事業会社を経て、河口湖移住を機に独立。
                 </p>
@@ -113,10 +148,10 @@ export default function About() {
                   {fields.map((field, i) => (
                     <motion.span
                       key={field}
-                      initial={{ opacity: 0, scale: 0.9 }}
+                      initial={{ opacity: 0, scale: 0.88 }}
                       whileInView={{ opacity: 1, scale: 1 }}
                       viewport={{ once: true }}
-                      transition={{ delay: 0.05 * i, duration: 0.4 }}
+                      transition={{ delay: 0.04 * i, duration: 0.4 }}
                       className="text-xs px-3 py-1.5 border border-[var(--border)] text-[var(--muted-fg)] hover:border-[var(--accent)] hover:text-[var(--accent)] transition-all duration-300 cursor-default"
                     >
                       {field}
@@ -135,11 +170,9 @@ export default function About() {
                       <span className="text-[9px] tracking-[0.2em] uppercase text-[var(--muted-fg)] w-28 shrink-0 pt-0.5">
                         {category}
                       </span>
-                      <div className="flex flex-wrap gap-2">
+                      <div className="flex flex-wrap gap-x-3 gap-y-1">
                         {items.map((item) => (
-                          <span key={item} className="text-xs text-[var(--fg)] opacity-70">
-                            {item}
-                          </span>
+                          <span key={item} className="text-xs opacity-70">{item}</span>
                         ))}
                       </div>
                     </div>
@@ -148,7 +181,6 @@ export default function About() {
               </div>
             </FadeUp>
 
-            {/* CTA inline */}
             <FadeUp delay={0.3}>
               <a
                 href="/#contact"

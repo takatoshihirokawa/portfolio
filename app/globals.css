@@ -25,15 +25,11 @@ body {
   cursor: none;
 }
 
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
-/* Grain texture overlay */
+/* Grain texture */
 body::after {
   content: "";
   position: fixed;
@@ -46,24 +42,32 @@ body::after {
   background-size: 128px 128px;
 }
 
-/* Text selection */
+/* Selection */
 ::selection {
   background: var(--accent);
   color: var(--bg);
 }
 
-/* Display font utility */
+/* Display font */
 .font-display {
   font-family: var(--font-display), system-ui, sans-serif;
 }
 
-/* Clip reveal animation */
-@keyframes clip-reveal {
-  from { clip-path: inset(0 100% 0 0); }
-  to   { clip-path: inset(0 0% 0 0); }
+/* Marquee */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-33.333%); }
+}
+
+.marquee-track {
+  animation: marquee 28s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
 }
 
 /* Scrollbar */
-::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar { width: 3px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb { background: var(--muted-fg); border-radius: 2px; }
