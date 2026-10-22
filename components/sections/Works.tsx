@@ -2,28 +2,11 @@
 
 import { useRef } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion"
 import { works } from "@/lib/works"
 import { useMotionTheme } from "@/lib/theme"
 import Parallax from "@/components/ui/Parallax"
-
-const cardGradients = [
-  "from-[#0e1020] via-[#141830] to-[#080810]",
-  "from-[#1c1208] via-[#241808] to-[#0a0802]",
-  "from-[#081c18] via-[#0c2420] to-[#020c08]",
-  "from-[#180820] via-[#201030] to-[#0a0410]",
-  "from-[#1c0810] via-[#240c18] to-[#0e0408]",
-  "from-[#081418] via-[#0c1c22] to-[#020a0c]",
-]
-
-const cardAccents = [
-  "rgba(80,100,255,0.18)",
-  "rgba(255,160,60,0.15)",
-  "rgba(60,200,160,0.15)",
-  "rgba(160,60,255,0.15)",
-  "rgba(255,60,100,0.15)",
-  "rgba(60,180,240,0.15)",
-]
 
 function useTilt() {
   const ref = useRef<HTMLDivElement>(null)
@@ -47,8 +30,6 @@ function FeaturedCard({ work, index }: { work: (typeof works)[0]; index: number 
   const tilt = useTilt()
   const { ease, speed, dist } = useMotionTheme()
   const num = String(index + 1).padStart(2, "0")
-  const gradient = cardGradients[index % cardGradients.length]
-  const accent = cardAccents[index % cardAccents.length]
 
   return (
     <motion.div
@@ -67,23 +48,27 @@ function FeaturedCard({ work, index }: { work: (typeof works)[0]; index: number 
           className="group relative border border-[var(--border)] hover:border-[color-mix(in_srgb,var(--accent)_35%,transparent)] transition-all duration-500 cursor-none overflow-hidden"
         >
           {/* Wide thumbnail */}
-          <div className={`work-thumb aspect-[21/9] bg-gradient-to-br ${gradient} relative overflow-hidden`}>
-            <div
-              className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700"
-              style={{ background: `radial-gradient(50% 70% at 50% 50%, ${accent}, transparent)` }}
+          <div className="aspect-video sm:aspect-[21/9] relative overflow-hidden bg-[var(--muted)]">
+            <Image
+              src={work.thumbnail}
+              alt={work.title}
+              fill
+              sizes="(max-width: 1152px) 100vw, 1152px"
+              className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.03]"
             />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent opacity-80 group-hover:opacity-60 transition-opacity duration-500" />
             <div className="absolute top-6 left-7">
               <span className="font-display text-[11px] tracking-[0.4em] uppercase text-white/60">
                 Featured
               </span>
             </div>
             <Parallax amount={-28} className="absolute bottom-5 right-6">
-              <span className="font-display text-[7rem] leading-none font-light text-white/[0.04] group-hover:text-white/[0.08] transition-colors duration-500 select-none">
+              <span className="font-display text-[7rem] leading-none font-light text-white/[0.12] group-hover:text-white/[0.2] transition-colors duration-500 select-none">
                 {num}
               </span>
             </Parallax>
             <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              <span className="text-[10px] tracking-[0.4em] uppercase text-white/60 border border-white/20 px-5 py-2.5">
+              <span className="text-[10px] tracking-[0.4em] uppercase text-white border border-white/40 bg-black/30 backdrop-blur-sm px-5 py-2.5">
                 View Project →
               </span>
             </div>
@@ -118,8 +103,6 @@ function WorkCard({ work, index }: { work: (typeof works)[0]; index: number }) {
   const tilt = useTilt()
   const { ease, speed, dist, stagger } = useMotionTheme()
   const num = String(index + 1).padStart(2, "0")
-  const gradient = cardGradients[index % cardGradients.length]
-  const accent = cardAccents[index % cardAccents.length]
 
   return (
     <motion.div
@@ -136,18 +119,22 @@ function WorkCard({ work, index }: { work: (typeof works)[0]; index: number }) {
           style={{ rotateX: tilt.rotateX, rotateY: tilt.rotateY, transformStyle: "preserve-3d", perspective: 1000 }}
           className="group relative border border-[var(--border)] hover:border-[color-mix(in_srgb,var(--accent)_35%,transparent)] transition-all duration-500 cursor-none overflow-hidden"
         >
-          <div className={`work-thumb aspect-video bg-gradient-to-br ${gradient} relative overflow-hidden`}>
-            <div
-              className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700"
-              style={{ background: `radial-gradient(60% 60% at 50% 50%, ${accent}, transparent)` }}
+          <div className="aspect-video relative overflow-hidden bg-[var(--muted)]">
+            <Image
+              src={work.thumbnail}
+              alt={work.title}
+              fill
+              sizes="(max-width: 768px) 100vw, 560px"
+              className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.03]"
             />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent opacity-80 group-hover:opacity-60 transition-opacity duration-500" />
             <Parallax amount={-18} className="absolute bottom-4 right-5">
-              <span className="font-display text-[5rem] leading-none font-light text-white/[0.05] group-hover:text-white/10 transition-colors duration-500 select-none">
+              <span className="font-display text-[5rem] leading-none font-light text-white/[0.12] group-hover:text-white/[0.2] transition-colors duration-500 select-none">
                 {num}
               </span>
             </Parallax>
             <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              <span className="text-[9px] tracking-[0.4em] uppercase text-white/60 border border-white/20 px-4 py-2">
+              <span className="text-[9px] tracking-[0.4em] uppercase text-white border border-white/40 bg-black/30 backdrop-blur-sm px-4 py-2">
                 View Project
               </span>
             </div>
@@ -192,7 +179,7 @@ export default function Works() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <p className="text-[10px] tracking-[0.4em] uppercase text-[var(--accent)] mb-2">[02] Works</p>
+            <p className="text-[10px] tracking-[0.4em] uppercase text-[var(--accent)] mb-2">[03] Works</p>
             <p className="font-display text-3xl sm:text-4xl font-light tracking-wide">Selected Works</p>
           </motion.div>
           <motion.p

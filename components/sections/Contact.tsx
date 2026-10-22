@@ -57,11 +57,12 @@ export default function Contact() {
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
         >
-          <p className="text-[10px] tracking-[0.4em] uppercase text-[var(--accent)] mb-2">[04] Contact</p>
+          <p className="text-[10px] tracking-[0.4em] uppercase text-[var(--accent)] mb-2">[05] Contact</p>
           <p className="font-display text-3xl sm:text-4xl font-light tracking-wide">Let&apos;s Talk</p>
           <p className="mt-6 text-sm text-[var(--muted-fg)] leading-8 max-w-xl">
-            「こんなことできる？」の段階からで大丈夫です。
-            課題の整理から一緒に進めます。3営業日以内にご返信します。
+            何から頼めばよいか、決まっていなくても大丈夫です。
+            単発の制作から、企画・導入、継続的な改善まで。目的と予算に合わせて、一緒に進め方を考えます。
+            3営業日以内にご返信します。
           </p>
         </motion.div>
         </Parallax>

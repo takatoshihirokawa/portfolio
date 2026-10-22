@@ -1,7 +1,8 @@
 import Hero from "@/components/sections/Hero"
-import About from "@/components/sections/About"
+import Problems from "@/components/sections/Problems"
+import Process from "@/components/sections/Process"
 import Works from "@/components/sections/Works"
-import Topics from "@/components/sections/Topics"
+import About from "@/components/sections/About"
 import Contact from "@/components/sections/Contact"
 import Marquee from "@/components/ui/Marquee"
 
@@ -10,9 +11,10 @@ export default function Home() {
     <>
       <Hero />
       <Marquee />
-      <About />
+      <Problems />
+      <Process />
       <Works />
-      <Topics />
+      <About />
       <Contact />
     </>
   )

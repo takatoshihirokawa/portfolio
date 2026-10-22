@@ -37,20 +37,23 @@ function useCountUp(target: number, duration = 1.6) {
   return { value, ref }
 }
 
-const fields = [
-  "Web・デジタル企画",
-  "Webサイト / LP制作",
-  "Webアプリ / サービス開発",
-  "SNS / 広告施策",
-  "採用コンテンツ",
-  "AI活用 / DX支援",
-  "プロジェクトマネジメント",
+const pillars = [
+  {
+    title: "集客・販促・制作",
+    items: ["ホームページ・商品紹介・採用ページ", "販促企画・コピー作成", "Web広告・チラシ・パンフレット", "写真・映像の制作・撮影プロデュース"],
+  },
+  {
+    title: "DX・業務改善",
+    items: ["業務整理・改善の優先順位づけ", "申込・注文・問い合わせの受付整備", "情報の一元管理・作業の自動化", "AI活用の相談・導入、Webアプリ開発"],
+  },
 ]
+
+const fields = pillars.flatMap((p) => p.items)
 
 const stats = [
   { target: 15, suffix: "+", label: "Years\nExperience" },
   { target: 50, suffix: "+", label: "Projects\nDelivered" },
-  { target: fields.length, suffix: "", label: "Fields\nCovered" },
+  { target: fields.length, suffix: "", label: "Service\nAreas" },
 ]
 
 const tools = {
@@ -95,7 +98,7 @@ export default function About() {
         <Parallax amount={18}>
           <FadeUp>
             <div className="mb-20">
-              <p className="text-[10px] tracking-[0.4em] uppercase text-[var(--accent)] mb-2">[01] About</p>
+              <p className="text-[10px] tracking-[0.4em] uppercase text-[var(--accent)] mb-2">[04] About</p>
               <p className="font-display text-3xl sm:text-4xl font-light tracking-wide">Who I Am</p>
             </div>
           </FadeUp>
@@ -129,9 +132,9 @@ export default function About() {
               <div>
                 <span className="text-[9px] tracking-[0.4em] uppercase text-[var(--muted-fg)] mb-3 block">Profile</span>
                 <p className="text-sm leading-8 opacity-80">
-                  山梨県・河口湖を拠点に、企業やサービスのWeb・デジタル課題を支援。
-                  サイト、アプリ、SNS、広告、採用コンテンツ、業務効率化、AI活用など、
-                  企画から制作・開発まで一貫して対応。
+                  山梨・河口湖を拠点に、地域の会社やお店の「デジタルまわりの相談相手」として活動。
+                  ホームページや販促物から、受付の仕組みづくり、AI活用まで、
+                  困りごとの整理から制作・導入・運用まで一人で通して担当します。
                 </p>
               </div>
             </FadeUp>
@@ -151,19 +154,26 @@ export default function About() {
           <div className="flex flex-col gap-10">
             <FadeUp delay={0.1}>
               <div>
-                <span className="text-[9px] tracking-[0.4em] uppercase text-[var(--muted-fg)] mb-4 block">Field</span>
-                <div className="flex flex-wrap gap-2">
-                  {fields.map((field, i) => (
-                    <motion.span
-                      key={field}
-                      initial={{ opacity: 0, scale: 0.88 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: 0.04 * i, duration: 0.4 }}
-                      className="text-xs px-3 py-1.5 border border-[var(--border)] text-[var(--muted-fg)] hover:border-[var(--accent)] hover:text-[var(--accent)] transition-all duration-300 cursor-default"
-                    >
-                      {field}
-                    </motion.span>
+                <span className="text-[9px] tracking-[0.4em] uppercase text-[var(--muted-fg)] mb-4 block">Service</span>
+                <div className="flex flex-col gap-6">
+                  {pillars.map((p, pi) => (
+                    <div key={p.title}>
+                      <p className="text-sm font-medium text-[var(--accent)] mb-2">{p.title}</p>
+                      <ul className="flex flex-col gap-1.5">
+                        {p.items.map((item, i) => (
+                          <motion.li
+                            key={item}
+                            initial={{ opacity: 0, x: -8 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.05 * (i + pi * 4), duration: 0.4 }}
+                            className="text-xs leading-6 opacity-75 pl-4 relative before:content-[''] before:absolute before:left-0 before:top-[11px] before:w-1.5 before:h-px before:bg-[var(--muted-fg)]"
+                          >
+                            {item}
+                          </motion.li>
+                        ))}
+                      </ul>
+                    </div>
                   ))}
                 </div>
               </div>

@@ -31,9 +31,6 @@ html[data-theme="light"] .marquee-track {
   animation-duration: 44s;
   animation-direction: reverse;
 }
-html[data-theme="light"] .work-thumb {
-  filter: invert(1) hue-rotate(180deg) saturate(0.6) brightness(1.04);
-}
 html[data-theme="light"] ::selection { background: var(--accent); color: #fff; }
 html[data-theme="light"] ::-webkit-scrollbar-thumb { background: var(--accent); }
 

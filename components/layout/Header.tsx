@@ -5,9 +5,9 @@ import Link from "next/link"
 import AvatarIllust from "@/components/ui/AvatarIllust"
 
 const navLinks = [
-  { label: "About", href: "/#about" },
+  { label: "Service", href: "/#problems" },
   { label: "Works", href: "/#works" },
-  { label: "Topics", href: "/#topics" },
+  { label: "About", href: "/#about" },
   { label: "Contact", href: "/#contact" },
 ]
 

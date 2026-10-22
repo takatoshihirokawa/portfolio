@@ -68,7 +68,7 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1, duration: 0.7 }}
         >
-          Planning · Direction · Development
+          Plan · Make · Run
         </motion.p>
 
         {/* Name — two tight lines, in front of the avatar */}
@@ -139,10 +139,15 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.05, duration: 0.7 }}
         >
-          <p className="text-sm text-[var(--muted-fg)] text-center leading-loose tracking-wide">
-            「何を作るか」からではなく、<br />
-            「何を解決したいか」から考えます。
-          </p>
+          <div className="flex flex-col items-center gap-3">
+            <p className="text-base sm:text-lg text-[var(--fg)] text-center leading-relaxed tracking-wide font-medium">
+              何から頼めばよいか、<br className="sm:hidden" />決まっていなくても。
+            </p>
+            <p className="text-xs sm:text-sm text-[var(--muted-fg)] text-center leading-loose tracking-wide">
+              集客・販促から、DX・業務改善まで。<br className="sm:hidden" />
+              困りごとの整理から、作って動かすところまで一緒に。
+            </p>
+          </div>
 
           <div className="flex items-center gap-5">
             <a
