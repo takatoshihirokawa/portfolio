@@ -1,12 +1,15 @@
 "use client"
 
 import { useEffect, useRef } from "react"
+import dynamic from "next/dynamic"
 import { motion, useMotionValue, useScroll, useSpring, useTransform } from "framer-motion"
 import AvatarIllust from "@/components/ui/AvatarIllust"
 import { glitchToggleTheme, useMotionTheme } from "@/lib/theme"
 import { useIntro } from "@/components/ui/Intro"
 import Magnetic from "@/components/ui/Magnetic"
 import Decode from "@/components/ui/Decode"
+
+const HeroScene = dynamic(() => import("@/components/ui/HeroScene"), { ssr: false })
 
 function MouseGradient() {
   const ref = useRef<HTMLDivElement>(null)
@@ -57,6 +60,7 @@ function HeroInner() {
       className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-6 sm:px-12 pt-32 pb-40"
     >
       <MouseGradient />
+      <HeroScene />
 
       {/* Ambient glow */}
       <div
@@ -163,7 +167,7 @@ function HeroInner() {
             <Magnetic>
             <a
               href="/#works"
-              className="group relative text-[11px] sm:text-[10px] tracking-[0.35em] uppercase px-8 py-3.5 border border-[var(--accent)] text-[var(--accent)] overflow-hidden transition-colors duration-300 hover:text-[var(--bg)]"
+              className="group relative block text-[11px] sm:text-[10px] tracking-[0.35em] uppercase px-8 py-3.5 border border-[var(--accent)] text-[var(--accent)] overflow-hidden transition-colors duration-300 hover:text-[var(--bg)]"
             >
               <span className="absolute inset-0 bg-[var(--accent)] translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
               <span className="relative">Works</span>
