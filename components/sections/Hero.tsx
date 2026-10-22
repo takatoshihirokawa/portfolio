@@ -39,7 +39,7 @@ export default function Hero() {
   return (
     <section
       id="top-home"
-      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-4 sm:px-6"
+      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-6 sm:px-10 pt-32 pb-40"
     >
       <MouseGradient />
 
@@ -56,7 +56,7 @@ export default function Hero() {
 
         {/* Role */}
         <motion.p
-          className="text-[10px] tracking-[0.55em] uppercase text-[var(--accent)] mb-6"
+          className="text-[9px] sm:text-[10px] tracking-[0.3em] sm:tracking-[0.4em] uppercase text-[var(--accent)] mb-10 text-center"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1, duration: 0.7 }}
@@ -67,7 +67,7 @@ export default function Hero() {
         {/* TAKATOSHI */}
         <div className="overflow-hidden leading-none">
           <motion.p
-            className="font-display text-[clamp(2rem,8.5vw,7rem)] font-light tracking-[0.2em] uppercase text-center text-[var(--fg)]"
+            className="font-display text-[clamp(1.5rem,4.5vw,3.5rem)] font-light tracking-[0.3em] uppercase text-center text-[var(--fg)] opacity-80"
             initial={{ y: "110%" }}
             animate={{ y: 0 }}
             transition={{ delay: 0.25, duration: 0.95, ease: spring }}
@@ -78,7 +78,7 @@ export default function Hero() {
 
         {/* Avatar — gradient mask blends into bg */}
         <motion.div
-          className="relative z-10 -my-2 sm:-my-4"
+          className="relative z-10 my-2 sm:my-4"
           style={{
             WebkitMaskImage: "linear-gradient(to bottom, black 50%, transparent 96%)",
             maskImage: "linear-gradient(to bottom, black 50%, transparent 96%)",
@@ -93,7 +93,7 @@ export default function Hero() {
         {/* HIROKAWA */}
         <div className="overflow-hidden leading-none">
           <motion.p
-            className="font-display text-[clamp(2rem,8.5vw,7rem)] font-light tracking-[0.2em] uppercase text-center text-[var(--accent)]"
+            className="font-display text-[clamp(1.5rem,4.5vw,3.5rem)] font-light tracking-[0.3em] uppercase text-center text-[var(--accent)]"
             initial={{ y: "110%" }}
             animate={{ y: 0 }}
             transition={{ delay: 0.35, duration: 0.95, ease: spring }}
@@ -104,7 +104,7 @@ export default function Hero() {
 
         {/* Location badge */}
         <motion.div
-          className="mt-8 flex items-center gap-2"
+          className="mt-12 flex items-center gap-2"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.85, duration: 0.6 }}
@@ -125,7 +125,7 @@ export default function Hero() {
 
         {/* Tagline + CTA */}
         <motion.div
-          className="mt-6 flex flex-col items-center gap-7"
+          className="mt-8 flex flex-col items-center gap-9"
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.05, duration: 0.7 }}
@@ -156,7 +156,7 @@ export default function Hero() {
 
       {/* Scroll */}
       <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5, duration: 0.8 }}

@@ -13,12 +13,6 @@ const inquiryTypes = [
   { value: "other", label: "その他" },
 ]
 
-const snsLinks = [
-  { label: "LINE", href: "#" },
-  { label: "Instagram", href: "#" },
-  { label: "X (Twitter)", href: "#" },
-]
-
 type FormState = {
   lastName: string
   firstName: string
@@ -52,10 +46,10 @@ export default function Contact() {
     "w-full bg-transparent border border-[var(--border)] px-4 py-3 text-sm text-[var(--fg)] placeholder:text-[var(--muted-fg)] focus:border-[var(--accent)] focus:outline-none transition-colors"
 
   return (
-    <section id="contact" className="py-32 px-4 sm:px-6 border-t border-[var(--border)]">
+    <section id="contact" className="py-40 px-6 sm:px-10 border-t border-[var(--border)]">
       <div className="max-w-6xl mx-auto">
         <motion.p
-          className="text-xs tracking-[0.3em] uppercase text-[var(--accent)] mb-16"
+          className="text-xs tracking-[0.3em] uppercase text-[var(--accent)] mb-20"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -64,7 +58,7 @@ export default function Contact() {
           [04] Contact
         </motion.p>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
+        <div className="max-w-2xl">
           {/* Form */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -176,37 +170,6 @@ export default function Contact() {
             )}
           </motion.div>
 
-          {/* SNS */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, ease: "easeOut", delay: 0.2 }}
-            className="flex flex-col gap-6"
-          >
-            <div>
-              <p className="text-xs tracking-widest uppercase text-[var(--muted-fg)] mb-4">
-                SNS DM
-              </p>
-              <p className="text-sm text-[var(--muted-fg)] leading-7 mb-6">
-                以下SNSのDMよりお気軽にご連絡ください。
-                <br />
-                3日以内にご返信いたします。
-              </p>
-              <div className="flex flex-col gap-3">
-                {snsLinks.map((sns) => (
-                  <a
-                    key={sns.label}
-                    href={sns.href}
-                    className="flex items-center justify-between border border-[var(--border)] px-4 py-3 text-sm text-[var(--muted-fg)] hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors group"
-                  >
-                    {sns.label}
-                    <span className="text-xs group-hover:translate-x-1 transition-transform">→</span>
-                  </a>
-                ))}
-              </div>
-            </div>
-          </motion.div>
         </div>
       </div>
     </section>

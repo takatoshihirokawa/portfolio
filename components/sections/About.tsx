@@ -38,7 +38,6 @@ function useCountUp(target: number, duration = 1.6) {
 const stats = [
   { target: 15, suffix: "+", label: "Years\nExperience" },
   { target: 50, suffix: "+", label: "Projects\nDelivered" },
-  { target: 2009, suffix: "",  label: "Started at\n電通 Creative X" },
 ]
 
 const fields = [
@@ -85,11 +84,11 @@ function FadeUp({ children, delay = 0 }: { children: React.ReactNode; delay?: nu
 
 export default function About() {
   return (
-    <section id="about" className="py-32 px-4 sm:px-6">
+    <section id="about" className="py-40 px-6 sm:px-10">
       <div className="max-w-6xl mx-auto">
 
         <FadeUp>
-          <div className="mb-16">
+          <div className="mb-20">
             <p className="text-[10px] tracking-[0.4em] uppercase text-[var(--accent)] mb-2">[01] About</p>
             <p className="font-display text-3xl sm:text-4xl font-light tracking-wide">Who I Am</p>
           </div>
@@ -97,7 +96,7 @@ export default function About() {
 
         {/* Stats — count-up on scroll */}
         <FadeUp delay={0.1}>
-          <div className="grid grid-cols-3 border border-[var(--border)] mb-20">
+          <div className="grid grid-cols-2 border border-[var(--border)] mb-24 max-w-2xl">
             {stats.map((s, i) => (
               <div key={s.label} className={i < stats.length - 1 ? "border-r border-[var(--border)]" : ""}>
                 <StatBox {...s} />
@@ -132,8 +131,8 @@ export default function About() {
               <div>
                 <span className="text-[9px] tracking-[0.4em] uppercase text-[var(--muted-fg)] mb-3 block">Background</span>
                 <p className="text-sm leading-8 opacity-80">
-                  2009年、電通クリエーティブXに入社しTVCM制作に従事。
-                  その後、代理店・事業会社を経て、河口湖移住を機に独立。
+                  広告代理店・事業会社でWeb・デジタル領域の企画制作を経験した後、
+                  河口湖移住を機に独立。
                 </p>
               </div>
             </FadeUp>
