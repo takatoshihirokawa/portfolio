@@ -6,36 +6,14 @@ import { useState } from "react"
 import { motion } from "framer-motion"
 import Parallax from "@/components/ui/Parallax"
 
-const inquiryTypes = [
-  { value: "", label: "選択してください" },
-  { value: "new", label: "新規制作" },
-  { value: "renewal", label: "リニューアル・改善" },
-  { value: "maintenance", label: "運用・保守" },
-  { value: "other", label: "その他" },
-]
-
 type FormState = {
-  lastName: string
-  firstName: string
-  lastKana: string
-  firstKana: string
+  name: string
   email: string
-  inquiryType: string
   message: string
-  agreed: boolean
 }
 
 export default function Contact() {
-  const [form, setForm] = useState<FormState>({
-    lastName: "",
-    firstName: "",
-    lastKana: "",
-    firstKana: "",
-    email: "",
-    inquiryType: "",
-    message: "",
-    agreed: false,
-  })
+  const [form, setForm] = useState<FormState>({ name: "", email: "", message: "" })
   const [submitted, setSubmitted] = useState(false)
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -84,97 +62,49 @@ export default function Contact() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-                {/* Name */}
-                <div className="grid grid-cols-2 gap-3">
-                  <input
-                    type="text"
-                    placeholder="姓"
-                    required
-                    className={inputClass}
-                    value={form.lastName}
-                    onChange={(e) => setForm({ ...form, lastName: e.target.value })}
-                  />
-                  <input
-                    type="text"
-                    placeholder="名"
-                    required
-                    className={inputClass}
-                    value={form.firstName}
-                    onChange={(e) => setForm({ ...form, firstName: e.target.value })}
-                  />
-                </div>
-
-                {/* Kana */}
-                <div className="grid grid-cols-2 gap-3">
-                  <input
-                    type="text"
-                    placeholder="セイ"
-                    className={inputClass}
-                    value={form.lastKana}
-                    onChange={(e) => setForm({ ...form, lastKana: e.target.value })}
-                  />
-                  <input
-                    type="text"
-                    placeholder="メイ"
-                    className={inputClass}
-                    value={form.firstKana}
-                    onChange={(e) => setForm({ ...form, firstKana: e.target.value })}
-                  />
-                </div>
+                <input
+                  type="text"
+                  placeholder="お名前"
+                  autoComplete="name"
+                  required
+                  className={inputClass}
+                  value={form.name}
+                  onChange={(e) => setForm({ ...form, name: e.target.value })}
+                />
 
                 <input
                   type="email"
                   placeholder="メールアドレス"
+                  autoComplete="email"
+                  inputMode="email"
                   required
                   className={inputClass}
                   value={form.email}
                   onChange={(e) => setForm({ ...form, email: e.target.value })}
                 />
 
-                <select
-                  required
-                  className={`${inputClass} appearance-none`}
-                  value={form.inquiryType}
-                  onChange={(e) => setForm({ ...form, inquiryType: e.target.value })}
-                >
-                  {inquiryTypes.map((t) => (
-                    <option key={t.value} value={t.value} disabled={t.value === ""}>
-                      {t.label}
-                    </option>
-                  ))}
-                </select>
-
                 <textarea
-                  placeholder="お問い合わせ内容"
+                  placeholder="ご相談内容（まだ漠然としていても大丈夫です）"
                   required
-                  rows={5}
+                  rows={6}
                   className={inputClass}
                   value={form.message}
                   onChange={(e) => setForm({ ...form, message: e.target.value })}
                 />
 
-                <label className="flex items-start gap-3 text-xs text-[var(--muted-fg)] cursor-pointer">
-                  <input
-                    type="checkbox"
-                    required
-                    className="mt-0.5 accent-[var(--accent)]"
-                    checked={form.agreed}
-                    onChange={(e) => setForm({ ...form, agreed: e.target.checked })}
-                  />
-                  <span>
-                    <a href="/privacy-policy" className="underline hover:text-[var(--accent)] transition-colors">
-                      プライバシーポリシー
-                    </a>
-                    に同意する
-                  </span>
-                </label>
-
-                <button
-                  type="submit"
-                  className="mt-2 text-xs tracking-[0.2em] uppercase border border-[var(--accent)] text-[var(--accent)] px-6 py-3 hover:bg-[var(--accent)] hover:text-[var(--bg)] transition-all duration-300 self-start"
-                >
-                  送信する
-                </button>
+                <div className="mt-2 flex flex-col sm:flex-row sm:items-center gap-4">
+                  <button
+                    type="submit"
+                    className="text-xs tracking-[0.2em] uppercase border border-[var(--accent)] text-[var(--accent)] px-8 py-4 hover:bg-[var(--accent)] hover:text-[var(--bg)] transition-all duration-300 self-start"
+                  >
+                    送信する
+                  </button>
+                  <p className="text-[11px] text-[var(--muted-fg)] leading-5">
+                    送信により
+                    <a href="/privacy-policy" className="underline hover:text-[var(--accent)] transition-colors">プライバシーポリシー</a>
+                    に同意したものとみなします。
+                  </p>
+                </div>
               </form>
             )}
           </motion.div>
