@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import { Inter, Noto_Sans_JP } from "next/font/google"
+import { Inter, Noto_Sans_JP, Syne } from "next/font/google"
 import "./globals.css"
 import CustomCursor from "@/components/ui/CustomCursor"
 import Header from "@/components/layout/Header"
@@ -18,6 +18,13 @@ const notoSansJP = Noto_Sans_JP({
   display: "swap",
 })
 
+const syne = Syne({
+  variable: "--font-display",
+  subsets: ["latin"],
+  weight: ["400", "700", "800"],
+  display: "swap",
+})
+
 export const metadata: Metadata = {
   title: "Takatoshi Hirokawa | WebとデジタルのAI・制作",
   description:
@@ -29,7 +36,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html
       lang="ja"
       id="top"
-      className={`${inter.variable} ${notoSansJP.variable}`}
+      className={`${inter.variable} ${notoSansJP.variable} ${syne.variable}`}
     >
       <body className="min-h-full flex flex-col">
         <CustomCursor />
