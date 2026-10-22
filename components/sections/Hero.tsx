@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react"
 import { motion, useMotionValue, useSpring } from "framer-motion"
 import AvatarIllust from "@/components/ui/AvatarIllust"
+import { glitchToggleTheme } from "@/lib/theme"
 
 function MouseGradient() {
   const ref = useRef<HTMLDivElement>(null)
@@ -87,7 +88,7 @@ export default function Hero() {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 1.1, ease: spring }}
         >
-          <AvatarIllust className="w-44 sm:w-56 md:w-64 lg:w-72 xl:w-80 text-white" />
+          <AvatarIllust className="w-44 sm:w-56 md:w-64 lg:w-72 xl:w-80 text-[var(--fg)]" onDizzy={glitchToggleTheme} />
         </motion.div>
 
         {/* HIROKAWA */}
@@ -114,6 +115,15 @@ export default function Hero() {
             Kawaguchiko, Yamanashi — Available for projects
           </span>
         </motion.div>
+
+        <motion.p
+          className="mt-4 text-[8px] tracking-[0.3em] uppercase text-[var(--muted-fg)] opacity-60"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.6 }}
+          transition={{ delay: 2.2, duration: 1 }}
+        >
+          ↻ Circle around the face
+        </motion.p>
 
         {/* Divider */}
         <motion.div

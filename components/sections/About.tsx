@@ -35,11 +35,6 @@ function useCountUp(target: number, duration = 1.6) {
   return { value, ref }
 }
 
-const stats = [
-  { target: 15, suffix: "+", label: "Years\nExperience" },
-  { target: 50, suffix: "+", label: "Projects\nDelivered" },
-]
-
 const fields = [
   "Web・デジタル企画",
   "Webサイト / LP制作",
@@ -50,9 +45,16 @@ const fields = [
   "プロジェクトマネジメント",
 ]
 
+const stats = [
+  { target: 15, suffix: "+", label: "Years\nExperience" },
+  { target: 50, suffix: "+", label: "Projects\nDelivered" },
+  { target: fields.length, suffix: "", label: "Fields\nCovered" },
+]
+
 const tools = {
   Design: ["Adobe XD", "Illustrator", "Photoshop"],
-  Development: ["Bubble", "Studio", "Dify", "Next.js"],
+  Development: ["Bubble", "Studio", "Next.js"],
+  AI: ["Claude Code", "Dify"],
 }
 
 function StatBox({ target, suffix, label }: { target: number; suffix: string; label: string }) {
@@ -96,7 +98,7 @@ export default function About() {
 
         {/* Stats — count-up on scroll */}
         <FadeUp delay={0.1}>
-          <div className="grid grid-cols-2 border border-[var(--border)] mb-24 max-w-2xl">
+          <div className="grid grid-cols-3 border border-[var(--border)] mb-24">
             {stats.map((s, i) => (
               <div key={s.label} className={i < stats.length - 1 ? "border-r border-[var(--border)]" : ""}>
                 <StatBox {...s} />
