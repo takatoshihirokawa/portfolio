@@ -8,6 +8,8 @@ import type { Work } from "@/lib/works"
 import { useMotionTheme } from "@/lib/theme"
 import Parallax from "@/components/ui/Parallax"
 import BlockReveal from "@/components/ui/BlockReveal"
+import Decode from "@/components/ui/Decode"
+import Magnetic from "@/components/ui/Magnetic"
 
 function useTilt() {
   const ref = useRef<HTMLDivElement>(null)
@@ -40,7 +42,7 @@ function FeaturedCard({ work, index }: { work: Work; index: number }) {
       transition={{ duration: 0.8 * speed, ease }}
       className="md:col-span-2 h-full"
     >
-      <Link href={`/works/${work.slug}`}>
+      <Link href={`/works/${work.slug}`} data-cursor="view">
         <motion.div
           ref={tilt.ref}
           onMouseMove={tilt.onMouseMove}
@@ -68,7 +70,7 @@ function FeaturedCard({ work, index }: { work: Work; index: number }) {
                 {num}
               </span>
             </Parallax>
-            <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-fine:hidden">
               <span className="text-[11px] sm:text-[10px] tracking-[0.4em] uppercase text-white border border-white/40 bg-black/30 backdrop-blur-sm px-5 py-2.5">
                 View Project →
               </span>
@@ -112,7 +114,7 @@ function WorkCard({ work, index }: { work: Work; index: number }) {
       viewport={{ once: true, margin: "-60px" }}
       transition={{ duration: 0.7 * speed, ease, delay: (index % 2) * stagger }}
     >
-      <Link href={`/works/${work.slug}`}>
+      <Link href={`/works/${work.slug}`} data-cursor="view">
         <motion.div
           ref={tilt.ref}
           onMouseMove={tilt.onMouseMove}
@@ -134,7 +136,7 @@ function WorkCard({ work, index }: { work: Work; index: number }) {
                 {num}
               </span>
             </Parallax>
-            <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-fine:hidden">
               <span className="text-[11px] sm:text-[9px] tracking-[0.4em] uppercase text-white border border-white/40 bg-black/30 backdrop-blur-sm px-4 py-2">
                 View Project
               </span>
@@ -180,7 +182,7 @@ export default function Works({ works, total }: { works: Work[]; total: number }
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <p className="text-[11px] sm:text-[10px] tracking-[0.4em] uppercase text-[var(--accent)] mb-2">[04] Works</p>
+            <p className="text-[11px] sm:text-[10px] tracking-[0.4em] uppercase text-[var(--accent)] mb-2"><Decode text="[04] WORKS" /></p>
             <BlockReveal as="p" className="font-display text-3xl sm:text-4xl font-light tracking-wide" delay={0.15}>Selected Works</BlockReveal>
           </motion.div>
           <motion.div
@@ -213,13 +215,15 @@ export default function Works({ works, total }: { works: Work[]; total: number }
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
+          <Magnetic>
           <Link
             href="/works"
-            className="group relative text-[11px] sm:text-[10px] tracking-[0.35em] uppercase px-10 py-4 border border-[var(--fg)] text-[var(--fg)] overflow-hidden transition-colors duration-300 hover:text-[var(--bg)]"
+            className="group relative block text-[11px] sm:text-[10px] tracking-[0.35em] uppercase px-10 py-4 border border-[var(--fg)] text-[var(--fg)] overflow-hidden transition-colors duration-300 hover:text-[var(--bg)]"
           >
             <span className="absolute inset-0 bg-[var(--fg)] translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
             <span className="relative">すべての実績を見る（{total}）</span>
           </Link>
+          </Magnetic>
         </motion.div>
       </div>
     </section>

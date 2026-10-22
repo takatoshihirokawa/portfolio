@@ -5,6 +5,8 @@ import Link from "next/link"
 import { motion, AnimatePresence } from "framer-motion"
 import AvatarIllust from "@/components/ui/AvatarIllust"
 import { useMotionTheme } from "@/lib/theme"
+import FlipText from "@/components/ui/FlipText"
+import Magnetic from "@/components/ui/Magnetic"
 
 const navLinks = [
   { jp: "できること", en: "Service", href: "/#problems" },
@@ -67,16 +69,16 @@ export default function Header() {
             <a
               key={link.en}
               href={link.href}
-              className="text-xs tracking-widest uppercase text-[var(--muted-fg)] hover:text-[var(--accent)] transition-colors relative group"
+              className="text-xs tracking-widest uppercase text-[var(--muted-fg)] relative"
             >
-              {link.en}
-              <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-[var(--accent)] transition-all duration-300 group-hover:w-full" />
+              <FlipText text={link.en} />
             </a>
           ))}
         </nav>
 
+        <Magnetic strength={0.3} className="lg:hidden">
         <button
-          className="lg:hidden relative w-11 h-11 -mr-2 flex items-center justify-center"
+          className="relative w-11 h-11 -mr-2 flex items-center justify-center"
           onClick={(e) => {
             const r = e.currentTarget.getBoundingClientRect()
             setOrigin({ x: r.left + r.width / 2, y: r.top + r.height / 2 })
@@ -89,6 +91,7 @@ export default function Header() {
           <span className={`absolute w-6 h-px bg-[var(--fg)] transition-all duration-300 ${menuOpen ? "opacity-0 scale-x-0" : ""}`} />
           <span className={`absolute w-6 h-px bg-[var(--fg)] transition-all duration-500 ease-[cubic-bezier(.76,0,.24,1)] ${menuOpen ? "-rotate-45" : "translate-y-[5px]"}`} />
         </button>
+        </Magnetic>
       </div>
 
       <AnimatePresence>

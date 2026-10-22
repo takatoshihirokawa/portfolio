@@ -1,5 +1,9 @@
 "use client"
 
+import { useRef } from "react"
+import { motion, useAnimationFrame, useMotionValue, useScroll, useSpring, useTransform, useVelocity } from "framer-motion"
+import { useTheme } from "@/lib/theme"
+
 const ITEMS = [
   "ホームページ",
   "販促・広告",
@@ -14,18 +18,41 @@ const ITEMS = [
 ]
 
 export default function Marquee() {
-  const repeated = [...ITEMS, ...ITEMS, ...ITEMS]
+  const theme = useTheme()
+  const baseVelocity = theme === "light" ? -40 : -60
+  const x = useMotionValue(0)
+  const trackRef = useRef<HTMLDivElement>(null)
+  const { scrollY } = useScroll()
+  const scrollVelocity = useVelocity(scrollY)
+  const smooth = useSpring(scrollVelocity, { damping: 50, stiffness: 400 })
+  const factor = useTransform(smooth, [-1500, 0, 1500], [-4, 1, 6], { clamp: true })
+  const dir = useRef(1)
 
+  useAnimationFrame((_, delta) => {
+    const f = factor.get()
+    if (f < 0) dir.current = -1
+    else if (f > 0) dir.current = 1
+    const speed = baseVelocity * Math.abs(f) * dir.current
+    let next = x.get() + (speed * delta) / 1000
+    const third = (trackRef.current?.scrollWidth ?? 0) / 3
+    if (third > 0) {
+      if (next <= -third) next += third
+      if (next > 0) next -= third
+    }
+    x.set(next)
+  })
+
+  const repeated = [...ITEMS, ...ITEMS, ...ITEMS]
   return (
     <div className="relative border-y border-[var(--border)] overflow-hidden py-6 select-none">
-      <div className="marquee-track flex gap-14 w-max">
+      <motion.div ref={trackRef} style={{ x }} className="flex gap-14 w-max will-change-transform">
         {repeated.map((item, i) => (
-          <span key={i} className="flex items-center gap-14 text-[11px] sm:text-[10px] tracking-[0.3em] text-[var(--muted-fg)] whitespace-nowrap">
+          <span key={i} className="flex items-center gap-14 text-[10px] tracking-[0.3em] text-[var(--muted-fg)] whitespace-nowrap">
             {item}
-            <span className="text-[var(--accent)] text-base leading-none" aria-hidden>·</span>
+            <span className="text-[var(--accent)] text-base leading-none">·</span>
           </span>
         ))}
-      </div>
+      </motion.div>
     </div>
   )
 }

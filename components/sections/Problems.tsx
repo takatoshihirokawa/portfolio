@@ -5,6 +5,7 @@ import { useMotionTheme } from "@/lib/theme"
 import Parallax from "@/components/ui/Parallax"
 import Reveal from "@/components/ui/Reveal"
 import BlockReveal from "@/components/ui/BlockReveal"
+import Decode from "@/components/ui/Decode"
 
 const problems = [
   { title: "受付や転記に手間がかかる", body: "電話や紙の受付、同じ内容の転記を整理し、フォームや公式LINE、既存ツールで手間を減らす。" },
@@ -24,7 +25,7 @@ export default function Problems() {
           <Reveal>
             <div className="mb-20 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6">
               <div>
-                <p className="text-[11px] sm:text-[10px] tracking-[0.4em] uppercase text-[var(--accent)] mb-2">[01] Problems</p>
+                <p className="text-[11px] sm:text-[10px] tracking-[0.4em] uppercase text-[var(--accent)] mb-2"><Decode text="[01] PROBLEMS" /></p>
                 <BlockReveal as="p" className="font-display text-3xl sm:text-4xl font-light tracking-wide" delay={0.15}>こんな困りごとから</BlockReveal>
               </div>
               <p className="text-base text-[var(--muted-fg)] leading-8 sm:max-w-sm sm:text-right">

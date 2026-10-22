@@ -54,7 +54,7 @@ export default function WorksGrid({ works }: { works: Work[] }) {
               exit={{ opacity: 0, scale: 0.96 }}
               transition={{ duration: 0.5 * speed, ease, delay: Math.min(i, 8) * 0.04 }}
             >
-              <Link href={`/works/${work.slug}`} className="group block h-full bg-[var(--bg)] transition-colors duration-500 overflow-hidden">
+              <Link href={`/works/${work.slug}`} data-cursor="view" className="group block h-full bg-[var(--bg)] transition-colors duration-500 overflow-hidden">
                 <div className="aspect-video relative overflow-hidden bg-[var(--muted)]">
                   <Image
                     src={work.thumbnail}

@@ -5,6 +5,8 @@ import { motion, useMotionValue, useScroll, useSpring, useTransform } from "fram
 import AvatarIllust from "@/components/ui/AvatarIllust"
 import { glitchToggleTheme, useMotionTheme } from "@/lib/theme"
 import { useIntro } from "@/components/ui/Intro"
+import Magnetic from "@/components/ui/Magnetic"
+import Decode from "@/components/ui/Decode"
 
 function MouseGradient() {
   const ref = useRef<HTMLDivElement>(null)
@@ -75,7 +77,7 @@ function HeroInner() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1, duration: 0.7 }}
         >
-          Plan · Make · Run
+          <Decode text="PLAN · MAKE · RUN" delay={0.3} />
         </motion.p>
 
         {/* Name — two tight lines, in front of the avatar */}
@@ -111,7 +113,7 @@ function HeroInner() {
           animate={{ opacity: 0.85, scale: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 1.1 * speed, ease: spring }}
         >
-          <AvatarIllust className="w-full text-[var(--fg)]" onDizzy={glitchToggleTheme} />
+          <div data-cursor="spin" className="w-full"><AvatarIllust className="w-full text-[var(--fg)]" onDizzy={glitchToggleTheme} /></div>
         </motion.div>
         </motion.div>
 
@@ -158,6 +160,7 @@ function HeroInner() {
           </div>
 
           <div className="flex items-center gap-5">
+            <Magnetic>
             <a
               href="/#works"
               className="group relative text-[11px] sm:text-[10px] tracking-[0.35em] uppercase px-8 py-3.5 border border-[var(--accent)] text-[var(--accent)] overflow-hidden transition-colors duration-300 hover:text-[var(--bg)]"
@@ -165,6 +168,8 @@ function HeroInner() {
               <span className="absolute inset-0 bg-[var(--accent)] translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
               <span className="relative">Works</span>
             </a>
+            </Magnetic>
+            <Magnetic strength={0.25}>
             <a
               href="/#contact"
               className="group text-[11px] sm:text-[10px] tracking-[0.35em] uppercase text-[var(--muted-fg)] hover:text-[var(--fg)] transition-colors flex items-center gap-2"
@@ -172,6 +177,7 @@ function HeroInner() {
               Contact
               <span className="inline-block group-hover:translate-x-1.5 transition-transform duration-300">→</span>
             </a>
+            </Magnetic>
           </div>
         </motion.div>
       </div>

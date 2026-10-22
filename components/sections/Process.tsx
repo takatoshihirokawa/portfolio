@@ -1,10 +1,12 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { useRef } from "react"
+import { motion, useScroll, useTransform } from "framer-motion"
 import { useMotionTheme } from "@/lib/theme"
 import Parallax from "@/components/ui/Parallax"
 import Reveal from "@/components/ui/Reveal"
 import BlockReveal from "@/components/ui/BlockReveal"
+import Decode from "@/components/ui/Decode"
 
 const steps = [
   { en: "Listen", title: "目的と現状を聞く", body: "今の仕事の流れ、困っている点、使える予算や時期を整理します。" },
@@ -14,18 +16,24 @@ const steps = [
 
 export default function Process() {
   const { ease, speed, stagger } = useMotionTheme()
+  const lineRef = useRef<HTMLDivElement>(null)
+  const { scrollYProgress } = useScroll({ target: lineRef, offset: ["start 85%", "start 35%"] })
+  const lineScale = useTransform(scrollYProgress, [0, 1], [0, 1])
   return (
     <section id="process" className="py-40 px-6 sm:px-12 border-t border-[var(--border)]">
       <div className="max-w-6xl mx-auto">
         <Parallax amount={18}>
           <Reveal>
             <div className="mb-20">
-              <p className="text-[11px] sm:text-[10px] tracking-[0.4em] uppercase text-[var(--accent)] mb-2">[02] Process</p>
+              <p className="text-[11px] sm:text-[10px] tracking-[0.4em] uppercase text-[var(--accent)] mb-2"><Decode text="[02] PROCESS" /></p>
               <BlockReveal as="p" className="font-display text-3xl sm:text-4xl font-light tracking-wide" delay={0.15}>相談から実行まで</BlockReveal>
             </div>
           </Reveal>
         </Parallax>
 
+        <div ref={lineRef} className="relative hidden md:block h-px mb-10 bg-[var(--border)]">
+          <motion.div className="absolute inset-y-0 left-0 w-full bg-[var(--accent)] origin-left" style={{ scaleX: lineScale }} />
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-0">
           {steps.map((s, i) => (
             <motion.div
@@ -42,9 +50,6 @@ export default function Process() {
               <span className="text-[11px] sm:text-[9px] tracking-[0.4em] uppercase text-[var(--muted-fg)]">{s.en}</span>
               <p className="text-xl font-medium">{s.title}</p>
               <p className="text-base text-[var(--muted-fg)] leading-8">{s.body}</p>
-              {i < steps.length - 1 && (
-                <span className="hidden md:block absolute top-7 right-0 w-8 h-px bg-[var(--border)]" />
-              )}
             </motion.div>
           ))}
         </div>

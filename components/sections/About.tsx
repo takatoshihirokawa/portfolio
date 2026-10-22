@@ -1,42 +1,11 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
 import { motion } from "framer-motion"
 import { useMotionTheme } from "@/lib/theme"
 import Parallax from "@/components/ui/Parallax"
+import Odometer from "@/components/ui/Odometer"
 import BlockReveal from "@/components/ui/BlockReveal"
-
-function useCountUp(target: number, duration = 1.6) {
-  const [value, setValue] = useState(0)
-  const ref = useRef<HTMLSpanElement>(null)
-  const triggered = useRef(false)
-
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !triggered.current) {
-          triggered.current = true
-          const start = performance.now()
-          const tick = (now: number) => {
-            const t = Math.min((now - start) / (duration * 1000), 1)
-            const eased = 1 - Math.pow(1 - t, 3)
-            setValue(Math.floor(eased * target))
-            if (t < 1) requestAnimationFrame(tick)
-            else setValue(target)
-          }
-          requestAnimationFrame(tick)
-        }
-      },
-      { threshold: 0.6 }
-    )
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [target, duration])
-
-  return { value, ref }
-}
+import Decode from "@/components/ui/Decode"
 
 const pillars = [
   {
@@ -64,12 +33,9 @@ const tools = {
 }
 
 function StatBox({ target, suffix, label }: { target: number; suffix: string; label: string }) {
-  const { value, ref } = useCountUp(target)
   return (
     <div className="flex flex-col items-center justify-center py-10 gap-2">
-      <span ref={ref} className="font-display text-3xl sm:text-4xl font-light text-[var(--accent)] tracking-wide tabular-nums">
-        {value}{suffix}
-      </span>
+      <Odometer value={target} suffix={suffix} className="font-display text-3xl sm:text-4xl font-light text-[var(--accent)] tracking-wide" />
       <span className="text-[11px] sm:text-[9px] tracking-[0.2em] uppercase text-[var(--muted-fg)] text-center leading-relaxed whitespace-pre-line">
         {label}
       </span>
@@ -99,7 +65,7 @@ export default function About() {
         <Parallax amount={18}>
           <FadeUp>
             <div className="mb-20">
-              <p className="text-[11px] sm:text-[10px] tracking-[0.4em] uppercase text-[var(--accent)] mb-2">[03] About</p>
+              <p className="text-[11px] sm:text-[10px] tracking-[0.4em] uppercase text-[var(--accent)] mb-2"><Decode text="[03] ABOUT" /></p>
               <BlockReveal as="p" className="font-display text-3xl sm:text-4xl font-light tracking-wide" delay={0.15}>Who I Am</BlockReveal>
             </div>
           </FadeUp>

@@ -3,6 +3,7 @@ import { getWorks } from "@/lib/data"
 import WorksGrid from "@/components/works/WorksGrid"
 import Reveal from "@/components/ui/Reveal"
 import BlockReveal from "@/components/ui/BlockReveal"
+import Decode from "@/components/ui/Decode"
 
 export const metadata = {
   title: "Works | Takatoshi Hirokawa",
@@ -22,7 +23,7 @@ export default async function WorksIndex() {
         <Reveal delay={0.05}>
           <div className="mt-14 mb-16 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6">
             <div>
-              <p className="text-[11px] sm:text-[10px] tracking-[0.4em] uppercase text-[var(--accent)] mb-2">All Works</p>
+              <p className="text-[11px] sm:text-[10px] tracking-[0.4em] uppercase text-[var(--accent)] mb-2"><Decode text="ALL WORKS" /></p>
               <BlockReveal as="p" className="font-display text-4xl sm:text-5xl font-light tracking-wide" delay={0.15}>制作実績</BlockReveal>
             </div>
             <p className="text-base text-[var(--muted-fg)] leading-8 sm:max-w-sm sm:text-right">

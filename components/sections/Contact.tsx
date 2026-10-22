@@ -5,6 +5,8 @@ import { motion } from "framer-motion"
 import { submitContact, type ContactState } from "@/app/actions/contact"
 import Parallax from "@/components/ui/Parallax"
 import BlockReveal from "@/components/ui/BlockReveal"
+import Decode from "@/components/ui/Decode"
+import Magnetic from "@/components/ui/Magnetic"
 
 export default function Contact() {
   const [state, formAction, pending] = useActionState<ContactState, FormData>(submitContact, { ok: false })
@@ -24,7 +26,7 @@ export default function Contact() {
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
         >
-          <p className="text-[11px] sm:text-[10px] tracking-[0.4em] uppercase text-[var(--accent)] mb-2">[05] Contact</p>
+          <p className="text-[11px] sm:text-[10px] tracking-[0.4em] uppercase text-[var(--accent)] mb-2"><Decode text="[05] CONTACT" /></p>
           <BlockReveal as="p" className="font-display text-3xl sm:text-4xl font-light tracking-wide" delay={0.15}>Let&apos;s Talk</BlockReveal>
           <p className="mt-6 text-base text-[var(--muted-fg)] leading-8 max-w-xl">
             何から頼めばよいか、決まっていなくても大丈夫です。
@@ -80,6 +82,7 @@ export default function Contact() {
                 />
 
                 <div className="mt-2 flex flex-col sm:flex-row sm:items-center gap-4">
+                  <Magnetic>
                   <button
                     type="submit"
                     disabled={pending}
@@ -87,6 +90,7 @@ export default function Contact() {
                   >
                     {pending ? "送信中…" : "送信する"}
                   </button>
+                  </Magnetic>
                   <p className="text-sm text-[var(--muted-fg)] leading-6">
                     送信により
                     <a href="/privacy-policy" className="underline hover:text-[var(--accent)] transition-colors">プライバシーポリシー</a>
