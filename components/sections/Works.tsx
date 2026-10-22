@@ -72,7 +72,7 @@ function FeaturedCard({ work, index }: { work: (typeof works)[0]; index: number 
               style={{ background: `radial-gradient(50% 70% at 50% 50%, ${accent}, transparent)` }}
             />
             <div className="absolute top-6 left-7">
-              <span className="font-display text-[11px] tracking-[0.4em] uppercase text-[var(--accent)] opacity-60">
+              <span className="font-display text-[11px] tracking-[0.4em] uppercase text-white/60">
                 Featured
               </span>
             </div>

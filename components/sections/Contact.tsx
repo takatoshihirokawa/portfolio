@@ -48,15 +48,20 @@ export default function Contact() {
   return (
     <section id="contact" className="py-40 px-6 sm:px-10 border-t border-[var(--border)]">
       <div className="max-w-6xl mx-auto">
-        <motion.p
-          className="text-xs tracking-[0.3em] uppercase text-[var(--accent)] mb-20"
-          initial={{ opacity: 0, y: 20 }}
+        <motion.div
+          className="mb-20"
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
         >
-          [04] Contact
-        </motion.p>
+          <p className="text-[10px] tracking-[0.4em] uppercase text-[var(--accent)] mb-2">[04] Contact</p>
+          <p className="font-display text-3xl sm:text-4xl font-light tracking-wide">Let&apos;s Talk</p>
+          <p className="mt-6 text-sm text-[var(--muted-fg)] leading-8 max-w-xl">
+            「こんなことできる？」の段階からで大丈夫です。
+            課題の整理から一緒に進めます。3営業日以内にご返信します。
+          </p>
+        </motion.div>
 
         <div className="max-w-2xl">
           {/* Form */}
