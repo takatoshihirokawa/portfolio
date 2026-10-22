@@ -109,18 +109,18 @@ export default function GridCanvas() {
 
     const onMove = (e: MouseEvent) => {
       const dist = Math.hypot(e.clientX - last.x, e.clientY - last.y)
-      if (dist < 70) return
+      if (dist < 55) return
       last = { x: e.clientX, y: e.clientY }
       updateLake()
       if (!inside(e.clientX, e.clientY)) return
-      if (ripples.length > 6) ripples.shift()
-      ripples.push({ x: e.clientX, y: e.clientY, t0: performance.now(), amp: 2.2, speed: 220, life: 1.1 })
+      if (ripples.length > 8) ripples.shift()
+      ripples.push({ x: e.clientX, y: e.clientY, t0: performance.now(), amp: 3.6, speed: 240, life: 1.5 })
       wake()
     }
     const onDown = (e: MouseEvent) => {
       updateLake()
       if (!inside(e.clientX, e.clientY)) return
-      ripples.push({ x: e.clientX, y: e.clientY, t0: performance.now(), amp: 5, speed: 300, life: 1.8 })
+      ripples.push({ x: e.clientX, y: e.clientY, t0: performance.now(), amp: 7, speed: 320, life: 2.2 })
       wake()
     }
     const mo = new MutationObserver(() => draw(performance.now()))

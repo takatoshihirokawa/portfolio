@@ -80,7 +80,7 @@ function HeroInner() {
           strokeWidth="1.2"
           vectorEffect="non-scaling-stroke"
           strokeLinejoin="round"
-          opacity={0.22}
+          opacity={0.13}
         />
       </motion.svg>
 
