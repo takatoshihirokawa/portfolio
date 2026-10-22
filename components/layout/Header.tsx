@@ -18,6 +18,7 @@ const OPEN_EASE = [0.76, 0, 0.24, 1] as const
 export default function Header() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
+  const [origin, setOrigin] = useState({ x: 0, y: 0 })
   const { ease } = useMotionTheme()
 
   useEffect(() => {
@@ -66,7 +67,11 @@ export default function Header() {
 
         <button
           className="lg:hidden relative w-11 h-11 -mr-2 flex items-center justify-center"
-          onClick={() => setMenuOpen((v) => !v)}
+          onClick={(e) => {
+            const r = e.currentTarget.getBoundingClientRect()
+            setOrigin({ x: r.left + r.width / 2, y: r.top + r.height / 2 })
+            setMenuOpen((v) => !v)
+          }}
           aria-label={menuOpen ? "メニューを閉じる" : "メニューを開く"}
           aria-expanded={menuOpen}
         >
@@ -81,11 +86,29 @@ export default function Header() {
           <motion.div
             key="menu"
             className="lg:hidden fixed inset-0 bg-[var(--bg)] flex flex-col overflow-hidden"
-            initial={{ clipPath: "circle(0% at calc(100% - 38px) 32px)" }}
-            animate={{ clipPath: "circle(160% at calc(100% - 38px) 32px)" }}
-            exit={{ clipPath: "circle(0% at calc(100% - 38px) 32px)", transition: { duration: 0.55, ease: OPEN_EASE } }}
-            transition={{ duration: 0.8, ease: OPEN_EASE }}
+            initial={{ clipPath: `circle(0px at ${origin.x}px ${origin.y}px)` }}
+            animate={{ clipPath: `circle(150vmax at ${origin.x}px ${origin.y}px)` }}
+            exit={{ clipPath: `circle(0px at ${origin.x}px ${origin.y}px)`, transition: { duration: 0.55, ease: OPEN_EASE } }}
+            transition={{ duration: 0.85, ease: OPEN_EASE }}
           >
+            {/* Ripple rings from the tap point */}
+            {[0, 1, 2].map((i) => (
+              <motion.span
+                key={i}
+                className="absolute rounded-full border border-[var(--accent)] pointer-events-none"
+                style={{ left: origin.x, top: origin.y, x: "-50%", y: "-50%" }}
+                initial={{ width: 0, height: 0, opacity: 0.8 }}
+                animate={{ width: 1400 + i * 300, height: 1400 + i * 300, opacity: 0 }}
+                transition={{ duration: 1.3 + i * 0.2, ease: [0.16, 1, 0.3, 1], delay: 0.05 + i * 0.12 }}
+              />
+            ))}
+            <motion.span
+              className="absolute rounded-full bg-[var(--accent)] pointer-events-none"
+              style={{ left: origin.x, top: origin.y, width: 12, height: 12, x: "-50%", y: "-50%" }}
+              initial={{ scale: 1, opacity: 1 }}
+              animate={{ scale: 6, opacity: 0 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+            />
             {/* Accent band sweeps across */}
             <motion.div
               className="absolute -inset-y-24 w-[60%] bg-[var(--accent)] pointer-events-none"

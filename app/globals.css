@@ -10,12 +10,12 @@
 }
 
 html[data-theme="light"] {
-  --bg: #f3f3ee;
+  --bg: #efefef;
   --fg: #0c0c0c;
   --accent: #2b2bff;
-  --muted: #e6e6e0;
-  --muted-fg: #7a7a76;
-  --border: #d6d6d0;
+  --muted: #e4e4e4;
+  --muted-fg: #767676;
+  --border: #d3d3d3;
 }
 
 /* Light: faint engineering grid, softer grain, calmer marquee */
