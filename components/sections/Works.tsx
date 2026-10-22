@@ -36,10 +36,10 @@ function FeaturedCard({ work, index }: { work: Work; index: number }) {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: dist + 10 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0, y: dist + 10, filter: "blur(10px)", scale: 0.985 }}
+      whileInView={{ opacity: 1, y: 0, filter: "blur(0px)", scale: 1 }}
       viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.8 * speed, ease }}
+      transition={{ duration: 1.2 * speed, ease: [0.2, 0.8, 0.2, 1] }}
       className="md:col-span-2 h-full"
     >
       <Link href={`/works/${work.slug}`} data-cursor="view">
@@ -109,10 +109,10 @@ function WorkCard({ work, index }: { work: Work; index: number }) {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: dist + 10 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0, y: dist + 10, filter: "blur(10px)", scale: 0.985 }}
+      whileInView={{ opacity: 1, y: 0, filter: "blur(0px)", scale: 1 }}
       viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.7 * speed, ease, delay: (index % 2) * stagger }}
+      transition={{ duration: 1.1 * speed, ease: [0.2, 0.8, 0.2, 1], delay: (index % 2) * stagger }}
     >
       <Link href={`/works/${work.slug}`} data-cursor="view">
         <motion.div
