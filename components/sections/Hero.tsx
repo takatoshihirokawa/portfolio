@@ -63,7 +63,7 @@ export default function Hero() {
         {/* Role */}
         <motion.p
           style={{ y: roleY }}
-          className="text-[9px] sm:text-[10px] tracking-[0.3em] sm:tracking-[0.4em] uppercase text-[var(--accent)] mb-10 text-center"
+          className="text-[11px] sm:text-[10px] tracking-[0.3em] sm:tracking-[0.4em] uppercase text-[var(--accent)] mb-10 text-center"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1, duration: 0.7 }}
@@ -110,7 +110,7 @@ export default function Hero() {
 
         {/* Location badge */}
         <motion.div
-          className="relative z-20 mt-6 flex flex-col sm:flex-row items-center gap-1.5 sm:gap-3 text-[9px] tracking-[0.35em] uppercase text-[var(--muted-fg)]"
+          className="relative z-20 mt-6 flex flex-col sm:flex-row items-center gap-1.5 sm:gap-3 text-[11px] sm:text-[9px] tracking-[0.35em] uppercase text-[var(--muted-fg)]"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.85, duration: 0.6 }}
@@ -124,7 +124,7 @@ export default function Hero() {
         </motion.div>
 
         <motion.p
-          className="relative z-20 mt-3 text-[10px] tracking-[0.3em] uppercase text-[var(--accent)]"
+          className="relative z-20 mt-3 text-[11px] sm:text-[10px] tracking-[0.3em] uppercase text-[var(--accent)]"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 2.2, duration: 1 }}
@@ -153,14 +153,14 @@ export default function Hero() {
           <div className="flex items-center gap-5">
             <a
               href="/#works"
-              className="group relative text-[10px] tracking-[0.35em] uppercase px-8 py-3.5 border border-[var(--accent)] text-[var(--accent)] overflow-hidden transition-colors duration-300 hover:text-[var(--bg)]"
+              className="group relative text-[11px] sm:text-[10px] tracking-[0.35em] uppercase px-8 py-3.5 border border-[var(--accent)] text-[var(--accent)] overflow-hidden transition-colors duration-300 hover:text-[var(--bg)]"
             >
               <span className="absolute inset-0 bg-[var(--accent)] translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
               <span className="relative">Works</span>
             </a>
             <a
               href="/#contact"
-              className="group text-[10px] tracking-[0.35em] uppercase text-[var(--muted-fg)] hover:text-[var(--fg)] transition-colors flex items-center gap-2"
+              className="group text-[11px] sm:text-[10px] tracking-[0.35em] uppercase text-[var(--muted-fg)] hover:text-[var(--fg)] transition-colors flex items-center gap-2"
             >
               Contact
               <span className="inline-block group-hover:translate-x-1.5 transition-transform duration-300">→</span>
@@ -176,7 +176,7 @@ export default function Hero() {
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5, duration: 0.8 }}
       >
-        <span className="text-[8px] tracking-[0.5em] uppercase text-[var(--muted-fg)]">Scroll</span>
+        <span className="text-[10px] sm:text-[8px] tracking-[0.5em] uppercase text-[var(--muted-fg)]">Scroll</span>
         <motion.div
           className="w-px h-10 bg-gradient-to-b from-[var(--muted-fg)] to-transparent"
           animate={{ scaleY: [1, 0.2, 1], opacity: [0.5, 0.15, 0.5] }}

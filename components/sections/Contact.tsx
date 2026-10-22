@@ -57,7 +57,7 @@ export default function Contact() {
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
         >
-          <p className="text-[10px] tracking-[0.4em] uppercase text-[var(--accent)] mb-2">[05] Contact</p>
+          <p className="text-[11px] sm:text-[10px] tracking-[0.4em] uppercase text-[var(--accent)] mb-2">[05] Contact</p>
           <p className="font-display text-3xl sm:text-4xl font-light tracking-wide">Let&apos;s Talk</p>
           <p className="mt-6 text-sm text-[var(--muted-fg)] leading-8 max-w-xl">
             何から頼めばよいか、決まっていなくても大丈夫です。

@@ -23,7 +23,7 @@ export default function Problems() {
           <Reveal>
             <div className="mb-20 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6">
               <div>
-                <p className="text-[10px] tracking-[0.4em] uppercase text-[var(--accent)] mb-2">[01] Problems</p>
+                <p className="text-[11px] sm:text-[10px] tracking-[0.4em] uppercase text-[var(--accent)] mb-2">[01] Problems</p>
                 <p className="font-display text-3xl sm:text-4xl font-light tracking-wide">こんな困りごとから</p>
               </div>
               <p className="text-sm text-[var(--muted-fg)] leading-7 sm:max-w-xs sm:text-right">
@@ -43,7 +43,7 @@ export default function Problems() {
               transition={{ duration: 0.6 * speed, ease, delay: (i % 3) * stagger }}
               className="group border-r border-b border-[var(--border)] p-8 sm:p-10 flex flex-col gap-4 hover:bg-[var(--muted)] transition-colors duration-500"
             >
-              <span className="font-display text-[10px] tracking-[0.4em] text-[var(--accent)]">
+              <span className="font-display text-[11px] sm:text-[10px] tracking-[0.4em] text-[var(--accent)]">
                 {String(i + 1).padStart(2, "0")}
               </span>
               <p className="text-base font-medium leading-snug">{p.title}</p>

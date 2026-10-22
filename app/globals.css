@@ -53,6 +53,11 @@ body {
 
 html { scroll-behavior: smooth; }
 
+/* Mobile: one step larger for readability */
+@media (max-width: 639px) {
+  html { font-size: 17px; }
+}
+
 /* Grain texture */
 body::after {
   content: "";

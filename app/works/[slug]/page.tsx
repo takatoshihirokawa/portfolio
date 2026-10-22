@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   }
 }
 
-const label = "text-[9px] tracking-[0.4em] uppercase text-[var(--muted-fg)] mb-3 block"
+const label = "text-[11px] sm:text-[9px] tracking-[0.4em] uppercase text-[var(--muted-fg)] mb-3 block"
 
 export default async function WorkPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
@@ -37,7 +37,7 @@ export default async function WorkPage({ params }: { params: Promise<{ slug: str
         <Reveal>
           <Link
             href="/#works"
-            className="inline-flex items-center gap-2 text-[10px] tracking-[0.35em] uppercase text-[var(--muted-fg)] hover:text-[var(--accent)] transition-colors"
+            className="inline-flex items-center gap-2 text-[11px] sm:text-[10px] tracking-[0.35em] uppercase text-[var(--muted-fg)] hover:text-[var(--accent)] transition-colors"
           >
             <span>←</span> Works
           </Link>
@@ -46,7 +46,7 @@ export default async function WorkPage({ params }: { params: Promise<{ slug: str
         {/* Header */}
         <header className="mt-14 mb-14 grid grid-cols-1 lg:grid-cols-12 gap-10">
           <Reveal className="lg:col-span-8">
-            <p className="text-[10px] tracking-[0.4em] uppercase text-[var(--accent)] mb-4">
+            <p className="text-[11px] sm:text-[10px] tracking-[0.4em] uppercase text-[var(--accent)] mb-4">
               [{num}] {work.category} · {work.year}
             </p>
             <h1 className="font-display text-3xl sm:text-5xl font-light leading-[1.15] tracking-wide">
@@ -54,7 +54,7 @@ export default async function WorkPage({ params }: { params: Promise<{ slug: str
             </h1>
             <div className="flex flex-wrap gap-1.5 mt-6">
               {work.tags.map((tag) => (
-                <span key={tag} className="text-[9px] tracking-widest uppercase text-[var(--muted-fg)] border border-[var(--border)] px-2 py-1">
+                <span key={tag} className="text-[11px] sm:text-[9px] tracking-widest uppercase text-[var(--muted-fg)] border border-[var(--border)] px-2 py-1">
                   {tag}
                 </span>
               ))}
@@ -101,7 +101,7 @@ export default async function WorkPage({ params }: { params: Promise<{ slug: str
           <div className="lg:col-span-4">
             <Parallax amount={14}>
               <Reveal>
-                <p className="text-[10px] tracking-[0.4em] uppercase text-[var(--accent)] mb-2">Story</p>
+                <p className="text-[11px] sm:text-[10px] tracking-[0.4em] uppercase text-[var(--accent)] mb-2">Story</p>
                 <p className="font-display text-3xl font-light tracking-wide">課題と進め方</p>
               </Reveal>
             </Parallax>
@@ -145,7 +145,7 @@ export default async function WorkPage({ params }: { params: Promise<{ slug: str
                 className="w-full h-auto"
               />
             </div>
-            <p className="mt-3 text-[9px] tracking-[0.3em] uppercase text-[var(--muted-fg)]">Scroll inside to see more</p>
+            <p className="mt-3 text-[11px] sm:text-[9px] tracking-[0.3em] uppercase text-[var(--muted-fg)]">Scroll inside to see more</p>
           </Reveal>
         )}
 
@@ -160,7 +160,7 @@ export default async function WorkPage({ params }: { params: Promise<{ slug: str
               href={`/works/${w.slug}`}
               className={`group flex flex-col ${align} gap-3 py-10 px-2 sm:px-6 hover:bg-[var(--muted)] transition-colors`}
             >
-              <span className="text-[9px] tracking-[0.4em] uppercase text-[var(--muted-fg)]">
+              <span className="text-[11px] sm:text-[9px] tracking-[0.4em] uppercase text-[var(--muted-fg)]">
                 {dir === "Prev" ? `${arrow} ${dir}` : `${dir} ${arrow}`}
               </span>
               <span className="text-sm sm:text-base font-medium group-hover:text-[var(--accent)] transition-colors leading-snug">

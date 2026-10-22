@@ -29,7 +29,7 @@ export default function WorksGrid() {
             <button
               key={f.key}
               onClick={() => setFilter(f.key)}
-              className={`text-[10px] tracking-[0.3em] uppercase px-4 py-2 border transition-all duration-300 ${
+              className={`text-[11px] sm:text-[10px] tracking-[0.3em] uppercase px-4 py-2 border transition-all duration-300 ${
                 active
                   ? "border-[var(--accent)] text-[var(--accent)]"
                   : "border-[var(--border)] text-[var(--muted-fg)] hover:border-[var(--muted-fg)] hover:text-[var(--fg)]"
@@ -64,7 +64,7 @@ export default function WorksGrid() {
                     className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.03]"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-70 group-hover:opacity-40 transition-opacity duration-500" />
-                  <span className="absolute top-3 left-3 text-[8px] tracking-[0.3em] uppercase text-white/80 bg-black/40 backdrop-blur-sm px-2 py-1">
+                  <span className="absolute top-3 left-3 text-[10px] sm:text-[8px] tracking-[0.3em] uppercase text-white/80 bg-black/40 backdrop-blur-sm px-2 py-1">
                     {work.category}
                   </span>
                 </div>
@@ -73,7 +73,7 @@ export default function WorksGrid() {
                     <h3 className="text-sm font-medium leading-snug group-hover:text-[var(--accent)] transition-colors duration-300">{work.title}</h3>
                     <span className="text-xs text-[var(--muted-fg)] shrink-0 tabular-nums">{work.year}</span>
                   </div>
-                  <p className="text-[10px] text-[var(--muted-fg)] tracking-wide">{work.client}</p>
+                  <p className="text-[11px] sm:text-[10px] text-[var(--muted-fg)] tracking-wide">{work.client}</p>
                 </div>
                 <div className="h-px w-0 group-hover:w-full bg-[var(--accent)] transition-all duration-500 ease-out" />
               </Link>

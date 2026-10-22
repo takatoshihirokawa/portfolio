@@ -19,7 +19,7 @@ export default function Process() {
         <Parallax amount={18}>
           <Reveal>
             <div className="mb-20">
-              <p className="text-[10px] tracking-[0.4em] uppercase text-[var(--accent)] mb-2">[02] Process</p>
+              <p className="text-[11px] sm:text-[10px] tracking-[0.4em] uppercase text-[var(--accent)] mb-2">[02] Process</p>
               <p className="font-display text-3xl sm:text-4xl font-light tracking-wide">相談から実行まで</p>
             </div>
           </Reveal>
@@ -38,7 +38,7 @@ export default function Process() {
               <span className="font-display text-5xl sm:text-6xl font-light text-[var(--accent)] leading-none">
                 {String(i + 1).padStart(2, "0")}
               </span>
-              <span className="text-[9px] tracking-[0.4em] uppercase text-[var(--muted-fg)]">{s.en}</span>
+              <span className="text-[11px] sm:text-[9px] tracking-[0.4em] uppercase text-[var(--muted-fg)]">{s.en}</span>
               <p className="text-lg font-medium">{s.title}</p>
               <p className="text-sm text-[var(--muted-fg)] leading-7">{s.body}</p>
               {i < steps.length - 1 && (

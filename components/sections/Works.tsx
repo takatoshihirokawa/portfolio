@@ -68,7 +68,7 @@ function FeaturedCard({ work, index }: { work: (typeof works)[0]; index: number 
               </span>
             </Parallax>
             <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              <span className="text-[10px] tracking-[0.4em] uppercase text-white border border-white/40 bg-black/30 backdrop-blur-sm px-5 py-2.5">
+              <span className="text-[11px] sm:text-[10px] tracking-[0.4em] uppercase text-white border border-white/40 bg-black/30 backdrop-blur-sm px-5 py-2.5">
                 View Project →
               </span>
             </div>
@@ -76,7 +76,7 @@ function FeaturedCard({ work, index }: { work: (typeof works)[0]; index: number 
 
           <div className="p-6 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 bg-[var(--bg)]">
             <div className="flex items-baseline gap-3 min-w-0">
-              <span className="font-display text-[10px] text-[var(--accent)] tracking-widest shrink-0">{num}</span>
+              <span className="font-display text-[11px] sm:text-[10px] text-[var(--accent)] tracking-widest shrink-0">{num}</span>
               <h3 className="text-base font-medium group-hover:text-[var(--accent)] transition-colors duration-300">
                 {work.title}
               </h3>
@@ -84,7 +84,7 @@ function FeaturedCard({ work, index }: { work: (typeof works)[0]; index: number 
             <div className="flex items-center gap-3 sm:shrink-0">
               <div className="flex flex-wrap gap-1.5 sm:justify-end">
                 {work.tags.slice(0, 3).map((tag) => (
-                  <span key={tag} className="text-[9px] tracking-widest uppercase text-[var(--muted-fg)] border border-[var(--border)] px-2 py-1">
+                  <span key={tag} className="text-[11px] sm:text-[9px] tracking-widest uppercase text-[var(--muted-fg)] border border-[var(--border)] px-2 py-1">
                     {tag}
                   </span>
                 ))}
@@ -134,7 +134,7 @@ function WorkCard({ work, index }: { work: (typeof works)[0]; index: number }) {
               </span>
             </Parallax>
             <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              <span className="text-[9px] tracking-[0.4em] uppercase text-white border border-white/40 bg-black/30 backdrop-blur-sm px-4 py-2">
+              <span className="text-[11px] sm:text-[9px] tracking-[0.4em] uppercase text-white border border-white/40 bg-black/30 backdrop-blur-sm px-4 py-2">
                 View Project
               </span>
             </div>
@@ -143,7 +143,7 @@ function WorkCard({ work, index }: { work: (typeof works)[0]; index: number }) {
           <div className="p-5 flex flex-col gap-3 bg-[var(--bg)]">
             <div className="flex items-start justify-between gap-4">
               <div className="flex items-baseline gap-2.5">
-                <span className="font-display text-[10px] text-[var(--accent)] tracking-widest">{num}</span>
+                <span className="font-display text-[11px] sm:text-[10px] text-[var(--accent)] tracking-widest">{num}</span>
                 <h3 className="text-sm font-medium group-hover:text-[var(--accent)] transition-colors duration-300">
                   {work.title}
                 </h3>
@@ -152,7 +152,7 @@ function WorkCard({ work, index }: { work: (typeof works)[0]; index: number }) {
             </div>
             <div className="flex flex-wrap gap-1.5">
               {work.tags.map((tag) => (
-                <span key={tag} className="text-[9px] tracking-widest uppercase text-[var(--muted-fg)] border border-[var(--border)] px-2 py-1 group-hover:border-[color-mix(in_srgb,var(--accent)_25%,transparent)] transition-colors duration-300">
+                <span key={tag} className="text-[11px] sm:text-[9px] tracking-widest uppercase text-[var(--muted-fg)] border border-[var(--border)] px-2 py-1 group-hover:border-[color-mix(in_srgb,var(--accent)_25%,transparent)] transition-colors duration-300">
                   {tag}
                 </span>
               ))}
@@ -179,7 +179,7 @@ export default function Works() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <p className="text-[10px] tracking-[0.4em] uppercase text-[var(--accent)] mb-2">[03] Works</p>
+            <p className="text-[11px] sm:text-[10px] tracking-[0.4em] uppercase text-[var(--accent)] mb-2">[03] Works</p>
             <p className="font-display text-3xl sm:text-4xl font-light tracking-wide">Selected Works</p>
           </motion.div>
           <motion.div
@@ -190,7 +190,7 @@ export default function Works() {
           >
             <Link
               href="/works"
-              className="group inline-flex items-center gap-3 text-[10px] tracking-[0.3em] uppercase text-[var(--muted-fg)] hover:text-[var(--accent)] transition-colors"
+              className="group inline-flex items-center gap-3 text-[11px] sm:text-[10px] tracking-[0.3em] uppercase text-[var(--muted-fg)] hover:text-[var(--accent)] transition-colors"
             >
               All {works.length} works
               <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>
@@ -214,7 +214,7 @@ export default function Works() {
         >
           <Link
             href="/works"
-            className="group relative text-[10px] tracking-[0.35em] uppercase px-10 py-4 border border-[var(--fg)] text-[var(--fg)] overflow-hidden transition-colors duration-300 hover:text-[var(--bg)]"
+            className="group relative text-[11px] sm:text-[10px] tracking-[0.35em] uppercase px-10 py-4 border border-[var(--fg)] text-[var(--fg)] overflow-hidden transition-colors duration-300 hover:text-[var(--bg)]"
           >
             <span className="absolute inset-0 bg-[var(--fg)] translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
             <span className="relative">すべての実績を見る（{works.length}）</span>
