@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900">
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1a1a2e"/><stop offset="1" stop-color="#3b2bff"/></linearGradient>
+<pattern id="grid" width="80" height="80" patternUnits="userSpaceOnUse"><path d="M80 0H0V80" fill="none" stroke="#ffffff" stroke-opacity="0.08"/></pattern></defs>
+<rect width="1600" height="900" fill="url(#g)"/><rect width="1600" height="900" fill="url(#grid)"/>
+<text x="100" y="150" font-family="Inter, system-ui, sans-serif" font-size="28" letter-spacing="10" fill="#ffffff" fill-opacity="0.6">LAB · EXPERIMENT</text>
+<text x="100" y="470" font-family="Inter, system-ui, sans-serif" font-size="120" font-weight="700" fill="#ffffff">Threads Autopost</text>
+<text x="100" y="560" font-family="Inter, system-ui, sans-serif" font-size="44" fill="#ffffff" fill-opacity="0.75">AI writes, schedules and posts</text>
+<g transform="translate(1180 560)"><circle r="150" fill="none" stroke="#ffffff" stroke-opacity="0.25" stroke-width="2"/><circle r="100" fill="none" stroke="#ffffff" stroke-opacity="0.35" stroke-width="2" stroke-dasharray="12 10"/><circle r="12" fill="#ffffff"/></g>
+</svg>

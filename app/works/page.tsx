@@ -24,7 +24,7 @@ export default function WorksIndex() {
               <p className="font-display text-4xl sm:text-5xl font-light tracking-wide">制作実績</p>
             </div>
             <p className="text-base text-[var(--muted-fg)] leading-8 sm:max-w-sm sm:text-right">
-              Webアプリ・Webサイト・広告映像まで。広告会社時代のプロデュース案件と、独立後の企画〜開発案件を掲載しています。
+              Webアプリ・Webサイト・広告映像まで。広告会社時代のプロデュース案件と、独立後の企画〜開発案件に加え、自分で試した自動化の仕組み（Lab）も載せています。
             </p>
           </div>
         </Reveal>

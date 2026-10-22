@@ -1,4 +1,4 @@
-export type WorkCategory = "App / Service" | "Web" | "Advertising" | "Other"
+export type WorkCategory = "App / Service" | "Web" | "Advertising" | "Lab" | "Other"
 
 export type Work = {
   slug: string
@@ -1025,7 +1025,55 @@ export const works: Work[] = [
     approach: "香水そのものの機能訴求だけではなく、ブランドが想定する情景や感情を体験として届けることを重視。大学を舞台としたストーリー型のプロモーション動画を軸に、映像の世界観と連動するWebサイトを設計した。映像制作では企画・撮影全体のプロデュースを、Web制作では構成整理から制作進行までのディレクションを担当し、複数のクリエイティブを横断して統一感のあるプロモーションにまとめた。 \" style=\"width: 1024px; aspect-ratio: 1024 / 576;\" data-sd-img-src=\"https://storage.googleapis.com/studio-cms-assets/projects/JgqeZYN4ak/s-1024x576_v-fs_webp_fbf944e1-bd0a-462a-8cd0-fda47b84660e.png\">",
     thumbnail: "/images/works/risingwave-22aw-promotion.webp",
     screenshot: "/images/works/risingwave-22aw-promotion-full.webp",
-  }
+  },
+  {
+    slug: "lab-threads-autopost",
+    title: "Threads 自動投稿の仕組み",
+    year: 2026,
+    category: "Lab",
+    tags: ["Automation", "AI", "Development"],
+    client: "自主制作",
+    affiliation: "Freelance",
+    role: "企画・設計・開発",
+    url: null,
+    summary: "投稿ネタの整理から文章生成、予約投稿までを自動化した Threads 運用の仕組み。「SNS の投稿が続かない」をなくすための実験。",
+    background: "SNS は始めるより続けるほうが難しく、特に少人数の会社やお店では「ネタを考えて、書いて、投稿する」の 3 工程が毎日続かない。自分のアカウントで、人が関わるのを最小限にしても運用が続くかを試した。",
+    approach: "ストックしたネタや日々のメモから AI が投稿文を生成し、トーンや長さを調整したうえで、決めた時間に Threads API 経由で自動投稿。生成結果をチェックする余地は残しつつ、何もしなければそのまま流れる設計にした。仕組みを自分で回してから、お客さまのアカウントに提案している。",
+    thumbnail: "/images/works/lab-threads-autopost.svg",
+    screenshot: null,
+  },
+  {
+    slug: "lab-youtube-autopost",
+    title: "YouTube 自動投稿の仕組み",
+    year: 2026,
+    category: "Lab",
+    tags: ["Automation", "AI", "Movie"],
+    client: "自主制作",
+    affiliation: "Freelance",
+    role: "企画・設計・開発",
+    url: null,
+    summary: "台本づくりから動画の書き出し、タイトル・説明文の生成、アップロードまでを一連で回す YouTube 運用の実験。「動画を作っても上げる手が回らない」への答え。",
+    background: "動画は撮影や編集より、公開作業の細かい手間（タイトル、説明文、サムネ、公開設定）で止まりがち。制作後の工程をどこまで自動化できるかを確かめた。",
+    approach: "素材と台本をもとに動画を生成・書き出しし、AI がタイトル・説明文・タグを作成。YouTube Data API で予約公開まで行う。人が見るのは最終確認だけにして、公開までの時間と手間を測った。",
+    thumbnail: "/images/works/lab-youtube-autopost.svg",
+    screenshot: null,
+  },
+  {
+    slug: "lab-plant-blog",
+    title: "植物ブログ（AI 半自動更新）",
+    year: 2026,
+    category: "Lab",
+    tags: ["Automation", "AI", "Web"],
+    client: "自主制作",
+    affiliation: "Freelance",
+    role: "企画・設計・開発・運用",
+    url: null,
+    summary: "育てている植物の記録を、写真とメモから AI が記事にして公開するブログ。「ホームページの更新が止まっている」を仕組みで解決できるかの実験。",
+    background: "ホームページやブログは、作った直後は更新されても半年で止まる。更新を「書く作業」から「材料を放り込む作業」に変えれば続くのではないか、という仮説を自分の趣味で試した。",
+    approach: "スマホで撮った写真と一言メモを送ると、AI が成長記録の記事に整え、下書きとして保存。確認して公開するだけの運用にした。植物の種類や時期ごとの構成テンプレートを用意し、記事の質を一定に保っている。",
+    thumbnail: "/images/works/lab-plant-blog.svg",
+    screenshot: null,
+  },
 ]
 
 export const featuredWorks = works.slice(0, 6)

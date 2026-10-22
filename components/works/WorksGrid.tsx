@@ -12,6 +12,7 @@ const FILTERS: { key: WorkCategory | "All"; label: string }[] = [
   { key: "App / Service", label: "Webアプリ" },
   { key: "Web", label: "Webサイト" },
   { key: "Advertising", label: "広告・映像" },
+  { key: "Lab", label: "Lab（自主制作）" },
 ]
 
 export default function WorksGrid() {
