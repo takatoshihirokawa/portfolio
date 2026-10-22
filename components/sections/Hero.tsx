@@ -4,6 +4,7 @@
 
 import { useEffect, useRef } from "react"
 import { motion, useMotionValue, useSpring } from "framer-motion"
+import AvatarIllust from "@/components/ui/AvatarIllust"
 
 const STAGGER_DELAY = 0.15
 const REVEAL_DELAY = 0.3
@@ -56,43 +57,56 @@ export default function Hero() {
       <MouseGradient />
 
       <div className="max-w-6xl w-full mx-auto relative z-10">
-        <div className="flex flex-col gap-6">
-          {[
-            <p key="role" className="text-xs tracking-[0.3em] uppercase text-[var(--accent)]">
-              Planning / Direction / Development
-            </p>,
-            <h1 key="name" className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-light tracking-tight leading-none">
-              <span className="block">Takatoshi</span>
-              <span className="block text-[var(--accent)]">Hirokawa</span>
-            </h1>,
-            <p key="tagline" className="text-base sm:text-lg text-[var(--muted-fg)] max-w-lg leading-relaxed">
-              「何を作るか」からではなく、<br />
-              「何を解決したいか」から考えます。
-            </p>,
-            <div key="cta" className="flex items-center gap-4 pt-4">
-              <a
-                href="/#works"
-                className="text-xs tracking-[0.2em] uppercase border border-[var(--accent)] text-[var(--accent)] px-6 py-3 hover:bg-[var(--accent)] hover:text-[var(--bg)] transition-all duration-300"
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+          {/* Text content */}
+          <div className="flex flex-col gap-6">
+            {[
+              <p key="role" className="text-xs tracking-[0.3em] uppercase text-[var(--accent)]">
+                Planning / Direction / Development
+              </p>,
+              <h1 key="name" className="text-6xl sm:text-7xl md:text-8xl font-light tracking-tight leading-none">
+                <span className="block">Takatoshi</span>
+                <span className="block text-[var(--accent)]">Hirokawa</span>
+              </h1>,
+              <p key="tagline" className="text-base sm:text-lg text-[var(--muted-fg)] max-w-lg leading-relaxed">
+                「何を作るか」からではなく、<br />
+                「何を解決したいか」から考えます。
+              </p>,
+              <div key="cta" className="flex items-center gap-4 pt-4">
+                <a
+                  href="/#works"
+                  className="text-xs tracking-[0.2em] uppercase border border-[var(--accent)] text-[var(--accent)] px-6 py-3 hover:bg-[var(--accent)] hover:text-[var(--bg)] transition-all duration-300"
+                >
+                  Works
+                </a>
+                <a
+                  href="/#contact"
+                  className="text-xs tracking-[0.2em] uppercase text-[var(--muted-fg)] hover:text-[var(--fg)] transition-colors"
+                >
+                  Contact →
+                </a>
+              </div>,
+            ].map((child, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, ease: "easeOut", delay: REVEAL_DELAY + i * STAGGER_DELAY }}
               >
-                Works
-              </a>
-              <a
-                href="/#contact"
-                className="text-xs tracking-[0.2em] uppercase text-[var(--muted-fg)] hover:text-[var(--fg)] transition-colors"
-              >
-                Contact →
-              </a>
-            </div>,
-          ].map((child, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, ease: "easeOut", delay: REVEAL_DELAY + i * STAGGER_DELAY }}
-            >
-              {child}
-            </motion.div>
-          ))}
+                {child}
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Avatar */}
+          <motion.div
+            className="flex justify-center"
+            initial={{ opacity: 0, x: 40 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.9, ease: "easeOut", delay: 0.5 }}
+          >
+            <AvatarIllust className="w-48 sm:w-64 lg:w-80 xl:w-96 text-white opacity-90" />
+          </motion.div>
         </div>
       </div>
 
