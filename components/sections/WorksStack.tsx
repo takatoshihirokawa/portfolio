@@ -13,16 +13,16 @@ function StackCard({ work, index, total }: { work: Work; index: number; total: n
   const ref = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({ target: ref, offset: [`start ${TOP + index * STEP}px`, `end ${TOP + index * STEP}px`] })
   const isLast = index === total - 1
-  const scale = useTransform(scrollYProgress, [0, 1], [1, isLast ? 1 : 0.9])
-  const rotateX = useTransform(scrollYProgress, [0, 1], [0, isLast ? 0 : -6])
+  const scale = useTransform(scrollYProgress, [0, 1], [1, isLast ? 1 : 0.94])
+  const rotateX = useTransform(scrollYProgress, [0, 1], [0, isLast ? 0 : -3])
   const y = useTransform(scrollYProgress, [0, 1], [0, isLast ? 0 : -18])
-  const dim = useTransform(scrollYProgress, [0, 1], [0, isLast ? 0 : 0.55])
+  const dim = useTransform(scrollYProgress, [0, 1], [0, isLast ? 0 : 0.3])
 
   return (
     <div ref={ref} className="sticky" style={{ top: TOP + index * STEP, zIndex: index + 1 }}>
       <motion.div
         style={{ scale, rotateX, y, transformPerspective: 1100, transformOrigin: "top center" }}
-        className="relative mb-[46vh] last:mb-0"
+        className="relative mb-[40vh] last:mb-0"
       >
         <Link href={`/works/${work.slug}`} className="block bg-[var(--bg)] border border-[var(--border)] overflow-hidden shadow-[0_24px_48px_-24px_rgba(0,0,0,0.55)]">
           <div className="relative aspect-video bg-[var(--muted)]">
