@@ -61,7 +61,7 @@ export default async function WorkPage({ params }: { params: Promise<{ slug: str
             </div>
           </Reveal>
           <Reveal delay={0.1} className="lg:col-span-4 lg:pt-10">
-            <p className="text-sm leading-8 opacity-80">{work.summary}</p>
+            <p className="text-base leading-8 opacity-80">{work.summary}</p>
           </Reveal>
         </header>
 
@@ -109,11 +109,11 @@ export default async function WorkPage({ params }: { params: Promise<{ slug: str
           <div className="lg:col-span-8 flex flex-col gap-14">
             <Reveal>
               <span className={label}>Background</span>
-              <p className="text-sm leading-9 opacity-80">{work.background}</p>
+              <p className="text-base leading-9 opacity-80">{work.background}</p>
             </Reveal>
             <Reveal delay={0.05}>
               <span className={label}>Approach</span>
-              <p className="text-sm leading-9 opacity-80">{work.approach}</p>
+              <p className="text-base leading-9 opacity-80">{work.approach}</p>
             </Reveal>
             {work.url && (
               <Reveal delay={0.1}>

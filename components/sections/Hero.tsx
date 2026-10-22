@@ -140,10 +140,10 @@ export default function Hero() {
           transition={{ delay: 1.05, duration: 0.7 }}
         >
           <div className="flex flex-col items-center gap-3">
-            <p className="text-base sm:text-lg text-[var(--fg)] text-center leading-relaxed tracking-wide font-medium">
+            <p className="text-xl sm:text-2xl text-[var(--fg)] text-center leading-relaxed tracking-wide font-medium">
               何から頼めばよいか、<br className="sm:hidden" />決まっていなくても。
             </p>
-            <p className="text-xs sm:text-sm text-[var(--muted-fg)] text-center leading-loose tracking-wide">
+            <p className="text-[15px] sm:text-base text-[var(--muted-fg)] text-center leading-loose tracking-wide">
               ホームページ・Webアプリの制作から、<br className="sm:hidden" />
               受付や管理の仕組みづくり、AI活用まで。<br />
               困りごとの整理から、作って動かすところまで一緒に。

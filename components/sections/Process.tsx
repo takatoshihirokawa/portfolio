@@ -40,7 +40,7 @@ export default function Process() {
               </span>
               <span className="text-[11px] sm:text-[9px] tracking-[0.4em] uppercase text-[var(--muted-fg)]">{s.en}</span>
               <p className="text-lg font-medium">{s.title}</p>
-              <p className="text-sm text-[var(--muted-fg)] leading-7">{s.body}</p>
+              <p className="text-base text-[var(--muted-fg)] leading-8">{s.body}</p>
               {i < steps.length - 1 && (
                 <span className="hidden md:block absolute top-7 right-0 w-8 h-px bg-[var(--border)]" />
               )}
@@ -49,7 +49,7 @@ export default function Process() {
         </div>
 
         <Reveal delay={0.2}>
-          <p className="mt-20 text-sm text-[var(--accent)] font-medium">
+          <p className="mt-20 text-base text-[var(--accent)] font-medium leading-8">
             大がかりなシステムではなく、日々の仕事に合わせた「使える仕組み」を、小さく始めて育てます。
           </p>
         </Reveal>

@@ -131,7 +131,7 @@ export default function About() {
             <FadeUp delay={0.15}>
               <div>
                 <span className="text-[11px] sm:text-[9px] tracking-[0.4em] uppercase text-[var(--muted-fg)] mb-3 block">Profile</span>
-                <p className="text-sm leading-8 opacity-80">
+                <p className="text-base leading-8 opacity-80">
                   山梨・河口湖を拠点に、地域の会社やお店の「デジタルまわりの相談相手」として活動。
                   ホームページやWebアプリの制作、受付・管理の仕組みづくり、AI活用まで、
                   困りごとの整理から制作・導入・運用まで一人で通して担当します。
@@ -142,7 +142,7 @@ export default function About() {
             <FadeUp delay={0.2}>
               <div>
                 <span className="text-[11px] sm:text-[9px] tracking-[0.4em] uppercase text-[var(--muted-fg)] mb-3 block">Background</span>
-                <p className="text-sm leading-8 opacity-80">
+                <p className="text-base leading-8 opacity-80">
                   広告会社でテレビCMやWebの制作プロデュースを経験した後、事業会社を経て河口湖移住を機に独立。
                   いまは「作る」だけでなく、Bubble・Studio・AIを使って自分で「動くもの」まで作ります。
                 </p>

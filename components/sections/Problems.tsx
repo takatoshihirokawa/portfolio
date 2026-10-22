@@ -26,7 +26,7 @@ export default function Problems() {
                 <p className="text-[11px] sm:text-[10px] tracking-[0.4em] uppercase text-[var(--accent)] mb-2">[01] Problems</p>
                 <p className="font-display text-3xl sm:text-4xl font-light tracking-wide">こんな困りごとから</p>
               </div>
-              <p className="text-sm text-[var(--muted-fg)] leading-7 sm:max-w-xs sm:text-right">
+              <p className="text-base text-[var(--muted-fg)] leading-8 sm:max-w-sm sm:text-right">
                 何を作るか・何を導入するかが決まる前から、一緒に考えます。制作も、業務の仕組みづくりも。
               </p>
             </div>
@@ -46,8 +46,8 @@ export default function Problems() {
               <span className="font-display text-[11px] sm:text-[10px] tracking-[0.4em] text-[var(--accent)]">
                 {String(i + 1).padStart(2, "0")}
               </span>
-              <p className="text-base font-medium leading-snug">{p.title}</p>
-              <p className="text-xs text-[var(--muted-fg)] leading-6">{p.body}</p>
+              <p className="text-lg font-medium leading-snug">{p.title}</p>
+              <p className="text-sm text-[var(--muted-fg)] leading-7">{p.body}</p>
               <span className="mt-auto h-px w-0 group-hover:w-10 bg-[var(--accent)] transition-all duration-500" />
             </motion.div>
           ))}

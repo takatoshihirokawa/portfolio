@@ -23,7 +23,7 @@ export default function WorksIndex() {
               <p className="text-[11px] sm:text-[10px] tracking-[0.4em] uppercase text-[var(--accent)] mb-2">All Works</p>
               <p className="font-display text-4xl sm:text-5xl font-light tracking-wide">制作実績</p>
             </div>
-            <p className="text-sm text-[var(--muted-fg)] leading-7 sm:max-w-sm sm:text-right">
+            <p className="text-base text-[var(--muted-fg)] leading-8 sm:max-w-sm sm:text-right">
               Webアプリ・Webサイト・広告映像まで。広告会社時代のプロデュース案件と、独立後の企画〜開発案件を掲載しています。
             </p>
           </div>
