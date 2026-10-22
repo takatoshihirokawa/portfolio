@@ -1,14 +1,15 @@
 import Link from "next/link"
-import { works } from "@/lib/works"
+import { getWorks } from "@/lib/data"
 import WorksGrid from "@/components/works/WorksGrid"
 import Reveal from "@/components/ui/Reveal"
 
 export const metadata = {
   title: "Works | Takatoshi Hirokawa",
-  description: `Webアプリ、Webサイト、広告・映像の制作実績 ${works.length} 件。`,
+  description: "Webアプリ、Webサイト、広告・映像の制作実績と、自分で試した自動化の仕組み。",
 }
 
-export default function WorksIndex() {
+export default async function WorksIndex() {
+  const works = await getWorks()
   return (
     <div className="pt-32 pb-40 px-6 sm:px-10">
       <div className="max-w-6xl mx-auto">
@@ -28,7 +29,7 @@ export default function WorksIndex() {
             </p>
           </div>
         </Reveal>
-        <WorksGrid />
+        <WorksGrid works={works} />
       </div>
     </div>
   )

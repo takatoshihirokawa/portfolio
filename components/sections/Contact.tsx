@@ -1,25 +1,13 @@
 "use client"
 
-// e.preventDefault() in handleSubmit — backend integration is Phase 3 (Supabase)
-
-import { useState } from "react"
+import { useActionState } from "react"
 import { motion } from "framer-motion"
+import { submitContact, type ContactState } from "@/app/actions/contact"
 import Parallax from "@/components/ui/Parallax"
 
-type FormState = {
-  name: string
-  email: string
-  message: string
-}
-
 export default function Contact() {
-  const [form, setForm] = useState<FormState>({ name: "", email: "", message: "" })
-  const [submitted, setSubmitted] = useState(false)
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault() // No backend in Phase 1
-    setSubmitted(true)
-  }
+  const [state, formAction, pending] = useActionState<ContactState, FormData>(submitContact, { ok: false })
+  const submitted = state.ok
 
   const inputClass =
     "w-full bg-transparent border border-[var(--border)] px-4 py-4 text-base text-[var(--fg)] placeholder:text-[var(--muted-fg)] focus:border-[var(--accent)] focus:outline-none transition-colors"
@@ -61,15 +49,15 @@ export default function Contact() {
                 </p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+              <form action={formAction} className="flex flex-col gap-4">
+                <input type="text" name="company" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
                 <input
                   type="text"
                   placeholder="お名前"
                   autoComplete="name"
                   required
+                  name="name"
                   className={inputClass}
-                  value={form.name}
-                  onChange={(e) => setForm({ ...form, name: e.target.value })}
                 />
 
                 <input
@@ -78,26 +66,25 @@ export default function Contact() {
                   autoComplete="email"
                   inputMode="email"
                   required
+                  name="email"
                   className={inputClass}
-                  value={form.email}
-                  onChange={(e) => setForm({ ...form, email: e.target.value })}
                 />
 
                 <textarea
                   placeholder="ご相談内容（まだ漠然としていても大丈夫です）"
                   required
                   rows={6}
+                  name="message"
                   className={inputClass}
-                  value={form.message}
-                  onChange={(e) => setForm({ ...form, message: e.target.value })}
                 />
 
                 <div className="mt-2 flex flex-col sm:flex-row sm:items-center gap-4">
                   <button
                     type="submit"
-                    className="text-xs tracking-[0.2em] uppercase border border-[var(--accent)] text-[var(--accent)] px-8 py-4 hover:bg-[var(--accent)] hover:text-[var(--bg)] transition-all duration-300 self-start"
+                    disabled={pending}
+                    className="text-xs tracking-[0.2em] uppercase border border-[var(--accent)] text-[var(--accent)] px-8 py-4 hover:bg-[var(--accent)] hover:text-[var(--bg)] transition-all duration-300 self-start disabled:opacity-50"
                   >
-                    送信する
+                    {pending ? "送信中…" : "送信する"}
                   </button>
                   <p className="text-sm text-[var(--muted-fg)] leading-6">
                     送信により
@@ -105,6 +92,7 @@ export default function Contact() {
                     に同意したものとみなします。
                   </p>
                 </div>
+                {state.error && <p className="text-sm text-red-500">{state.error}</p>}
               </form>
             )}
           </motion.div>

@@ -5,15 +5,17 @@ import Works from "@/components/sections/Works"
 import About from "@/components/sections/About"
 import Contact from "@/components/sections/Contact"
 import Marquee from "@/components/ui/Marquee"
+import { getFeaturedWorks, getWorks } from "@/lib/data"
 
-export default function Home() {
+export default async function Home() {
+  const [featured, all] = await Promise.all([getFeaturedWorks(), getWorks()])
   return (
     <>
       <Hero />
       <Marquee />
       <Problems />
       <Process />
-      <Works />
+      <Works works={featured} total={all.length} />
       <About />
       <Contact />
     </>

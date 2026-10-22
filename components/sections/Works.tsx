@@ -4,7 +4,7 @@ import { useRef } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion"
-import { works, featuredWorks } from "@/lib/works"
+import type { Work } from "@/lib/works"
 import { useMotionTheme } from "@/lib/theme"
 import Parallax from "@/components/ui/Parallax"
 
@@ -26,7 +26,7 @@ function useTilt() {
   return { ref, rotateX, rotateY, onMouseMove, onMouseLeave }
 }
 
-function FeaturedCard({ work, index }: { work: (typeof works)[0]; index: number }) {
+function FeaturedCard({ work, index }: { work: Work; index: number }) {
   const tilt = useTilt()
   const { ease, speed, dist } = useMotionTheme()
   const num = String(index + 1).padStart(2, "0")
@@ -99,7 +99,7 @@ function FeaturedCard({ work, index }: { work: (typeof works)[0]; index: number 
   )
 }
 
-function WorkCard({ work, index }: { work: (typeof works)[0]; index: number }) {
+function WorkCard({ work, index }: { work: Work; index: number }) {
   const tilt = useTilt()
   const { ease, speed, dist, stagger } = useMotionTheme()
   const num = String(index + 1).padStart(2, "0")
@@ -165,8 +165,8 @@ function WorkCard({ work, index }: { work: (typeof works)[0]; index: number }) {
   )
 }
 
-export default function Works() {
-  const [featured, ...rest] = featuredWorks
+export default function Works({ works, total }: { works: Work[]; total: number }) {
+  const [featured, ...rest] = works
 
   return (
     <section id="works" className="py-40 px-6 sm:px-10 border-t border-[var(--border)]">
@@ -192,7 +192,7 @@ export default function Works() {
               href="/works"
               className="group inline-flex items-center gap-3 text-[11px] sm:text-[10px] tracking-[0.3em] uppercase text-[var(--muted-fg)] hover:text-[var(--accent)] transition-colors"
             >
-              All {works.length} works
+              All {total} works
               <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>
             </Link>
           </motion.div>
@@ -217,7 +217,7 @@ export default function Works() {
             className="group relative text-[11px] sm:text-[10px] tracking-[0.35em] uppercase px-10 py-4 border border-[var(--fg)] text-[var(--fg)] overflow-hidden transition-colors duration-300 hover:text-[var(--bg)]"
           >
             <span className="absolute inset-0 bg-[var(--fg)] translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
-            <span className="relative">すべての実績を見る（{works.length}）</span>
+            <span className="relative">すべての実績を見る（{total}）</span>
           </Link>
         </motion.div>
       </div>

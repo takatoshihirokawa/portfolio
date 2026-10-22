@@ -2,18 +2,20 @@ import { Suspense } from "react"
 import { notFound } from "next/navigation"
 import Link from "next/link"
 import Image from "next/image"
-import { works } from "@/lib/works"
+import { works as staticWorks } from "@/lib/works"
+import { getWork } from "@/lib/data"
 import Reveal from "@/components/ui/Reveal"
 import Parallax from "@/components/ui/Parallax"
 
 export function generateStaticParams() {
-  return works.map((work) => ({ slug: work.slug }))
+  return staticWorks.map((work) => ({ slug: work.slug }))
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
-  const work = works.find((w) => w.slug === slug)
-  if (!work) return {}
+  const found = await getWork(slug)
+  if (!found) return {}
+  const work = found.work
   return {
     title: `${work.title} | Takatoshi Hirokawa`,
     description: work.summary,
@@ -33,11 +35,9 @@ export default function WorkPage({ params }: { params: Promise<{ slug: string }>
 
 async function WorkContent({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
-  const index = works.findIndex((w) => w.slug === slug)
-  if (index === -1) notFound()
-  const work = works[index]
-  const prev = works[(index - 1 + works.length) % works.length]
-  const next = works[(index + 1) % works.length]
+  const found = await getWork(slug)
+  if (!found) notFound()
+  const { work, prev, next, index } = found
   const num = String(index + 1).padStart(2, "0")
 
   return (

@@ -4,7 +4,7 @@ import { useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { motion, AnimatePresence } from "framer-motion"
-import { works, type WorkCategory } from "@/lib/works"
+import type { Work, WorkCategory } from "@/lib/works"
 import { useMotionTheme } from "@/lib/theme"
 
 const FILTERS: { key: WorkCategory | "All"; label: string }[] = [
@@ -15,7 +15,7 @@ const FILTERS: { key: WorkCategory | "All"; label: string }[] = [
   { key: "Lab", label: "Lab（自主制作）" },
 ]
 
-export default function WorksGrid() {
+export default function WorksGrid({ works }: { works: Work[] }) {
   const [filter, setFilter] = useState<WorkCategory | "All">("All")
   const { ease, speed } = useMotionTheme()
   const list = filter === "All" ? works : works.filter((w) => w.category === filter)
