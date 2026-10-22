@@ -65,21 +65,33 @@ export default function Hero() {
           Planning · Direction · Development
         </motion.p>
 
-        {/* TAKATOSHI */}
-        <div className="overflow-hidden leading-none">
-          <motion.p
-            className="font-display text-[clamp(1.5rem,4.5vw,3.5rem)] font-light tracking-[0.3em] uppercase text-center text-[var(--fg)] opacity-80"
-            initial={{ y: "110%" }}
-            animate={{ y: 0 }}
-            transition={{ delay: 0.25, duration: 0.95, ease: spring }}
-          >
-            TAKATOSHI
-          </motion.p>
+        {/* Name — two tight lines */}
+        <div className="flex flex-col items-center leading-[0.95]">
+          <div className="overflow-hidden">
+            <motion.p
+              className="font-display text-[clamp(1.75rem,5vw,3.75rem)] font-light tracking-[0.3em] uppercase text-center text-[var(--fg)] opacity-80"
+              initial={{ y: "110%" }}
+              animate={{ y: 0 }}
+              transition={{ delay: 0.25, duration: 0.95, ease: spring }}
+            >
+              TAKATOSHI
+            </motion.p>
+          </div>
+          <div className="overflow-hidden">
+            <motion.p
+              className="font-display text-[clamp(1.75rem,5vw,3.75rem)] font-light tracking-[0.3em] uppercase text-center text-[var(--accent)]"
+              initial={{ y: "110%" }}
+              animate={{ y: 0 }}
+              transition={{ delay: 0.35, duration: 0.95, ease: spring }}
+            >
+              HIROKAWA
+            </motion.p>
+          </div>
         </div>
 
-        {/* Avatar — gradient mask blends into bg */}
+        {/* Avatar — overlaps up into the name */}
         <motion.div
-          className="relative z-10 my-3 sm:my-5 w-32 sm:w-40 md:w-44 lg:w-52 xl:w-56 overflow-hidden"
+          className="relative z-10 -mt-4 sm:-mt-6 lg:-mt-9 w-32 sm:w-40 md:w-44 lg:w-52 xl:w-56 overflow-hidden"
           style={{ aspectRatio: "432.39 / 434" }}
           initial={{ opacity: 0, scale: 0.86, y: 24 }}
           animate={{ opacity: 0.85, scale: 1, y: 0 }}
@@ -88,21 +100,9 @@ export default function Hero() {
           <AvatarIllust className="w-full text-[var(--fg)]" onDizzy={glitchToggleTheme} />
         </motion.div>
 
-        {/* HIROKAWA */}
-        <div className="overflow-hidden leading-none">
-          <motion.p
-            className="font-display text-[clamp(1.5rem,4.5vw,3.5rem)] font-light tracking-[0.3em] uppercase text-center text-[var(--accent)]"
-            initial={{ y: "110%" }}
-            animate={{ y: 0 }}
-            transition={{ delay: 0.35, duration: 0.95, ease: spring }}
-          >
-            HIROKAWA
-          </motion.p>
-        </div>
-
         {/* Location badge */}
         <motion.div
-          className="mt-12 flex items-center gap-2 max-w-xs sm:max-w-none"
+          className="mt-6 flex items-center gap-2 max-w-xs sm:max-w-none"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.85, duration: 0.6 }}
@@ -114,7 +114,7 @@ export default function Hero() {
         </motion.div>
 
         <motion.p
-          className="mt-5 text-[10px] tracking-[0.3em] uppercase text-[var(--accent)]"
+          className="mt-3 text-[10px] tracking-[0.3em] uppercase text-[var(--accent)]"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 2.2, duration: 1 }}
@@ -122,17 +122,9 @@ export default function Hero() {
           ↻ Circle around the face
         </motion.p>
 
-        {/* Divider */}
-        <motion.div
-          className="w-px h-10 bg-gradient-to-b from-[var(--muted-fg)] to-transparent mt-8"
-          initial={{ scaleY: 0 }}
-          animate={{ scaleY: 1 }}
-          transition={{ delay: 1.0, duration: 0.6 }}
-        />
-
         {/* Tagline + CTA */}
         <motion.div
-          className="mt-8 flex flex-col items-center gap-9"
+          className="mt-10 flex flex-col items-center gap-8"
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.05, duration: 0.7 }}
