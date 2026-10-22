@@ -19,7 +19,7 @@ const ITEMS = [
 
 export default function Marquee() {
   const theme = useTheme()
-  const baseVelocity = theme === "light" ? -40 : -60
+  const baseVelocity = theme === "light" ? -28 : -36
   const x = useMotionValue(0)
   const trackRef = useRef<HTMLDivElement>(null)
   const { scrollY } = useScroll()
@@ -45,9 +45,9 @@ export default function Marquee() {
   const repeated = [...ITEMS, ...ITEMS, ...ITEMS]
   return (
     <div className="relative border-y border-[var(--border)] overflow-hidden py-6 select-none">
-      <motion.div ref={trackRef} style={{ x }} className="flex gap-14 w-max will-change-transform">
+      <motion.div ref={trackRef} style={{ x }} className="flex gap-8 sm:gap-14 w-max will-change-transform">
         {repeated.map((item, i) => (
-          <span key={i} className="flex items-center gap-14 text-[10px] tracking-[0.3em] text-[var(--muted-fg)] whitespace-nowrap">
+          <span key={i} className="flex items-center gap-8 sm:gap-14 text-xs sm:text-[10px] tracking-[0.2em] sm:tracking-[0.3em] text-[var(--muted-fg)] whitespace-nowrap">
             {item}
             <span className="text-[var(--accent)] text-base leading-none">·</span>
           </span>
