@@ -108,7 +108,7 @@ function HeroInner() {
           className="w-32 sm:w-40 md:w-44 lg:w-52 xl:w-56 overflow-hidden"
           style={{ aspectRatio: "432.39 / 434" }}
           initial={{ opacity: 0, scale: 0.86, y: 24 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
+          animate={{ opacity: 0.85, scale: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 1.1 * speed, ease: spring }}
         >
           <AvatarIllust className="w-full text-[var(--fg)]" onDizzy={glitchToggleTheme} />
