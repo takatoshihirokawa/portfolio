@@ -5,26 +5,47 @@ import { Canvas, useFrame, useThree } from "@react-three/fiber"
 import * as THREE from "three"
 import { useTheme } from "@/lib/theme"
 
-function Wire({ accent, fg }: { accent: string; fg: string }) {
-  const group = useRef<THREE.Group>(null)
-  const spin = useRef(0)
-  const { pointer } = useThree()
+function makeSheetTexture(line: string, edge: string) {
+  const size = 512
+  const c = document.createElement("canvas")
+  c.width = c.height = size
+  const ctx = c.getContext("2d")!
+  ctx.clearRect(0, 0, size, size)
+  ctx.strokeStyle = line
+  ctx.lineWidth = 1
+  const step = size / 16
+  for (let i = 0; i <= 16; i++) {
+    const p = Math.round(i * step) + 0.5
+    ctx.beginPath(); ctx.moveTo(p, 0); ctx.lineTo(p, size); ctx.stroke()
+    ctx.beginPath(); ctx.moveTo(0, p); ctx.lineTo(size, p); ctx.stroke()
+  }
+  ctx.strokeStyle = edge
+  ctx.lineWidth = 3
+  ctx.strokeRect(1.5, 1.5, size - 3, size - 3)
+  const t = new THREE.CanvasTexture(c)
+  t.anisotropy = 4
+  return t
+}
 
-  const { geo, inner } = useMemo(() => {
-    const base = new THREE.IcosahedronGeometry(1.35, 1)
-    const pos = base.attributes.position as THREE.BufferAttribute
-    for (let i = 0; i < pos.count; i++) {
-      const v = new THREE.Vector3().fromBufferAttribute(pos, i)
-      const n = 1 + 0.06 * Math.sin(v.x * 3.1) * Math.cos(v.y * 2.7) * Math.sin(v.z * 2.3)
-      v.multiplyScalar(n)
-      pos.setXYZ(i, v.x, v.y, v.z)
-    }
-    base.computeVertexNormals()
-    return { geo: new THREE.WireframeGeometry(base), inner: new THREE.WireframeGeometry(new THREE.IcosahedronGeometry(0.8, 1)) }
-  }, [])
+const SHEETS = [
+  { pos: [-2.1, 1.0, -3.0], rot: [0.08, 0.35, -0.06], scale: 1.7, accent: false },
+  { pos: [2.3, -0.4, -2.6], rot: [-0.1, -0.4, 0.05], scale: 1.8, accent: true },
+  { pos: [-0.8, -1.9, -2.2], rot: [0.25, 0.15, 0.08], scale: 1.3, accent: false },
+  { pos: [1.5, 1.7, -3.8], rot: [-0.2, -0.2, -0.12], scale: 1.5, accent: false },
+  { pos: [-2.8, -0.9, -4.2], rot: [0.12, 0.5, 0.1], scale: 1.6, accent: true },
+] as const
+
+function Sheets({ line, edge, accent }: { line: string; edge: string; accent: string }) {
+  const group = useRef<THREE.Group>(null)
+  const refs = useRef<(THREE.Mesh | null)[]>([])
+  const fan = useRef(0)
+  const { pointer } = useThree()
+  const texPlain = useMemo(() => makeSheetTexture(line, edge), [line, edge])
+  const texAccent = useMemo(() => makeSheetTexture(line, accent), [line, accent])
+  useEffect(() => () => { texPlain.dispose(); texAccent.dispose() }, [texPlain, texAccent])
 
   useEffect(() => {
-    const onFlip = () => { spin.current = 14 }
+    const onFlip = () => { fan.current = 1 }
     window.addEventListener("theme:flip", onFlip)
     return () => window.removeEventListener("theme:flip", onFlip)
   }, [])
@@ -32,23 +53,31 @@ function Wire({ accent, fg }: { accent: string; fg: string }) {
   useFrame((state, delta) => {
     const g = group.current
     if (!g) return
-    spin.current = THREE.MathUtils.damp(spin.current, 0, 2.2, delta)
-    g.rotation.y += delta * (0.08 + spin.current)
-    g.rotation.x = THREE.MathUtils.damp(g.rotation.x, pointer.y * 0.35 + Math.sin(state.clock.elapsedTime * 0.3) * 0.08, 2, delta)
-    g.rotation.z = THREE.MathUtils.damp(g.rotation.z, -pointer.x * 0.25, 2, delta)
+    const t = state.clock.elapsedTime
+    fan.current = THREE.MathUtils.damp(fan.current, 0, 1.6, delta)
+    g.rotation.y = THREE.MathUtils.damp(g.rotation.y, pointer.x * 0.22, 2.5, delta)
+    g.rotation.x = THREE.MathUtils.damp(g.rotation.x, -pointer.y * 0.16, 2.5, delta)
+    refs.current.forEach((m, i) => {
+      if (!m) return
+      const s = SHEETS[i]
+      const f = fan.current
+      m.position.set(
+        s.pos[0] * (1 + f * 0.9) + Math.sin(t * 0.35 + i * 1.7) * 0.08,
+        s.pos[1] * (1 + f * 0.9) + Math.cos(t * 0.3 + i * 2.1) * 0.08,
+        s.pos[2] + Math.sin(t * 0.25 + i) * 0.1
+      )
+      m.rotation.set(s.rot[0] + Math.sin(t * 0.2 + i) * 0.03, s.rot[1] + f * (i % 2 ? 1 : -1) * 1.2, s.rot[2] + f * 0.6)
+    })
   })
 
   return (
     <group ref={group}>
-      <lineSegments geometry={geo}>
-        <lineBasicMaterial color={accent} transparent opacity={0.16} />
-      </lineSegments>
-      <lineSegments geometry={inner} rotation={[0.6, 0.2, 0]}>
-        <lineBasicMaterial color={fg} transparent opacity={0.08} />
-      </lineSegments>
-      <points geometry={geo}>
-        <pointsMaterial color={accent} size={0.03} transparent opacity={0.45} sizeAttenuation />
-      </points>
+      {SHEETS.map((s, i) => (
+        <mesh key={i} ref={(el) => { refs.current[i] = el }} scale={s.scale}>
+          <planeGeometry args={[1, 1.3]} />
+          <meshBasicMaterial map={s.accent ? texAccent : texPlain} transparent opacity={0.9} depthWrite={false} side={THREE.DoubleSide} />
+        </mesh>
+      ))}
     </group>
   )
 }
@@ -62,8 +91,10 @@ export default function HeroScene() {
     setEnabled(fine && !reduce && window.innerWidth >= 768)
   }, [])
   if (!enabled) return null
-  const accent = theme === "light" ? "#2b2bff" : "#e8ff47"
-  const fg = theme === "light" ? "#0c0c0c" : "#f0f0f0"
+  const light = theme === "light"
+  const line = light ? "rgba(12,12,12,0.07)" : "rgba(240,240,240,0.06)"
+  const edge = light ? "rgba(12,12,12,0.12)" : "rgba(240,240,240,0.12)"
+  const accent = light ? "rgba(43,43,255,0.35)" : "rgba(232,255,71,0.32)"
   return (
     <div className="absolute inset-0 pointer-events-none" aria-hidden>
       <Canvas
@@ -73,7 +104,7 @@ export default function HeroScene() {
         eventSource={typeof document !== "undefined" ? document.body : undefined}
         eventPrefix="client"
       >
-        <Wire accent={accent} fg={fg} />
+        <Sheets line={line} edge={edge} accent={accent} />
       </Canvas>
     </div>
   )
