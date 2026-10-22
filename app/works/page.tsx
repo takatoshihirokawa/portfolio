@@ -2,6 +2,7 @@ import Link from "next/link"
 import { getWorks } from "@/lib/data"
 import WorksGrid from "@/components/works/WorksGrid"
 import Reveal from "@/components/ui/Reveal"
+import BlockReveal from "@/components/ui/BlockReveal"
 
 export const metadata = {
   title: "Works | Takatoshi Hirokawa",
@@ -22,7 +23,7 @@ export default async function WorksIndex() {
           <div className="mt-14 mb-16 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6">
             <div>
               <p className="text-[11px] sm:text-[10px] tracking-[0.4em] uppercase text-[var(--accent)] mb-2">All Works</p>
-              <p className="font-display text-4xl sm:text-5xl font-light tracking-wide">制作実績</p>
+              <BlockReveal as="p" className="font-display text-4xl sm:text-5xl font-light tracking-wide" delay={0.15}>制作実績</BlockReveal>
             </div>
             <p className="text-base text-[var(--muted-fg)] leading-8 sm:max-w-sm sm:text-right">
               Webアプリ・Webサイト・広告映像まで。広告会社時代のプロデュース案件と、独立後の企画〜開発案件に加え、自分で試した自動化の仕組み（Lab）も載せています。

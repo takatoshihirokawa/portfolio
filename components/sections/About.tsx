@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react"
 import { motion } from "framer-motion"
 import { useMotionTheme } from "@/lib/theme"
 import Parallax from "@/components/ui/Parallax"
+import BlockReveal from "@/components/ui/BlockReveal"
 
 function useCountUp(target: number, duration = 1.6) {
   const [value, setValue] = useState(0)
@@ -99,7 +100,7 @@ export default function About() {
           <FadeUp>
             <div className="mb-20">
               <p className="text-[11px] sm:text-[10px] tracking-[0.4em] uppercase text-[var(--accent)] mb-2">[03] About</p>
-              <p className="font-display text-3xl sm:text-4xl font-light tracking-wide">Who I Am</p>
+              <BlockReveal as="p" className="font-display text-3xl sm:text-4xl font-light tracking-wide" delay={0.15}>Who I Am</BlockReveal>
             </div>
           </FadeUp>
         </Parallax>

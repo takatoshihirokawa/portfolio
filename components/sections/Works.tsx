@@ -7,6 +7,7 @@ import { motion, useMotionValue, useSpring, useTransform } from "framer-motion"
 import type { Work } from "@/lib/works"
 import { useMotionTheme } from "@/lib/theme"
 import Parallax from "@/components/ui/Parallax"
+import BlockReveal from "@/components/ui/BlockReveal"
 
 function useTilt() {
   const ref = useRef<HTMLDivElement>(null)
@@ -180,7 +181,7 @@ export default function Works({ works, total }: { works: Work[]; total: number }
             transition={{ duration: 0.6 }}
           >
             <p className="text-[11px] sm:text-[10px] tracking-[0.4em] uppercase text-[var(--accent)] mb-2">[04] Works</p>
-            <p className="font-display text-3xl sm:text-4xl font-light tracking-wide">Selected Works</p>
+            <BlockReveal as="p" className="font-display text-3xl sm:text-4xl font-light tracking-wide" delay={0.15}>Selected Works</BlockReveal>
           </motion.div>
           <motion.div
             initial={{ opacity: 0 }}

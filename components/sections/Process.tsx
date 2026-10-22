@@ -4,6 +4,7 @@ import { motion } from "framer-motion"
 import { useMotionTheme } from "@/lib/theme"
 import Parallax from "@/components/ui/Parallax"
 import Reveal from "@/components/ui/Reveal"
+import BlockReveal from "@/components/ui/BlockReveal"
 
 const steps = [
   { en: "Listen", title: "目的と現状を聞く", body: "今の仕事の流れ、困っている点、使える予算や時期を整理します。" },
@@ -20,7 +21,7 @@ export default function Process() {
           <Reveal>
             <div className="mb-20">
               <p className="text-[11px] sm:text-[10px] tracking-[0.4em] uppercase text-[var(--accent)] mb-2">[02] Process</p>
-              <p className="font-display text-3xl sm:text-4xl font-light tracking-wide">相談から実行まで</p>
+              <BlockReveal as="p" className="font-display text-3xl sm:text-4xl font-light tracking-wide" delay={0.15}>相談から実行まで</BlockReveal>
             </div>
           </Reveal>
         </Parallax>

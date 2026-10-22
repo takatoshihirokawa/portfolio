@@ -6,6 +6,7 @@ import { works as staticWorks } from "@/lib/works"
 import { getWork } from "@/lib/data"
 import Reveal from "@/components/ui/Reveal"
 import Parallax from "@/components/ui/Parallax"
+import BlockReveal from "@/components/ui/BlockReveal"
 
 export function generateStaticParams() {
   return staticWorks.map((work) => ({ slug: work.slug }))
@@ -111,7 +112,7 @@ async function WorkContent({ params }: { params: Promise<{ slug: string }> }) {
             <Parallax amount={14}>
               <Reveal>
                 <p className="text-[11px] sm:text-[10px] tracking-[0.4em] uppercase text-[var(--accent)] mb-2">Story</p>
-                <p className="font-display text-3xl font-light tracking-wide">課題と進め方</p>
+                <BlockReveal as="p" className="font-display text-3xl font-light tracking-wide" delay={0.15}>課題と進め方</BlockReveal>
               </Reveal>
             </Parallax>
           </div>
