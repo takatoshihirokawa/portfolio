@@ -110,15 +110,17 @@ export default function Hero() {
 
         {/* Location badge */}
         <motion.div
-          className="relative z-20 mt-6 flex items-center gap-2 max-w-xs sm:max-w-none"
+          className="relative z-20 mt-6 flex flex-col sm:flex-row items-center gap-1.5 sm:gap-3 text-[9px] tracking-[0.35em] uppercase text-[var(--muted-fg)]"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.85, duration: 0.6 }}
         >
-          <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent)] animate-pulse" />
-          <span className="text-[9px] tracking-[0.35em] uppercase text-[var(--muted-fg)] text-center sm:text-left">
-            Kawaguchiko, Yamanashi — Available for projects
+          <span className="flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent)] animate-pulse" />
+            Available for projects
           </span>
+          <span className="hidden sm:inline text-[var(--border)]">|</span>
+          <span>Kawaguchiko, Yamanashi</span>
         </motion.div>
 
         <motion.p
