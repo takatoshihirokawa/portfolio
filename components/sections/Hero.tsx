@@ -105,21 +105,21 @@ export default function Hero() {
 
         {/* Location badge */}
         <motion.div
-          className="mt-12 flex items-center gap-2"
+          className="mt-12 flex items-center gap-2 max-w-xs sm:max-w-none"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.85, duration: 0.6 }}
         >
           <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent)] animate-pulse" />
-          <span className="text-[9px] tracking-[0.35em] uppercase text-[var(--muted-fg)]">
+          <span className="text-[9px] tracking-[0.35em] uppercase text-[var(--muted-fg)] text-center sm:text-left">
             Kawaguchiko, Yamanashi — Available for projects
           </span>
         </motion.div>
 
         <motion.p
-          className="mt-4 text-[8px] tracking-[0.3em] uppercase text-[var(--muted-fg)] opacity-60"
+          className="mt-5 text-[10px] tracking-[0.3em] uppercase text-[var(--accent)]"
           initial={{ opacity: 0 }}
-          animate={{ opacity: 0.6 }}
+          animate={{ opacity: 1 }}
           transition={{ delay: 2.2, duration: 1 }}
         >
           ↻ Circle around the face

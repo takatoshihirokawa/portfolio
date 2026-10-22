@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
+import AvatarIllust from "@/components/ui/AvatarIllust"
 
 const navLinks = [
   { label: "About", href: "/#about" },
@@ -27,11 +28,8 @@ export default function Header() {
       }`}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-        <Link
-          href="/"
-          className="font-display text-sm font-light tracking-[0.25em] uppercase text-[var(--fg)] hover:text-[var(--accent)] transition-colors"
-        >
-          T.Hirokawa
+        <Link href="/" aria-label="Home" className="text-[var(--fg)] hover:text-[var(--accent)] transition-colors">
+          <AvatarIllust compact className="w-9 h-9" />
         </Link>
 
         {/* Desktop nav */}
