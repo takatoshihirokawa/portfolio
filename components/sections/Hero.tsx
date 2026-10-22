@@ -72,7 +72,7 @@ export default function Hero() {
         </motion.p>
 
         {/* Name — two tight lines, in front of the avatar */}
-        <motion.div style={{ y: nameY }} className="relative z-20 flex flex-col items-center leading-[0.95]">
+        <motion.div style={{ y: nameY }} className="relative z-10 flex flex-col items-center leading-[0.95]">
           <div className="overflow-hidden">
             <motion.p
               className="font-display text-[clamp(1.75rem,5vw,3.75rem)] font-light tracking-[0.3em] uppercase text-center text-[var(--fg)] opacity-80"
@@ -96,7 +96,7 @@ export default function Hero() {
         </motion.div>
 
         {/* Avatar — tucks under the name, parallax on scroll */}
-        <motion.div style={{ y: avatarY, opacity: avatarOpacity }} className="relative z-10 -mt-7 sm:-mt-10 lg:-mt-14">
+        <motion.div style={{ y: avatarY, opacity: avatarOpacity }} className="relative z-20 -mt-7 sm:-mt-10 lg:-mt-14">
         <motion.div
           className="w-32 sm:w-40 md:w-44 lg:w-52 xl:w-56 overflow-hidden"
           style={{ aspectRatio: "432.39 / 434" }}
