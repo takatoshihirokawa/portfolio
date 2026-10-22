@@ -1,24 +1,27 @@
 "use client"
 
-import { useEffect } from "react"
+import { useEffect, useRef } from "react"
 
 const CELL = 24
-const CONTAINER = 1152
-const GUTTER_SM = 48
-const GUTTER_XS = 24
 
 export default function GridAlign() {
+  const probe = useRef<HTMLDivElement>(null)
   useEffect(() => {
     const apply = () => {
-      const w = document.documentElement.clientWidth
-      const gutter = w >= 640 ? GUTTER_SM : GUTTER_XS
-      const content = Math.min(CONTAINER, w - gutter * 2)
-      const left = (w - content) / 2
-      document.documentElement.style.setProperty("--grid-x", `${Math.round(left) % CELL}px`)
+      const el = probe.current
+      if (!el) return
+      const left = el.getBoundingClientRect().left
+      document.documentElement.style.setProperty("--grid-x", `${(((left % CELL) + CELL) % CELL).toFixed(2)}px`)
     }
     apply()
-    window.addEventListener("resize", apply)
-    return () => window.removeEventListener("resize", apply)
+    const ro = new ResizeObserver(apply)
+    ro.observe(document.documentElement)
+    return () => ro.disconnect()
   }, [])
-  return null
+  // Same container and gutters as every section, so its content edge is the grid origin.
+  return (
+    <div aria-hidden className="pointer-events-none fixed top-0 left-0 right-0 h-0 px-6 sm:px-12">
+      <div className="max-w-6xl mx-auto h-0"><div ref={probe} className="h-0 w-0" /></div>
+    </div>
+  )
 }
