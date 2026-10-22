@@ -6,11 +6,11 @@ import Parallax from "@/components/ui/Parallax"
 import Reveal from "@/components/ui/Reveal"
 
 const problems = [
-  { title: "商品の広め方が分からない", body: "伝え方を整理し、広告や商品紹介ページを企画・制作。" },
-  { title: "会社やお店の魅力を伝えたい", body: "Web・写真・映像・紙を使い、商品や働く人の魅力を伝える。" },
-  { title: "受付や転記に手間がかかる", body: "仕事の流れを整理し、フォームやツールで負担を減らす。" },
-  { title: "社内の情報が散らばっている", body: "申請・顧客・案件などを、確認・管理しやすい仕組みに。" },
-  { title: "ホームページが古いまま", body: "掲載情報を整理し、写真・文章・問い合わせ先など必要な箇所から更新。" },
+  { title: "受付や転記に手間がかかる", body: "電話や紙の受付、同じ内容の転記を整理し、フォームや公式LINE、既存ツールで手間を減らす。" },
+  { title: "社内の情報が散らばっている", body: "チャットに散った申請・顧客・案件などを、確認・管理しやすいひとつの仕組みに。" },
+  { title: "ホームページが古いまま", body: "掲載情報を整理し、写真・文章・問い合わせ先など、必要な箇所から直す。" },
+  { title: "AIを仕事に使いたいが何から", body: "資料づくり、メール対応、情報整理など、使いどころの整理から導入・定着まで。" },
+  { title: "会社やお店の魅力を伝えたい", body: "Web・写真・映像・紙を使い、商品や働く人の魅力が伝わる形にまとめる。" },
   { title: "求人を出しても良さが伝わらない", body: "働く人への取材や撮影を行い、採用ページ・会社案内にまとめる。" },
 ]
 
@@ -27,7 +27,7 @@ export default function Problems() {
                 <p className="font-display text-3xl sm:text-4xl font-light tracking-wide">こんな困りごとから</p>
               </div>
               <p className="text-sm text-[var(--muted-fg)] leading-7 sm:max-w-xs sm:text-right">
-                何を作るか・何を導入するかが決まる前から、一緒に考えます。
+                何を作るか・何を導入するかが決まる前から、一緒に考えます。制作も、業務の仕組みづくりも。
               </p>
             </div>
           </Reveal>

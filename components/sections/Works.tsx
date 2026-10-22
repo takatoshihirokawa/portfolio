@@ -4,7 +4,7 @@ import { useRef } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion"
-import { works } from "@/lib/works"
+import { works, featuredWorks } from "@/lib/works"
 import { useMotionTheme } from "@/lib/theme"
 import Parallax from "@/components/ui/Parallax"
 
@@ -166,7 +166,7 @@ function WorkCard({ work, index }: { work: (typeof works)[0]; index: number }) {
 }
 
 export default function Works() {
-  const [featured, ...rest] = works
+  const [featured, ...rest] = featuredWorks
 
   return (
     <section id="works" className="py-40 px-6 sm:px-10 border-t border-[var(--border)]">
@@ -182,15 +182,20 @@ export default function Works() {
             <p className="text-[10px] tracking-[0.4em] uppercase text-[var(--accent)] mb-2">[03] Works</p>
             <p className="font-display text-3xl sm:text-4xl font-light tracking-wide">Selected Works</p>
           </motion.div>
-          <motion.p
-            className="text-xs text-[var(--muted-fg)] hidden sm:block tabular-nums"
+          <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2, duration: 0.6 }}
           >
-            {works.length} projects
-          </motion.p>
+            <Link
+              href="/works"
+              className="group inline-flex items-center gap-3 text-[10px] tracking-[0.3em] uppercase text-[var(--muted-fg)] hover:text-[var(--accent)] transition-colors"
+            >
+              All {works.length} works
+              <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>
+            </Link>
+          </motion.div>
         </Parallax>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
@@ -199,6 +204,22 @@ export default function Works() {
             <WorkCard key={work.slug} work={work} index={i + 1} />
           ))}
         </div>
+
+        <motion.div
+          className="mt-16 flex justify-center"
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <Link
+            href="/works"
+            className="group relative text-[10px] tracking-[0.35em] uppercase px-10 py-4 border border-[var(--fg)] text-[var(--fg)] overflow-hidden transition-colors duration-300 hover:text-[var(--bg)]"
+          >
+            <span className="absolute inset-0 bg-[var(--fg)] translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
+            <span className="relative">すべての実績を見る（{works.length}）</span>
+          </Link>
+        </motion.div>
       </div>
     </section>
   )

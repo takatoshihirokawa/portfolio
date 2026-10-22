@@ -39,12 +39,12 @@ function useCountUp(target: number, duration = 1.6) {
 
 const pillars = [
   {
-    title: "集客・販促・制作",
-    items: ["ホームページ・商品紹介・採用ページ", "販促企画・コピー作成", "Web広告・チラシ・パンフレット", "写真・映像の制作・撮影プロデュース"],
-  },
-  {
     title: "DX・業務改善",
     items: ["業務整理・改善の優先順位づけ", "申込・注文・問い合わせの受付整備", "情報の一元管理・作業の自動化", "AI活用の相談・導入、Webアプリ開発"],
+  },
+  {
+    title: "Web・コンテンツ制作",
+    items: ["ホームページ・サービスサイト・採用ページ", "LP・公式LINEの構築", "写真・映像の制作プロデュース", "チラシ・パンフレット・販促物"],
   },
 ]
 
@@ -52,7 +52,7 @@ const fields = pillars.flatMap((p) => p.items)
 
 const stats = [
   { target: 15, suffix: "+", label: "Years\nExperience" },
-  { target: 50, suffix: "+", label: "Projects\nDelivered" },
+  { target: 60, suffix: "+", label: "Projects\nDelivered" },
   { target: fields.length, suffix: "", label: "Service\nAreas" },
 ]
 
@@ -133,7 +133,7 @@ export default function About() {
                 <span className="text-[9px] tracking-[0.4em] uppercase text-[var(--muted-fg)] mb-3 block">Profile</span>
                 <p className="text-sm leading-8 opacity-80">
                   山梨・河口湖を拠点に、地域の会社やお店の「デジタルまわりの相談相手」として活動。
-                  ホームページや販促物から、受付の仕組みづくり、AI活用まで、
+                  ホームページやWebアプリの制作、受付・管理の仕組みづくり、AI活用まで、
                   困りごとの整理から制作・導入・運用まで一人で通して担当します。
                 </p>
               </div>
@@ -143,8 +143,8 @@ export default function About() {
               <div>
                 <span className="text-[9px] tracking-[0.4em] uppercase text-[var(--muted-fg)] mb-3 block">Background</span>
                 <p className="text-sm leading-8 opacity-80">
-                  広告代理店・事業会社でWeb・デジタル領域の企画制作を経験した後、
-                  河口湖移住を機に独立。
+                  広告会社でテレビCMやWebの制作プロデュースを経験した後、事業会社を経て河口湖移住を機に独立。
+                  いまは「作る」だけでなく、Bubble・Studio・AIを使って自分で「動くもの」まで作ります。
                 </p>
               </div>
             </FadeUp>

@@ -6,9 +6,9 @@ import Parallax from "@/components/ui/Parallax"
 import Reveal from "@/components/ui/Reveal"
 
 const steps = [
-  { en: "Listen", title: "目的と現状を聞く", body: "商品の強み、届けたい相手、使える予算や時期を整理します。" },
-  { en: "Plan", title: "必要な方法を選ぶ", body: "広告・紹介ページ・撮影・ツールなど、必要な組み合わせを提案します。" },
-  { en: "Make & Run", title: "形にして動かす", body: "制作と進行を担当。公開後も反応を見て改善します。" },
+  { en: "Listen", title: "目的と現状を聞く", body: "今の仕事の流れ、困っている点、使える予算や時期を整理します。" },
+  { en: "Plan", title: "必要な方法を選ぶ", body: "ホームページ・フォーム・既存ツール・Webアプリなど、必要な組み合わせを提案します。" },
+  { en: "Make & Run", title: "形にして動かす", body: "制作・開発と進行を担当。公開後・導入後も使われ方を見て改善します。" },
 ]
 
 export default function Process() {
@@ -50,7 +50,7 @@ export default function Process() {
 
         <Reveal delay={0.2}>
           <p className="mt-20 text-sm text-[var(--accent)] font-medium">
-            業務改善も、現状整理からツールの導入・定着まで支援します。
+            大がかりなシステムではなく、日々の仕事に合わせた「使える仕組み」を、小さく始めて育てます。
           </p>
         </Reveal>
       </div>

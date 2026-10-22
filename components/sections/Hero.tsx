@@ -144,7 +144,8 @@ export default function Hero() {
               何から頼めばよいか、<br className="sm:hidden" />決まっていなくても。
             </p>
             <p className="text-xs sm:text-sm text-[var(--muted-fg)] text-center leading-loose tracking-wide">
-              集客・販促から、DX・業務改善まで。<br className="sm:hidden" />
+              ホームページ・Webアプリの制作から、<br className="sm:hidden" />
+              受付や管理の仕組みづくり、AI活用まで。<br />
               困りごとの整理から、作って動かすところまで一緒に。
             </p>
           </div>
