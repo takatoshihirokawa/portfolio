@@ -81,7 +81,7 @@ function HeroInner() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1, duration: 0.7 }}
         >
-          <Decode text="PLAN · MAKE · RUN" delay={0.3} />
+          <a href="/#process" className="hover:opacity-70 transition-opacity"><Decode text="PLAN · MAKE · RUN" delay={0.3} /></a>
         </motion.p>
 
         {/* Name — two tight lines, in front of the avatar */}

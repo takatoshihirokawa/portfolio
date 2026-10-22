@@ -5,7 +5,7 @@ import { Canvas, useFrame, useThree } from "@react-three/fiber"
 import * as THREE from "three"
 import { useTheme } from "@/lib/theme"
 
-function makeSheetTexture(line: string, edge: string) {
+function makeSheetTexture(line: string, edge: string, label: string, sub: string, ink: string) {
   const size = 512
   const c = document.createElement("canvas")
   c.width = c.height = size
@@ -22,27 +22,37 @@ function makeSheetTexture(line: string, edge: string) {
   ctx.strokeStyle = edge
   ctx.lineWidth = 3
   ctx.strokeRect(1.5, 1.5, size - 3, size - 3)
+  ctx.fillStyle = ink
+  ctx.font = "500 44px 'Noto Sans JP', system-ui, sans-serif"
+  ctx.textBaseline = "top"
+  ctx.fillText(label, 36, 36)
+  ctx.font = "400 18px Inter, system-ui, sans-serif"
+  ctx.letterSpacing = "4px"
+  ctx.fillText(sub, 38, 92)
+  ctx.beginPath(); ctx.moveTo(36, 128); ctx.lineTo(36 + 48, 128); ctx.lineWidth = 2; ctx.strokeStyle = edge; ctx.stroke()
   const t = new THREE.CanvasTexture(c)
   t.anisotropy = 4
   return t
 }
 
 const SHEETS = [
-  { pos: [-2.1, 1.0, -3.0], rot: [0.08, 0.35, -0.06], scale: 1.7, accent: false },
-  { pos: [2.3, -0.4, -2.6], rot: [-0.1, -0.4, 0.05], scale: 1.8, accent: true },
-  { pos: [-0.8, -1.9, -2.2], rot: [0.25, 0.15, 0.08], scale: 1.3, accent: false },
-  { pos: [1.5, 1.7, -3.8], rot: [-0.2, -0.2, -0.12], scale: 1.5, accent: false },
-  { pos: [-2.8, -0.9, -4.2], rot: [0.12, 0.5, 0.1], scale: 1.6, accent: true },
+  { pos: [-2.1, 1.0, -3.0], rot: [0.08, 0.35, -0.06], scale: 1.7, accent: false, label: "相談", sub: "LISTEN" },
+  { pos: [2.3, -0.4, -2.6], rot: [-0.1, -0.4, 0.05], scale: 1.8, accent: true, label: "企画", sub: "PLAN" },
+  { pos: [-0.8, -1.9, -2.2], rot: [0.25, 0.15, 0.08], scale: 1.3, accent: false, label: "制作", sub: "MAKE" },
+  { pos: [1.5, 1.7, -3.8], rot: [-0.2, -0.2, -0.12], scale: 1.5, accent: false, label: "導入", sub: "RUN" },
+  { pos: [-2.8, -0.9, -4.2], rot: [0.12, 0.5, 0.1], scale: 1.6, accent: true, label: "改善", sub: "IMPROVE" },
 ] as const
 
-function Sheets({ line, edge, accent }: { line: string; edge: string; accent: string }) {
+function Sheets({ line, edge, accent, ink }: { line: string; edge: string; accent: string; ink: string }) {
   const group = useRef<THREE.Group>(null)
   const refs = useRef<(THREE.Mesh | null)[]>([])
   const fan = useRef(0)
   const { pointer } = useThree()
-  const texPlain = useMemo(() => makeSheetTexture(line, edge), [line, edge])
-  const texAccent = useMemo(() => makeSheetTexture(line, accent), [line, accent])
-  useEffect(() => () => { texPlain.dispose(); texAccent.dispose() }, [texPlain, texAccent])
+  const textures = useMemo(
+    () => SHEETS.map((s) => makeSheetTexture(line, s.accent ? accent : edge, s.label, s.sub, ink)),
+    [line, edge, accent, ink]
+  )
+  useEffect(() => () => { textures.forEach((t) => t.dispose()) }, [textures])
 
   useEffect(() => {
     const onFlip = () => { fan.current = 1 }
@@ -75,7 +85,7 @@ function Sheets({ line, edge, accent }: { line: string; edge: string; accent: st
       {SHEETS.map((s, i) => (
         <mesh key={i} ref={(el) => { refs.current[i] = el }} scale={s.scale}>
           <planeGeometry args={[1, 1.3]} />
-          <meshBasicMaterial map={s.accent ? texAccent : texPlain} transparent opacity={0.9} depthWrite={false} side={THREE.DoubleSide} />
+          <meshBasicMaterial map={textures[i]} transparent opacity={0.9} depthWrite={false} side={THREE.DoubleSide} />
         </mesh>
       ))}
     </group>
@@ -95,6 +105,7 @@ export default function HeroScene() {
   const line = light ? "rgba(12,12,12,0.07)" : "rgba(240,240,240,0.06)"
   const edge = light ? "rgba(12,12,12,0.12)" : "rgba(240,240,240,0.12)"
   const accent = light ? "rgba(43,43,255,0.35)" : "rgba(232,255,71,0.32)"
+  const ink = light ? "rgba(12,12,12,0.28)" : "rgba(240,240,240,0.26)"
   return (
     <div className="absolute inset-0 pointer-events-none" aria-hidden>
       <Canvas
@@ -104,7 +115,7 @@ export default function HeroScene() {
         eventSource={typeof document !== "undefined" ? document.body : undefined}
         eventPrefix="client"
       >
-        <Sheets line={line} edge={edge} accent={accent} />
+        <Sheets line={line} edge={edge} accent={accent} ink={ink} />
       </Canvas>
     </div>
   )
