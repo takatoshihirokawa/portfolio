@@ -39,8 +39,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       lang="ja"
       id="top"
       data-theme="light"
+      suppressHydrationWarning
       className={`${inter.variable} ${notoSansJP.variable} ${syne.variable}`}
     >
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var s=localStorage.getItem("theme");var t=s==="dark"||s==="light"?s:(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.dataset.theme=t;}catch(e){}})();`,
+          }}
+        />
+      </head>
       <body className="min-h-full flex flex-col">
         <CustomCursor />
         <Header />

@@ -32,7 +32,8 @@ export async function getWorks(): Promise<WorkRow[]> {
 export async function getFeaturedWorks(): Promise<WorkRow[]> {
   const all = await getWorks()
   const featured = all.filter((w) => w.featured)
-  return (featured.length ? featured : all).slice(0, 6)
+  const rest = all.filter((w) => !w.featured)
+  return [...featured, ...rest].slice(0, 7)
 }
 
 export async function getWork(slug: string): Promise<{ work: WorkRow; prev: WorkRow; next: WorkRow; index: number } | null> {

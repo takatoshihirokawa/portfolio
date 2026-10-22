@@ -98,7 +98,7 @@ export default function About() {
         <Parallax amount={18}>
           <FadeUp>
             <div className="mb-20">
-              <p className="text-[11px] sm:text-[10px] tracking-[0.4em] uppercase text-[var(--accent)] mb-2">[04] About</p>
+              <p className="text-[11px] sm:text-[10px] tracking-[0.4em] uppercase text-[var(--accent)] mb-2">[03] About</p>
               <p className="font-display text-3xl sm:text-4xl font-light tracking-wide">Who I Am</p>
             </div>
           </FadeUp>

@@ -179,7 +179,7 @@ export default function Works({ works, total }: { works: Work[]; total: number }
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <p className="text-[11px] sm:text-[10px] tracking-[0.4em] uppercase text-[var(--accent)] mb-2">[03] Works</p>
+            <p className="text-[11px] sm:text-[10px] tracking-[0.4em] uppercase text-[var(--accent)] mb-2">[04] Works</p>
             <p className="font-display text-3xl sm:text-4xl font-light tracking-wide">Selected Works</p>
           </motion.div>
           <motion.div

@@ -9,7 +9,10 @@ export function glitchToggleTheme() {
   if (html.classList.contains("glitching")) return
   html.classList.add("glitching")
   window.setTimeout(() => {
-    html.dataset.theme = html.dataset.theme === "light" ? "dark" : "light"
+    const next = html.dataset.theme === "light" ? "dark" : "light"
+    html.dataset.theme = next
+    try { localStorage.setItem("theme", next) } catch {}
+    window.dispatchEvent(new CustomEvent("theme:flip", { detail: next }))
   }, 280)
   window.setTimeout(() => html.classList.remove("glitching"), 700)
 }

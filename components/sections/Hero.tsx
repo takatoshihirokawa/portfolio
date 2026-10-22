@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react"
 import { motion, useMotionValue, useScroll, useSpring, useTransform } from "framer-motion"
 import AvatarIllust from "@/components/ui/AvatarIllust"
 import { glitchToggleTheme, useMotionTheme } from "@/lib/theme"
+import { useIntro } from "@/components/ui/Intro"
 
 function MouseGradient() {
   const ref = useRef<HTMLDivElement>(null)
@@ -35,6 +36,12 @@ function MouseGradient() {
 }
 
 export default function Hero() {
+  const { ready, replay } = useIntro()
+  if (!ready) return <section className="min-h-screen" />
+  return <HeroInner key={replay} />
+}
+
+function HeroInner() {
   const { ease: spring, speed } = useMotionTheme()
   const { scrollY } = useScroll()
   const avatarY = useTransform(scrollY, [0, 800], [0, 160])
