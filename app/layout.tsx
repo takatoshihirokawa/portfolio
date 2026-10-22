@@ -36,6 +36,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html
       lang="ja"
       id="top"
+      data-theme="light"
       className={`${inter.variable} ${notoSansJP.variable} ${syne.variable}`}
     >
       <body className="min-h-full flex flex-col">

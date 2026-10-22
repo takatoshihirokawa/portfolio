@@ -15,7 +15,7 @@ export function glitchToggleTheme() {
 }
 
 export function useTheme(): Theme {
-  const [theme, setTheme] = useState<Theme>("dark")
+  const [theme, setTheme] = useState<Theme>("light")
   useEffect(() => {
     const html = document.documentElement
     const read = () => setTheme(html.dataset.theme === "light" ? "light" : "dark")
