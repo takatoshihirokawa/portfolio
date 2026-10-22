@@ -86,15 +86,15 @@ function FeaturedCard({ work, index }: { work: (typeof works)[0]; index: number 
             </div>
           </div>
 
-          <div className="p-6 flex items-start justify-between gap-4 bg-[var(--bg)]">
-            <div className="flex items-baseline gap-3">
-              <span className="font-display text-[10px] text-[var(--accent)] tracking-widest">{num}</span>
+          <div className="p-6 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 bg-[var(--bg)]">
+            <div className="flex items-baseline gap-3 min-w-0">
+              <span className="font-display text-[10px] text-[var(--accent)] tracking-widest shrink-0">{num}</span>
               <h3 className="text-base font-medium group-hover:text-[var(--accent)] transition-colors duration-300">
                 {work.title}
               </h3>
             </div>
-            <div className="flex items-center gap-3 shrink-0">
-              <div className="flex flex-wrap gap-1.5 justify-end">
+            <div className="flex items-center gap-3 sm:shrink-0">
+              <div className="flex flex-wrap gap-1.5 sm:justify-end">
                 {work.tags.slice(0, 3).map((tag) => (
                   <span key={tag} className="text-[9px] tracking-widest uppercase text-[var(--muted-fg)] border border-[var(--border)] px-2 py-1">
                     {tag}
