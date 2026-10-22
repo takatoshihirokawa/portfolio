@@ -79,16 +79,13 @@ export default function Hero() {
 
         {/* Avatar — gradient mask blends into bg */}
         <motion.div
-          className="relative z-10 my-2 sm:my-4"
-          style={{
-            WebkitMaskImage: "linear-gradient(to bottom, black 50%, transparent 96%)",
-            maskImage: "linear-gradient(to bottom, black 50%, transparent 96%)",
-          }}
+          className="relative z-10 my-3 sm:my-5 w-32 sm:w-40 md:w-44 lg:w-52 xl:w-56 overflow-hidden"
+          style={{ aspectRatio: "432.39 / 434" }}
           initial={{ opacity: 0, scale: 0.86, y: 24 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
+          animate={{ opacity: 0.85, scale: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 1.1, ease: spring }}
         >
-          <AvatarIllust className="w-44 sm:w-56 md:w-64 lg:w-72 xl:w-80 text-[var(--fg)]" onDizzy={glitchToggleTheme} />
+          <AvatarIllust className="w-full text-[var(--fg)]" onDizzy={glitchToggleTheme} />
         </motion.div>
 
         {/* HIROKAWA */}
