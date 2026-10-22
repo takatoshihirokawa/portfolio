@@ -60,7 +60,7 @@ export function IntroProvider({ children }: { children: React.ReactNode }) {
           >
             <div className="flex-1 flex flex-col items-center justify-center gap-8">
               <motion.div
-                className="w-24 h-24 rounded-full bg-[var(--fg)] text-[var(--bg)] overflow-hidden flex items-end justify-center"
+                className="w-24 h-24 rounded-full bg-[#efefef] text-[#0c0c0c] border border-[var(--border)] overflow-hidden flex items-end justify-center"
                 initial={{ scale: 0.6, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}

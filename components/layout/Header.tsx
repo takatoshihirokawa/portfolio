@@ -54,7 +54,7 @@ export default function Header() {
           onClick={close}
           className="group flex items-center gap-3"
         >
-          <span className="w-10 h-10 rounded-full bg-[var(--fg)] text-[var(--bg)] overflow-hidden flex items-end justify-center transition-transform duration-500 group-hover:rotate-[-8deg] group-hover:scale-105">
+          <span className="w-10 h-10 rounded-full bg-[#efefef] text-[#0c0c0c] border border-[var(--border)] overflow-hidden flex items-end justify-center transition-transform duration-500 group-hover:rotate-[-8deg] group-hover:scale-105">
             <AvatarIllust compact className="w-[112%] translate-y-[10%]" />
           </span>
           <span className="hidden sm:block font-display text-[11px] tracking-[0.3em] uppercase text-[var(--muted-fg)] group-hover:text-[var(--fg)] transition-colors">
