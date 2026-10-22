@@ -123,7 +123,7 @@ export default function About() {
             <FadeUp delay={0.1}>
               <div>
                 <span className="text-[11px] sm:text-[9px] tracking-[0.4em] uppercase text-[var(--muted-fg)] mb-3 block">Name</span>
-                <p className="font-display text-2xl font-light tracking-wide">廣川 貴理</p>
+                <p className="font-display text-3xl font-light tracking-wide">廣川 貴理</p>
                 <p className="text-xs text-[var(--muted-fg)] tracking-[0.2em] mt-1">Takatoshi Hirokawa</p>
               </div>
             </FadeUp>
@@ -158,7 +158,7 @@ export default function About() {
                 <div className="flex flex-col gap-6">
                   {pillars.map((p, pi) => (
                     <div key={p.title}>
-                      <p className="text-sm font-medium text-[var(--accent)] mb-2">{p.title}</p>
+                      <p className="text-lg font-medium text-[var(--accent)] mb-3">{p.title}</p>
                       <ul className="flex flex-col gap-1.5">
                         {p.items.map((item, i) => (
                           <motion.li
@@ -167,7 +167,7 @@ export default function About() {
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: 0.05 * (i + pi * 4), duration: 0.4 }}
-                            className="text-xs leading-6 opacity-75 pl-4 relative before:content-[''] before:absolute before:left-0 before:top-[11px] before:w-1.5 before:h-px before:bg-[var(--muted-fg)]"
+                            className="text-base leading-7 opacity-80 pl-4 relative before:content-[''] before:absolute before:left-0 before:top-[13px] before:w-1.5 before:h-px before:bg-[var(--muted-fg)]"
                           >
                             {item}
                           </motion.li>
@@ -190,7 +190,7 @@ export default function About() {
                       </span>
                       <div className="flex flex-wrap gap-x-3 gap-y-1">
                         {items.map((item) => (
-                          <span key={item} className="text-xs opacity-70">{item}</span>
+                          <span key={item} className="text-sm opacity-80">{item}</span>
                         ))}
                       </div>
                     </div>

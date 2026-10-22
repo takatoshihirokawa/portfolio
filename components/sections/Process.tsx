@@ -39,7 +39,7 @@ export default function Process() {
                 {String(i + 1).padStart(2, "0")}
               </span>
               <span className="text-[11px] sm:text-[9px] tracking-[0.4em] uppercase text-[var(--muted-fg)]">{s.en}</span>
-              <p className="text-lg font-medium">{s.title}</p>
+              <p className="text-xl font-medium">{s.title}</p>
               <p className="text-base text-[var(--muted-fg)] leading-8">{s.body}</p>
               {i < steps.length - 1 && (
                 <span className="hidden md:block absolute top-7 right-0 w-8 h-px bg-[var(--border)]" />

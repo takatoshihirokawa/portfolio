@@ -14,7 +14,7 @@ html[data-theme="light"] {
   --fg: #0c0c0c;
   --accent: #2b2bff;
   --muted: #e4e4e4;
-  --muted-fg: #767676;
+  --muted-fg: #5a5a5a;
   --border: #d3d3d3;
 }
 
@@ -55,7 +55,7 @@ html { scroll-behavior: smooth; }
 
 /* Mobile: one step larger for readability */
 @media (max-width: 639px) {
-  html { font-size: 17px; }
+  html { font-size: 18px; }
 }
 
 /* Grain texture */

@@ -70,10 +70,10 @@ export default function WorksGrid() {
                 </div>
                 <div className="p-4 flex flex-col gap-2 bg-[var(--bg)]">
                   <div className="flex items-start justify-between gap-3">
-                    <h3 className="text-sm font-medium leading-snug group-hover:text-[var(--accent)] transition-colors duration-300">{work.title}</h3>
+                    <h3 className="text-base font-medium leading-snug group-hover:text-[var(--accent)] transition-colors duration-300">{work.title}</h3>
                     <span className="text-xs text-[var(--muted-fg)] shrink-0 tabular-nums">{work.year}</span>
                   </div>
-                  <p className="text-[11px] sm:text-[10px] text-[var(--muted-fg)] tracking-wide">{work.client}</p>
+                  <p className="text-xs text-[var(--muted-fg)] tracking-wide">{work.client}</p>
                 </div>
                 <div className="h-px w-0 group-hover:w-full bg-[var(--accent)] transition-all duration-500 ease-out" />
               </Link>

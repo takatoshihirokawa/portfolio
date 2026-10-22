@@ -77,7 +77,7 @@ function FeaturedCard({ work, index }: { work: (typeof works)[0]; index: number 
           <div className="p-6 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 bg-[var(--bg)]">
             <div className="flex items-baseline gap-3 min-w-0">
               <span className="font-display text-[11px] sm:text-[10px] text-[var(--accent)] tracking-widest shrink-0">{num}</span>
-              <h3 className="text-base font-medium group-hover:text-[var(--accent)] transition-colors duration-300">
+              <h3 className="text-lg font-medium group-hover:text-[var(--accent)] transition-colors duration-300">
                 {work.title}
               </h3>
             </div>
@@ -144,7 +144,7 @@ function WorkCard({ work, index }: { work: (typeof works)[0]; index: number }) {
             <div className="flex items-start justify-between gap-4">
               <div className="flex items-baseline gap-2.5">
                 <span className="font-display text-[11px] sm:text-[10px] text-[var(--accent)] tracking-widest">{num}</span>
-                <h3 className="text-sm font-medium group-hover:text-[var(--accent)] transition-colors duration-300">
+                <h3 className="text-base font-medium group-hover:text-[var(--accent)] transition-colors duration-300">
                   {work.title}
                 </h3>
               </div>

@@ -22,7 +22,7 @@ export default function Contact() {
   }
 
   const inputClass =
-    "w-full bg-transparent border border-[var(--border)] px-4 py-3 text-sm text-[var(--fg)] placeholder:text-[var(--muted-fg)] focus:border-[var(--accent)] focus:outline-none transition-colors"
+    "w-full bg-transparent border border-[var(--border)] px-4 py-4 text-base text-[var(--fg)] placeholder:text-[var(--muted-fg)] focus:border-[var(--accent)] focus:outline-none transition-colors"
 
   return (
     <section id="contact" className="py-40 px-6 sm:px-10 border-t border-[var(--border)]">
@@ -99,7 +99,7 @@ export default function Contact() {
                   >
                     送信する
                   </button>
-                  <p className="text-[11px] text-[var(--muted-fg)] leading-5">
+                  <p className="text-sm text-[var(--muted-fg)] leading-6">
                     送信により
                     <a href="/privacy-policy" className="underline hover:text-[var(--accent)] transition-colors">プライバシーポリシー</a>
                     に同意したものとみなします。

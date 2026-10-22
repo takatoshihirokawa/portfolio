@@ -46,8 +46,8 @@ export default function Problems() {
               <span className="font-display text-[11px] sm:text-[10px] tracking-[0.4em] text-[var(--accent)]">
                 {String(i + 1).padStart(2, "0")}
               </span>
-              <p className="text-lg font-medium leading-snug">{p.title}</p>
-              <p className="text-sm text-[var(--muted-fg)] leading-7">{p.body}</p>
+              <p className="text-xl font-medium leading-snug">{p.title}</p>
+              <p className="text-base text-[var(--muted-fg)] leading-8">{p.body}</p>
               <span className="mt-auto h-px w-0 group-hover:w-10 bg-[var(--accent)] transition-all duration-500" />
             </motion.div>
           ))}

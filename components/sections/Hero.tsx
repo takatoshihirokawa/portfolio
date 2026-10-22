@@ -143,7 +143,7 @@ export default function Hero() {
             <p className="text-xl sm:text-2xl text-[var(--fg)] text-center leading-relaxed tracking-wide font-medium">
               何から頼めばよいか、<br className="sm:hidden" />決まっていなくても。
             </p>
-            <p className="text-[15px] sm:text-base text-[var(--muted-fg)] text-center leading-loose tracking-wide">
+            <p className="text-base sm:text-lg text-[var(--muted-fg)] text-center leading-loose tracking-wide">
               ホームページ・Webアプリの制作から、<br className="sm:hidden" />
               受付や管理の仕組みづくり、AI活用まで。<br />
               困りごとの整理から、作って動かすところまで一緒に。
