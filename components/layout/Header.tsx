@@ -60,7 +60,7 @@ export default function Header() {
             <AvatarIllust compact className="w-[112%] translate-y-[10%]" />
           </span>
           <span className="hidden sm:block font-display text-[11px] tracking-[0.3em] uppercase text-[var(--muted-fg)] group-hover:text-[var(--fg)] transition-colors">
-            Hirokawa
+            Takatoshi Hirokawa
           </span>
         </Link>
 
