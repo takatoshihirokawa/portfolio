@@ -43,7 +43,7 @@ export default function WorksGrid({ works }: { works: Work[] }) {
         })}
       </div>
 
-      <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+      <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-[var(--border)] border border-[var(--border)]">
         <AnimatePresence mode="popLayout">
           {list.map((work, i) => (
             <motion.div
@@ -54,7 +54,7 @@ export default function WorksGrid({ works }: { works: Work[] }) {
               exit={{ opacity: 0, scale: 0.96 }}
               transition={{ duration: 0.5 * speed, ease, delay: Math.min(i, 8) * 0.04 }}
             >
-              <Link href={`/works/${work.slug}`} className="group block border border-[var(--border)] hover:border-[color-mix(in_srgb,var(--accent)_35%,transparent)] transition-colors duration-500 overflow-hidden">
+              <Link href={`/works/${work.slug}`} className="group block h-full bg-[var(--bg)] transition-colors duration-500 overflow-hidden">
                 <div className="aspect-video relative overflow-hidden bg-[var(--muted)]">
                   <Image
                     src={work.thumbnail}
@@ -69,7 +69,7 @@ export default function WorksGrid({ works }: { works: Work[] }) {
                     {work.category}
                   </span>
                 </div>
-                <div className="p-4 flex flex-col gap-2 bg-[var(--bg)]">
+                <div className="p-6 flex flex-col gap-2 bg-[var(--bg)]">
                   <div className="flex items-start justify-between gap-3">
                     <h3 className="text-base font-medium leading-snug group-hover:text-[var(--accent)] transition-colors duration-300">{work.title}</h3>
                     <span className="text-xs text-[var(--muted-fg)] shrink-0 tabular-nums">{work.year}</span>

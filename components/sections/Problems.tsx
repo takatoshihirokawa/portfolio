@@ -42,7 +42,7 @@ export default function Problems() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-40px" }}
               transition={{ duration: 0.6 * speed, ease, delay: (i % 3) * stagger }}
-              className="group border-r border-b border-[var(--border)] p-8 sm:p-10 flex flex-col gap-4 hover:bg-[var(--muted)] transition-colors duration-500"
+              className="group border-r border-b border-[var(--border)] p-6 sm:py-12 sm:px-[47px] flex flex-col gap-4 hover:bg-[var(--muted)] transition-colors duration-500"
             >
               <span className="font-display text-[11px] sm:text-[10px] tracking-[0.4em] text-[var(--accent)]">
                 {String(i + 1).padStart(2, "0")}

@@ -38,7 +38,7 @@ function FeaturedCard({ work, index }: { work: Work; index: number }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
       transition={{ duration: 0.8 * speed, ease }}
-      className="md:col-span-2"
+      className="md:col-span-2 h-full"
     >
       <Link href={`/works/${work.slug}`}>
         <motion.div
@@ -46,7 +46,7 @@ function FeaturedCard({ work, index }: { work: Work; index: number }) {
           onMouseMove={tilt.onMouseMove}
           onMouseLeave={tilt.onMouseLeave}
           style={{ rotateX: tilt.rotateX, rotateY: tilt.rotateY, transformStyle: "preserve-3d", perspective: 1200 }}
-          className="group relative border border-[var(--border)] hover:border-[color-mix(in_srgb,var(--accent)_35%,transparent)] transition-all duration-500 cursor-none overflow-hidden"
+          className="group relative bg-[var(--bg)] transition-all duration-500 cursor-none overflow-hidden h-full"
         >
           {/* Wide thumbnail */}
           <div className="aspect-video sm:aspect-[21/9] relative overflow-hidden bg-[var(--muted)]">
@@ -75,7 +75,7 @@ function FeaturedCard({ work, index }: { work: Work; index: number }) {
             </div>
           </div>
 
-          <div className="p-6 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 bg-[var(--bg)]">
+          <div className="p-6 sm:p-12 sm:py-8 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 bg-[var(--bg)]">
             <div className="flex items-baseline gap-3 min-w-0">
               <span className="font-display text-[11px] sm:text-[10px] text-[var(--accent)] tracking-widest shrink-0">{num}</span>
               <h3 className="text-lg font-medium group-hover:text-[var(--accent)] transition-colors duration-300">
@@ -118,7 +118,7 @@ function WorkCard({ work, index }: { work: Work; index: number }) {
           onMouseMove={tilt.onMouseMove}
           onMouseLeave={tilt.onMouseLeave}
           style={{ rotateX: tilt.rotateX, rotateY: tilt.rotateY, transformStyle: "preserve-3d", perspective: 1000 }}
-          className="group relative border border-[var(--border)] hover:border-[color-mix(in_srgb,var(--accent)_35%,transparent)] transition-all duration-500 cursor-none overflow-hidden"
+          className="group relative bg-[var(--bg)] transition-all duration-500 cursor-none overflow-hidden h-full"
         >
           <div className="aspect-video relative overflow-hidden bg-[var(--muted)]">
             <Image
@@ -141,7 +141,7 @@ function WorkCard({ work, index }: { work: Work; index: number }) {
             </div>
           </div>
 
-          <div className="p-5 flex flex-col gap-3 bg-[var(--bg)]">
+          <div className="p-6 sm:p-12 sm:py-8 flex flex-col gap-3 bg-[var(--bg)]">
             <div className="flex items-start justify-between gap-4">
               <div className="flex items-baseline gap-2.5">
                 <span className="font-display text-[11px] sm:text-[10px] text-[var(--accent)] tracking-widest">{num}</span>
@@ -199,7 +199,7 @@ export default function Works({ works, total }: { works: Work[]; total: number }
           </motion.div>
         </Parallax>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-[var(--border)] border border-[var(--border)]">
           <FeaturedCard work={featured} index={0} />
           {rest.map((work, i) => (
             <WorkCard key={work.slug} work={work} index={i + 1} />

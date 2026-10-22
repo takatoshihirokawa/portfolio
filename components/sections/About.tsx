@@ -118,7 +118,7 @@ export default function About() {
           </Parallax>
         </FadeUp>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 lg:gap-24">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-24">
           {/* Profile */}
           <div className="flex flex-col gap-10">
             <FadeUp delay={0.1}>

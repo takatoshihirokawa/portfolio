@@ -26,7 +26,7 @@ export default function Process() {
           </Reveal>
         </Parallax>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-0">
           {steps.map((s, i) => (
             <motion.div
               key={s.en}
@@ -34,7 +34,7 @@ export default function Process() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-40px" }}
               transition={{ duration: 0.7 * speed, ease, delay: i * stagger * 1.5 }}
-              className="relative flex flex-col gap-5"
+              className="relative flex flex-col gap-5 md:pr-12"
             >
               <span className="font-display text-5xl sm:text-6xl font-light text-[var(--accent)] leading-none">
                 {String(i + 1).padStart(2, "0")}
