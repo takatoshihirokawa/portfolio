@@ -38,6 +38,7 @@ body::before {
   background-size: 24px 24px;
   background-position: var(--grid-x, 0px) 0;
 }
+html.grid-canvas body::before { display: none; }
 html[data-theme="light"] body::after { opacity: 0.012; }
 html[data-theme="light"] .marquee-track {
   animation-duration: 44s;

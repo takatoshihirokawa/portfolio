@@ -6,6 +6,7 @@ import Header from "@/components/layout/Header"
 import Footer from "@/components/layout/Footer"
 import BackToTop from "@/components/ui/BackToTop"
 import GridAlign from "@/components/ui/GridAlign"
+import GridCanvas from "@/components/ui/GridCanvas"
 
 const inter = Inter({
   variable: "--font-sans",
@@ -52,6 +53,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className="min-h-full flex flex-col">
         <GridAlign />
+        <GridCanvas />
         <CustomCursor />
         <Header />
         <main className="flex-1">{children}</main>

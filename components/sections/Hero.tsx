@@ -60,7 +60,7 @@ function HeroInner() {
       className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-6 sm:px-12 pt-32 pb-40"
     >
       <MouseGradient />
-      <HeroScene />
+      {false && <HeroScene />}
 
       {/* Ambient glow */}
       <div
