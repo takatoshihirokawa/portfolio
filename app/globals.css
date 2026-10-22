@@ -18,6 +18,24 @@ html[data-theme="light"] {
   --border: #d6d6d0;
 }
 
+/* Light: faint engineering grid, softer grain, calmer marquee */
+html[data-theme="light"] body {
+  background-image:
+    linear-gradient(rgba(12, 12, 12, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(12, 12, 12, 0.03) 1px, transparent 1px);
+  background-size: 56px 56px;
+  background-position: center top;
+}
+html[data-theme="light"] body::after { opacity: 0.012; }
+html[data-theme="light"] .marquee-track {
+  animation-duration: 44s;
+  animation-direction: reverse;
+}
+html[data-theme="light"] .work-thumb {
+  filter: invert(1) hue-rotate(180deg) saturate(0.6) brightness(1.04);
+}
+html[data-theme="light"] ::-webkit-scrollbar-thumb { background: var(--accent); }
+
 @theme inline {
   --color-bg: var(--bg);
   --color-fg: var(--fg);

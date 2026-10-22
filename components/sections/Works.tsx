@@ -4,6 +4,7 @@ import { useRef } from "react"
 import Link from "next/link"
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion"
 import { works } from "@/lib/works"
+import { useMotionTheme } from "@/lib/theme"
 
 const cardGradients = [
   "from-[#0e1020] via-[#141830] to-[#080810]",
@@ -43,16 +44,17 @@ function useTilt() {
 
 function FeaturedCard({ work, index }: { work: (typeof works)[0]; index: number }) {
   const tilt = useTilt()
+  const { ease, speed, dist } = useMotionTheme()
   const num = String(index + 1).padStart(2, "0")
   const gradient = cardGradients[index % cardGradients.length]
   const accent = cardAccents[index % cardAccents.length]
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 50 }}
+      initial={{ opacity: 0, y: dist + 10 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+      transition={{ duration: 0.8 * speed, ease }}
       className="md:col-span-2"
     >
       <Link href={`/works/${work.slug}`}>
@@ -61,10 +63,10 @@ function FeaturedCard({ work, index }: { work: (typeof works)[0]; index: number 
           onMouseMove={tilt.onMouseMove}
           onMouseLeave={tilt.onMouseLeave}
           style={{ rotateX: tilt.rotateX, rotateY: tilt.rotateY, transformStyle: "preserve-3d", perspective: 1200 }}
-          className="group relative border border-[var(--border)] hover:border-[rgba(232,255,71,0.3)] transition-all duration-500 cursor-none overflow-hidden"
+          className="group relative border border-[var(--border)] hover:border-[color-mix(in_srgb,var(--accent)_35%,transparent)] transition-all duration-500 cursor-none overflow-hidden"
         >
           {/* Wide thumbnail */}
-          <div className={`aspect-[21/9] bg-gradient-to-br ${gradient} relative overflow-hidden`}>
+          <div className={`work-thumb aspect-[21/9] bg-gradient-to-br ${gradient} relative overflow-hidden`}>
             <div
               className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700"
               style={{ background: `radial-gradient(50% 70% at 50% 50%, ${accent}, transparent)` }}
@@ -113,16 +115,17 @@ function FeaturedCard({ work, index }: { work: (typeof works)[0]; index: number 
 
 function WorkCard({ work, index }: { work: (typeof works)[0]; index: number }) {
   const tilt = useTilt()
+  const { ease, speed, dist, stagger } = useMotionTheme()
   const num = String(index + 1).padStart(2, "0")
   const gradient = cardGradients[index % cardGradients.length]
   const accent = cardAccents[index % cardAccents.length]
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 50 }}
+      initial={{ opacity: 0, y: dist + 10 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: (index % 2) * 0.08 }}
+      transition={{ duration: 0.7 * speed, ease, delay: (index % 2) * stagger }}
     >
       <Link href={`/works/${work.slug}`}>
         <motion.div
@@ -130,9 +133,9 @@ function WorkCard({ work, index }: { work: (typeof works)[0]; index: number }) {
           onMouseMove={tilt.onMouseMove}
           onMouseLeave={tilt.onMouseLeave}
           style={{ rotateX: tilt.rotateX, rotateY: tilt.rotateY, transformStyle: "preserve-3d", perspective: 1000 }}
-          className="group relative border border-[var(--border)] hover:border-[rgba(232,255,71,0.3)] transition-all duration-500 cursor-none overflow-hidden"
+          className="group relative border border-[var(--border)] hover:border-[color-mix(in_srgb,var(--accent)_35%,transparent)] transition-all duration-500 cursor-none overflow-hidden"
         >
-          <div className={`aspect-video bg-gradient-to-br ${gradient} relative overflow-hidden`}>
+          <div className={`work-thumb aspect-video bg-gradient-to-br ${gradient} relative overflow-hidden`}>
             <div
               className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700"
               style={{ background: `radial-gradient(60% 60% at 50% 50%, ${accent}, transparent)` }}
@@ -161,7 +164,7 @@ function WorkCard({ work, index }: { work: (typeof works)[0]; index: number }) {
             </div>
             <div className="flex flex-wrap gap-1.5">
               {work.tags.map((tag) => (
-                <span key={tag} className="text-[9px] tracking-widest uppercase text-[var(--muted-fg)] border border-[var(--border)] px-2 py-1 group-hover:border-[rgba(232,255,71,0.2)] transition-colors duration-300">
+                <span key={tag} className="text-[9px] tracking-widest uppercase text-[var(--muted-fg)] border border-[var(--border)] px-2 py-1 group-hover:border-[color-mix(in_srgb,var(--accent)_25%,transparent)] transition-colors duration-300">
                   {tag}
                 </span>
               ))}

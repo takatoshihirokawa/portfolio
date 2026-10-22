@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react"
 import { motion } from "framer-motion"
+import { useMotionTheme } from "@/lib/theme"
 
 function useCountUp(target: number, duration = 1.6) {
   const [value, setValue] = useState(0)
@@ -72,12 +73,13 @@ function StatBox({ target, suffix, label }: { target: number; suffix: string; la
 }
 
 function FadeUp({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
+  const { ease, speed, dist } = useMotionTheme()
   return (
     <motion.div
-      initial={{ opacity: 0, y: 40 }}
+      initial={{ opacity: 0, y: dist }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1], delay }}
+      transition={{ duration: 0.75 * speed, ease, delay }}
     >
       {children}
     </motion.div>

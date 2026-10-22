@@ -67,7 +67,7 @@ export default function CustomCursor() {
           opacity: visible ? 1 : 0,
         }}
       >
-        <div className="w-10 h-10 rounded-full border border-[var(--accent)] opacity-40" />
+        <div className="w-10 h-10 rounded-full border border-[var(--accent)] opacity-40 transition-[width,height] duration-500 [[data-theme=light]_&]:w-14 [[data-theme=light]_&]:h-14 [[data-theme=light]_&]:opacity-30" />
       </motion.div>
     </>
   )

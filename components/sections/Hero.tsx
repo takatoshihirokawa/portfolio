@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react"
 import { motion, useMotionValue, useScroll, useSpring, useTransform } from "framer-motion"
 import AvatarIllust from "@/components/ui/AvatarIllust"
-import { glitchToggleTheme } from "@/lib/theme"
+import { glitchToggleTheme, useMotionTheme } from "@/lib/theme"
 
 function MouseGradient() {
   const ref = useRef<HTMLDivElement>(null)
@@ -28,15 +28,14 @@ function MouseGradient() {
     <motion.div ref={ref} className="absolute inset-0 pointer-events-none" style={{ x, y }}>
       <div
         className="absolute inset-0"
-        style={{ background: "radial-gradient(700px circle at 50% 50%, rgba(232,255,71,0.05), transparent 65%)" }}
+        style={{ background: "radial-gradient(700px circle at 50% 50%, color-mix(in srgb, var(--accent) 6%, transparent), transparent 65%)" }}
       />
     </motion.div>
   )
 }
 
-const spring = [0.16, 1, 0.3, 1] as const
-
 export default function Hero() {
+  const { ease: spring, speed } = useMotionTheme()
   const { scrollY } = useScroll()
   const avatarY = useTransform(scrollY, [0, 800], [0, 160])
   const avatarOpacity = useTransform(scrollY, [0, 450], [1, 0])
@@ -55,7 +54,7 @@ export default function Hero() {
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
         style={{
           width: 640, height: 640, borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(232,255,71,0.05) 0%, transparent 70%)",
+          background: "radial-gradient(circle, color-mix(in srgb, var(--accent) 6%, transparent) 0%, transparent 70%)",
         }}
       />
 
@@ -79,7 +78,7 @@ export default function Hero() {
               className="font-display text-[clamp(1.75rem,5vw,3.75rem)] font-light tracking-[0.3em] uppercase text-center text-[var(--fg)] opacity-80"
               initial={{ y: "110%" }}
               animate={{ y: 0 }}
-              transition={{ delay: 0.25, duration: 0.95, ease: spring }}
+              transition={{ delay: 0.25, duration: 0.95 * speed, ease: spring }}
             >
               TAKATOSHI
             </motion.p>
@@ -89,7 +88,7 @@ export default function Hero() {
               className="font-display text-[clamp(1.75rem,5vw,3.75rem)] font-light tracking-[0.3em] uppercase text-center text-[var(--accent)]"
               initial={{ y: "110%" }}
               animate={{ y: 0 }}
-              transition={{ delay: 0.35, duration: 0.95, ease: spring }}
+              transition={{ delay: 0.35, duration: 0.95 * speed, ease: spring }}
             >
               HIROKAWA
             </motion.p>
@@ -103,7 +102,7 @@ export default function Hero() {
           style={{ aspectRatio: "432.39 / 434" }}
           initial={{ opacity: 0, scale: 0.86, y: 24 }}
           animate={{ opacity: 0.85, scale: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 1.1, ease: spring }}
+          transition={{ delay: 0.4, duration: 1.1 * speed, ease: spring }}
         >
           <AvatarIllust className="w-full text-[var(--fg)]" onDizzy={glitchToggleTheme} />
         </motion.div>
