@@ -4,6 +4,7 @@ import "./globals.css"
 import CustomCursor from "@/components/ui/CustomCursor"
 import Header from "@/components/layout/Header"
 import Footer from "@/components/layout/Footer"
+import BackToTop from "@/components/ui/BackToTop"
 
 const inter = Inter({
   variable: "--font-sans",
@@ -44,6 +45,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
+        <BackToTop />
       </body>
     </html>
   )
