@@ -8,6 +8,7 @@ import { glitchToggleTheme, useMotionTheme } from "@/lib/theme"
 import { useIntro } from "@/components/ui/Intro"
 import Magnetic from "@/components/ui/Magnetic"
 import Decode from "@/components/ui/Decode"
+import { LAKE } from "@/lib/kawaguchiko"
 
 const HeroScene = dynamic(() => import("@/components/ui/HeroScene"), { ssr: false })
 
@@ -61,6 +62,30 @@ function HeroInner() {
     >
       <MouseGradient />
       {false && <HeroScene />}
+
+      {/* Lake Kawaguchi shoreline — ripples live inside it */}
+      <motion.svg
+        id="lake-outline"
+        viewBox={LAKE.viewBox}
+        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] sm:w-[84%] max-w-[1180px] pointer-events-none"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.2, duration: 2 }}
+        aria-hidden
+      >
+        <motion.path
+          d={LAKE.path}
+          fill="none"
+          stroke="var(--accent)"
+          strokeWidth="1.2"
+          vectorEffect="non-scaling-stroke"
+          strokeLinejoin="round"
+          opacity={0.22}
+          initial={{ pathLength: 0 }}
+          animate={{ pathLength: 1 }}
+          transition={{ delay: 1.2, duration: 3.2, ease: [0.4, 0, 0.2, 1] }}
+        />
+      </motion.svg>
 
       {/* Ambient glow */}
       <div

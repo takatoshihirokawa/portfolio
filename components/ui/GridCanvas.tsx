@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useRef } from "react"
+import { LAKE } from "@/lib/kawaguchiko"
 
 const CELL = 24
 type Ripple = { x: number; y: number; t0: number; amp: number; speed: number; life: number }
@@ -37,6 +38,23 @@ export default function GridCanvas() {
       draw(performance.now())
     }
 
+    let poly: [number, number][] | null = null
+    const updateLake = () => {
+      const el = document.getElementById("lake-outline")
+      if (!el) { poly = null; return }
+      const r = el.getBoundingClientRect()
+      poly = LAKE.points.map(([px, py]) => [r.left + px * r.width, r.top + py * r.height])
+    }
+    const inside = (x: number, y: number) => {
+      if (!poly) return false
+      let hit = false
+      for (let i = 0, j = poly.length - 1; i < poly.length; j = i++) {
+        const [xi, yi] = poly[i], [xj, yj] = poly[j]
+        if (yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) hit = !hit
+      }
+      return hit
+    }
+
     const displace = (x: number, y: number, now: number) => {
       let dx = 0, dy = 0
       for (const r of ripples) {
@@ -50,10 +68,12 @@ export default function GridCanvas() {
         const s = Math.sin(band * 0.09) * r.amp * env
         if (d > 0.001) { dx += (ddx / d) * s; dy += (ddy / d) * s }
       }
+      if ((dx !== 0 || dy !== 0) && !inside(x, y)) return [0, 0]
       return [dx, dy]
     }
 
     const draw = (now: number) => {
+      updateLake()
       ctx.clearRect(0, 0, w, h)
       ctx.strokeStyle = color()
       ctx.lineWidth = 1
@@ -91,11 +111,15 @@ export default function GridCanvas() {
       const dist = Math.hypot(e.clientX - last.x, e.clientY - last.y)
       if (dist < 70) return
       last = { x: e.clientX, y: e.clientY }
+      updateLake()
+      if (!inside(e.clientX, e.clientY)) return
       if (ripples.length > 6) ripples.shift()
       ripples.push({ x: e.clientX, y: e.clientY, t0: performance.now(), amp: 2.2, speed: 220, life: 1.1 })
       wake()
     }
     const onDown = (e: MouseEvent) => {
+      updateLake()
+      if (!inside(e.clientX, e.clientY)) return
       ripples.push({ x: e.clientX, y: e.clientY, t0: performance.now(), amp: 5, speed: 300, life: 1.8 })
       wake()
     }

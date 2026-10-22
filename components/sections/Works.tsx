@@ -10,7 +10,7 @@ import Parallax from "@/components/ui/Parallax"
 import BlockReveal from "@/components/ui/BlockReveal"
 import Decode from "@/components/ui/Decode"
 import Magnetic from "@/components/ui/Magnetic"
-import WorksDeck from "@/components/sections/WorksDeck"
+import WorksStack from "@/components/sections/WorksStack"
 
 function useTilt() {
   const ref = useRef<HTMLDivElement>(null)
@@ -203,7 +203,7 @@ export default function Works({ works, total }: { works: Work[]; total: number }
         </Parallax>
 
         <div className="md:hidden">
-          <WorksDeck works={works} />
+          <WorksStack works={works} />
         </div>
 
         <div className="hidden md:grid grid-cols-2 gap-px bg-[var(--border)] border border-[var(--border)]">
