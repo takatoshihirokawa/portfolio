@@ -105,12 +105,12 @@ export default function AvatarIllust({ className, onDizzy, compact = false }: { 
       <path d="M284.98,178.99c-1.41-.9-7.57-28.86-8.11-32.51-.93-6.25-1.89-13.28,1.58-18.85,1.14-1.83,6.92-8.49,8.9-8.5,7.6-.02-3.49,12.28-4.21,14.28-.85,2.38-.15,5.63.27,8.15,1.72,10.37,5.65,21.01,7.45,31.25.8,4.57-1.09,7.21-5.89,6.16Z" />
 
       {/* Mouth */}
-      <path fill="var(--accent)" d="M261.61,200.46c2.67-2.84,8.66.86,11.85,1.77,3.43.98,13.01,1.11,11.21,6.84-2.16,6.86-19.13,1.12-22.66-3.01-1.18-1.38-1.66-4.25-.39-5.59Z" />
+      <path fill={compact ? "currentColor" : "var(--accent)"} stroke={compact ? "currentColor" : "none"} strokeWidth={compact ? 7 : 0} strokeLinejoin="round" d="M261.61,200.46c2.67-2.84,8.66.86,11.85,1.77,3.43.98,13.01,1.11,11.21,6.84-2.16,6.86-19.13,1.12-22.66-3.01-1.18-1.38-1.66-4.25-.39-5.59Z" />
 
       {/* Eyes — mouse tracking */}
 
       {/* Eyes — mouse tracking */}
-      <motion.g fill="var(--accent)" style={{ x: eyeX, y: eyeY }} animate={{ opacity: dizzy ? 0 : 1 }} transition={{ duration: 0.15 }}>
+      <motion.g fill={compact ? "currentColor" : "var(--accent)"} stroke={compact ? "currentColor" : "none"} strokeWidth={compact ? 8 : 0} strokeLinejoin="round" style={{ x: eyeX, y: eyeY }} animate={{ opacity: dizzy ? 0 : 1 }} transition={{ duration: 0.15 }}>
         {/* Left eye */}
         <path d="M243.34,138.31c2.72-.14,6.98,1.69,7.65,4.62,2.21,9.57-12.38,12.58-13.95,1.38-.53-3.79,2.89-5.82,6.3-5.99Z" />
         {/* Right eye */}
