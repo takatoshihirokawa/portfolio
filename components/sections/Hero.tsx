@@ -70,7 +70,7 @@ function HeroInner() {
         className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] sm:w-[84%] max-w-[1180px] pointer-events-none"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.2, duration: 2 }}
+        transition={{ delay: 0.2, duration: 0.8 }}
         aria-hidden
       >
         <motion.path
@@ -83,7 +83,7 @@ function HeroInner() {
           opacity={0.22}
           initial={{ pathLength: 0 }}
           animate={{ pathLength: 1 }}
-          transition={{ delay: 1.2, duration: 3.2, ease: [0.4, 0, 0.2, 1] }}
+          transition={{ delay: 0.2, duration: 1.4, ease: "easeOut" }}
         />
       </motion.svg>
 
