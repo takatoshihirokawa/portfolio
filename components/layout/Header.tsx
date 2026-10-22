@@ -48,8 +48,18 @@ export default function Header() {
       }`}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between relative z-10">
-        <Link href="/" aria-label="Home" onClick={close} className="text-[var(--fg)] hover:text-[var(--accent)] transition-colors">
-          <AvatarIllust compact className="w-10 h-10" />
+        <Link
+          href="/"
+          aria-label="Home"
+          onClick={close}
+          className="group flex items-center gap-3"
+        >
+          <span className="w-10 h-10 rounded-full bg-[var(--fg)] text-[var(--bg)] overflow-hidden flex items-end justify-center transition-transform duration-500 group-hover:rotate-[-8deg] group-hover:scale-105">
+            <AvatarIllust compact className="w-[112%] translate-y-[10%]" />
+          </span>
+          <span className="hidden sm:block font-display text-[11px] tracking-[0.3em] uppercase text-[var(--muted-fg)] group-hover:text-[var(--fg)] transition-colors">
+            Hirokawa
+          </span>
         </Link>
 
         <nav className="hidden lg:flex items-center gap-8">

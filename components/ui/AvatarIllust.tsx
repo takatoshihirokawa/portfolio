@@ -86,7 +86,7 @@ export default function AvatarIllust({ className, onDizzy, compact = false }: { 
   return (
     <svg
       ref={svgRef}
-      viewBox={compact ? "110 -20 320 340" : "0 0 432.39 586.69"}
+      viewBox={compact ? "60 -5 360 360" : "0 0 432.39 586.69"}
       xmlns="http://www.w3.org/2000/svg"
       fill="currentColor"
       className={className}
