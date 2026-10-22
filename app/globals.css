@@ -40,7 +40,7 @@ body::before {
     linear-gradient(var(--grid-minor) 1px, transparent 1px),
     linear-gradient(90deg, var(--grid-minor) 1px, transparent 1px);
   background-size: 120px 120px, 120px 120px, 24px 24px, 24px 24px;
-  background-position: center top;
+  background-position: var(--grid-x, 0px) 0;
 }
 html[data-theme="light"] body::after { opacity: 0.012; }
 html[data-theme="light"] .marquee-track {
