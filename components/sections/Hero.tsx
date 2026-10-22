@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useRef } from "react"
-import { motion, useMotionValue, useSpring } from "framer-motion"
+import { motion, useMotionValue, useScroll, useSpring, useTransform } from "framer-motion"
 import AvatarIllust from "@/components/ui/AvatarIllust"
 import { glitchToggleTheme } from "@/lib/theme"
 
@@ -37,6 +37,12 @@ function MouseGradient() {
 const spring = [0.16, 1, 0.3, 1] as const
 
 export default function Hero() {
+  const { scrollY } = useScroll()
+  const avatarY = useTransform(scrollY, [0, 800], [0, 160])
+  const avatarOpacity = useTransform(scrollY, [0, 450], [1, 0])
+  const nameY = useTransform(scrollY, [0, 800], [0, -70])
+  const roleY = useTransform(scrollY, [0, 800], [0, -120])
+
   return (
     <section
       id="top-home"
@@ -57,6 +63,7 @@ export default function Hero() {
 
         {/* Role */}
         <motion.p
+          style={{ y: roleY }}
           className="text-[9px] sm:text-[10px] tracking-[0.3em] sm:tracking-[0.4em] uppercase text-[var(--accent)] mb-10 text-center"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
@@ -65,8 +72,8 @@ export default function Hero() {
           Planning · Direction · Development
         </motion.p>
 
-        {/* Name — two tight lines */}
-        <div className="flex flex-col items-center leading-[0.95]">
+        {/* Name — two tight lines, in front of the avatar */}
+        <motion.div style={{ y: nameY }} className="relative z-20 flex flex-col items-center leading-[0.95]">
           <div className="overflow-hidden">
             <motion.p
               className="font-display text-[clamp(1.75rem,5vw,3.75rem)] font-light tracking-[0.3em] uppercase text-center text-[var(--fg)] opacity-80"
@@ -87,11 +94,12 @@ export default function Hero() {
               HIROKAWA
             </motion.p>
           </div>
-        </div>
+        </motion.div>
 
-        {/* Avatar — overlaps up into the name */}
+        {/* Avatar — tucks under the name, parallax on scroll */}
+        <motion.div style={{ y: avatarY, opacity: avatarOpacity }} className="relative z-10 -mt-7 sm:-mt-10 lg:-mt-14">
         <motion.div
-          className="relative z-10 -mt-4 sm:-mt-6 lg:-mt-9 w-32 sm:w-40 md:w-44 lg:w-52 xl:w-56 overflow-hidden"
+          className="w-32 sm:w-40 md:w-44 lg:w-52 xl:w-56 overflow-hidden"
           style={{ aspectRatio: "432.39 / 434" }}
           initial={{ opacity: 0, scale: 0.86, y: 24 }}
           animate={{ opacity: 0.85, scale: 1, y: 0 }}
@@ -99,10 +107,11 @@ export default function Hero() {
         >
           <AvatarIllust className="w-full text-[var(--fg)]" onDizzy={glitchToggleTheme} />
         </motion.div>
+        </motion.div>
 
         {/* Location badge */}
         <motion.div
-          className="mt-6 flex items-center gap-2 max-w-xs sm:max-w-none"
+          className="relative z-20 mt-6 flex items-center gap-2 max-w-xs sm:max-w-none"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.85, duration: 0.6 }}
@@ -114,7 +123,7 @@ export default function Hero() {
         </motion.div>
 
         <motion.p
-          className="mt-3 text-[10px] tracking-[0.3em] uppercase text-[var(--accent)]"
+          className="relative z-20 mt-3 text-[10px] tracking-[0.3em] uppercase text-[var(--accent)]"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 2.2, duration: 1 }}
@@ -124,7 +133,7 @@ export default function Hero() {
 
         {/* Tagline + CTA */}
         <motion.div
-          className="mt-10 flex flex-col items-center gap-8"
+          className="relative z-20 mt-10 flex flex-col items-center gap-8"
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.05, duration: 0.7 }}
