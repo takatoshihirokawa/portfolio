@@ -52,62 +52,74 @@ export default function Hero() {
   return (
     <section
       id="top-home"
-      className="relative min-h-screen flex flex-col items-start justify-center overflow-hidden px-4 sm:px-6 pt-16"
+      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-4 sm:px-6 pt-16"
     >
       <MouseGradient />
 
-      <div className="max-w-6xl w-full mx-auto relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
-          {/* Text content */}
-          <div className="flex flex-col gap-6">
-            {[
-              <p key="role" className="text-xs tracking-[0.3em] uppercase text-[var(--accent)]">
-                Planning / Direction / Development
-              </p>,
-              <h1 key="name" className="text-6xl sm:text-7xl md:text-8xl font-light tracking-tight leading-none">
-                <span className="block">Takatoshi</span>
-                <span className="block text-[var(--accent)]">Hirokawa</span>
-              </h1>,
-              <p key="tagline" className="text-base sm:text-lg text-[var(--muted-fg)] max-w-lg leading-relaxed">
-                「何を作るか」からではなく、<br />
-                「何を解決したいか」から考えます。
-              </p>,
-              <div key="cta" className="flex items-center gap-4 pt-4">
-                <a
-                  href="/#works"
-                  className="text-xs tracking-[0.2em] uppercase border border-[var(--accent)] text-[var(--accent)] px-6 py-3 hover:bg-[var(--accent)] hover:text-[var(--bg)] transition-all duration-300"
-                >
-                  Works
-                </a>
-                <a
-                  href="/#contact"
-                  className="text-xs tracking-[0.2em] uppercase text-[var(--muted-fg)] hover:text-[var(--fg)] transition-colors"
-                >
-                  Contact →
-                </a>
-              </div>,
-            ].map((child, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, ease: "easeOut", delay: REVEAL_DELAY + i * STAGGER_DELAY }}
-              >
-                {child}
-              </motion.div>
-            ))}
-          </div>
+      <div className="max-w-2xl w-full mx-auto relative z-10 flex flex-col items-center text-center gap-6">
 
-          {/* Avatar */}
-          <motion.div
-            className="flex justify-center"
-            initial={{ opacity: 0, x: 40 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.9, ease: "easeOut", delay: 0.5 }}
+        {/* Role label */}
+        <motion.p
+          className="text-xs tracking-[0.3em] uppercase text-[var(--accent)]"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut", delay: REVEAL_DELAY }}
+        >
+          Planning / Direction / Development
+        </motion.p>
+
+        {/* Avatar — キービジュアル */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.9, ease: "easeOut", delay: REVEAL_DELAY + STAGGER_DELAY }}
+        >
+          <AvatarIllust className="w-52 sm:w-64 md:w-72 lg:w-80 text-white" />
+        </motion.div>
+
+        {/* Name */}
+        <motion.h1
+          className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-light tracking-tight leading-none"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: "easeOut", delay: REVEAL_DELAY + STAGGER_DELAY * 2 }}
+        >
+          <span className="block">Takatoshi</span>
+          <span className="block text-[var(--accent)]">Hirokawa</span>
+        </motion.h1>
+
+        {/* Tagline */}
+        <motion.p
+          className="text-base sm:text-lg text-[var(--muted-fg)] leading-relaxed"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: "easeOut", delay: REVEAL_DELAY + STAGGER_DELAY * 3 }}
+        >
+          「何を作るか」からではなく、<br />
+          「何を解決したいか」から考えます。
+        </motion.p>
+
+        {/* CTA */}
+        <motion.div
+          className="flex items-center gap-4 pt-2"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: "easeOut", delay: REVEAL_DELAY + STAGGER_DELAY * 4 }}
+        >
+          <a
+            href="/#works"
+            className="text-xs tracking-[0.2em] uppercase border border-[var(--accent)] text-[var(--accent)] px-6 py-3 hover:bg-[var(--accent)] hover:text-[var(--bg)] transition-all duration-300"
           >
-            <AvatarIllust className="w-48 sm:w-64 lg:w-80 xl:w-96 text-white opacity-90" />
-          </motion.div>
-        </div>
+            Works
+          </a>
+          <a
+            href="/#contact"
+            className="text-xs tracking-[0.2em] uppercase text-[var(--muted-fg)] hover:text-[var(--fg)] transition-colors"
+          >
+            Contact →
+          </a>
+        </motion.div>
+
       </div>
 
       {/* Scroll indicator */}
