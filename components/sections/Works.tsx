@@ -5,6 +5,7 @@ import Link from "next/link"
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion"
 import { works } from "@/lib/works"
 import { useMotionTheme } from "@/lib/theme"
+import Parallax from "@/components/ui/Parallax"
 
 const cardGradients = [
   "from-[#0e1020] via-[#141830] to-[#080810]",
@@ -76,11 +77,11 @@ function FeaturedCard({ work, index }: { work: (typeof works)[0]; index: number 
                 Featured
               </span>
             </div>
-            <div className="absolute bottom-5 right-6">
+            <Parallax amount={-28} className="absolute bottom-5 right-6">
               <span className="font-display text-[7rem] leading-none font-light text-white/[0.04] group-hover:text-white/[0.08] transition-colors duration-500 select-none">
                 {num}
               </span>
-            </div>
+            </Parallax>
             <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
               <span className="text-[10px] tracking-[0.4em] uppercase text-white/60 border border-white/20 px-5 py-2.5">
                 View Project →
@@ -140,11 +141,11 @@ function WorkCard({ work, index }: { work: (typeof works)[0]; index: number }) {
               className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700"
               style={{ background: `radial-gradient(60% 60% at 50% 50%, ${accent}, transparent)` }}
             />
-            <div className="absolute bottom-4 right-5">
+            <Parallax amount={-18} className="absolute bottom-4 right-5">
               <span className="font-display text-[5rem] leading-none font-light text-white/[0.05] group-hover:text-white/10 transition-colors duration-500 select-none">
                 {num}
               </span>
-            </div>
+            </Parallax>
             <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
               <span className="text-[9px] tracking-[0.4em] uppercase text-white/60 border border-white/20 px-4 py-2">
                 View Project
@@ -184,7 +185,7 @@ export default function Works() {
     <section id="works" className="py-40 px-6 sm:px-10 border-t border-[var(--border)]">
       <div className="max-w-6xl mx-auto">
 
-        <div className="flex items-end justify-between mb-20">
+        <Parallax amount={18} className="flex items-end justify-between mb-20">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -203,7 +204,7 @@ export default function Works() {
           >
             {works.length} projects
           </motion.p>
-        </div>
+        </Parallax>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
           <FeaturedCard work={featured} index={0} />

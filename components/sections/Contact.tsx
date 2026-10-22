@@ -4,6 +4,7 @@
 
 import { useState } from "react"
 import { motion } from "framer-motion"
+import Parallax from "@/components/ui/Parallax"
 
 const inquiryTypes = [
   { value: "", label: "選択してください" },
@@ -48,6 +49,7 @@ export default function Contact() {
   return (
     <section id="contact" className="py-40 px-6 sm:px-10 border-t border-[var(--border)]">
       <div className="max-w-6xl mx-auto">
+        <Parallax amount={18}>
         <motion.div
           className="mb-20"
           initial={{ opacity: 0, y: 24 }}
@@ -62,6 +64,7 @@ export default function Contact() {
             課題の整理から一緒に進めます。3営業日以内にご返信します。
           </p>
         </motion.div>
+        </Parallax>
 
         <div className="max-w-2xl">
           {/* Form */}

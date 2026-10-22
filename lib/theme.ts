@@ -30,7 +30,7 @@ export function useTheme(): Theme {
 // Dark: snappy, expressive. Light: calmer, longer, shorter travel.
 const PRESETS = {
   dark:  { ease: [0.16, 1, 0.3, 1] as const,    speed: 1,    dist: 40, stagger: 0.08 },
-  light: { ease: [0.33, 0.8, 0.25, 1] as const, speed: 1.35, dist: 22, stagger: 0.12 },
+  light: { ease: [0.25, 0.9, 0.2, 1] as const,  speed: 1.15, dist: 32, stagger: 0.1 },
 }
 
 export function useMotionTheme() {

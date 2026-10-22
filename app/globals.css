@@ -12,7 +12,7 @@
 html[data-theme="light"] {
   --bg: #f3f3ee;
   --fg: #0c0c0c;
-  --accent: #2b2bff;
+  --accent: #e6007e;
   --muted: #e6e6e0;
   --muted-fg: #7a7a76;
   --border: #d6d6d0;
@@ -34,6 +34,7 @@ html[data-theme="light"] .marquee-track {
 html[data-theme="light"] .work-thumb {
   filter: invert(1) hue-rotate(180deg) saturate(0.6) brightness(1.04);
 }
+html[data-theme="light"] ::selection { background: var(--accent); color: #fff; }
 html[data-theme="light"] ::-webkit-scrollbar-thumb { background: var(--accent); }
 
 @theme inline {

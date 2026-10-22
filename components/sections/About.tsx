@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react"
 import { motion } from "framer-motion"
 import { useMotionTheme } from "@/lib/theme"
+import Parallax from "@/components/ui/Parallax"
 
 function useCountUp(target: number, duration = 1.6) {
   const [value, setValue] = useState(0)
@@ -91,15 +92,18 @@ export default function About() {
     <section id="about" className="py-40 px-6 sm:px-10">
       <div className="max-w-6xl mx-auto">
 
-        <FadeUp>
-          <div className="mb-20">
-            <p className="text-[10px] tracking-[0.4em] uppercase text-[var(--accent)] mb-2">[01] About</p>
-            <p className="font-display text-3xl sm:text-4xl font-light tracking-wide">Who I Am</p>
-          </div>
-        </FadeUp>
+        <Parallax amount={18}>
+          <FadeUp>
+            <div className="mb-20">
+              <p className="text-[10px] tracking-[0.4em] uppercase text-[var(--accent)] mb-2">[01] About</p>
+              <p className="font-display text-3xl sm:text-4xl font-light tracking-wide">Who I Am</p>
+            </div>
+          </FadeUp>
+        </Parallax>
 
         {/* Stats — count-up on scroll */}
         <FadeUp delay={0.1}>
+          <Parallax amount={-10}>
           <div className="grid grid-cols-3 border border-[var(--border)] mb-24">
             {stats.map((s, i) => (
               <div key={s.label} className={i < stats.length - 1 ? "border-r border-[var(--border)]" : ""}>
@@ -107,6 +111,7 @@ export default function About() {
               </div>
             ))}
           </div>
+          </Parallax>
         </FadeUp>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 lg:gap-24">

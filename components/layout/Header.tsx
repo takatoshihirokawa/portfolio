@@ -29,7 +29,7 @@ export default function Header() {
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
         <Link href="/" aria-label="Home" className="text-[var(--fg)] hover:text-[var(--accent)] transition-colors">
-          <AvatarIllust compact className="w-9 h-9" />
+          <AvatarIllust compact className="w-10 h-10" />
         </Link>
 
         {/* Desktop nav */}

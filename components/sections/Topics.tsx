@@ -2,22 +2,25 @@
 
 import { motion } from "framer-motion"
 import { useMotionTheme } from "@/lib/theme"
+import Parallax from "@/components/ui/Parallax"
 
 export default function Topics() {
   const { ease, speed, dist } = useMotionTheme()
   return (
     <section id="topics" className="py-40 px-6 sm:px-10 border-t border-[var(--border)]">
       <div className="max-w-6xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: dist }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.75 * speed, ease }}
-          className="mb-16"
-        >
-          <p className="text-[10px] tracking-[0.4em] uppercase text-[var(--accent)] mb-2">[03] Topics</p>
-          <p className="font-display text-3xl sm:text-4xl font-light tracking-wide">Notes &amp; Updates</p>
-        </motion.div>
+        <Parallax amount={18}>
+          <motion.div
+            initial={{ opacity: 0, y: dist }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.75 * speed, ease }}
+            className="mb-16"
+          >
+            <p className="text-[10px] tracking-[0.4em] uppercase text-[var(--accent)] mb-2">[03] Topics</p>
+            <p className="font-display text-3xl sm:text-4xl font-light tracking-wide">Notes &amp; Updates</p>
+          </motion.div>
+        </Parallax>
 
         <motion.div
           initial={{ opacity: 0 }}
