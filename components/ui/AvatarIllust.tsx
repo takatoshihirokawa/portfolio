@@ -8,7 +8,7 @@ const EYES = [
   { cx: 244, cy: 145 },
   { cx: 306, cy: 146 },
 ]
-const TURNS_TO_DIZZY = 1.5
+const TURNS_TO_DIZZY = 1
 
 export default function AvatarIllust({ className, onDizzy }: { className?: string; onDizzy?: () => void }) {
   const svgRef = useRef<SVGSVGElement>(null)
@@ -42,7 +42,7 @@ export default function AvatarIllust({ className, onDizzy }: { className?: strin
       const dist = Math.hypot(dx, dy)
       const now = performance.now()
       const o = orbit.current
-      const inRing = dist > rect.width * 0.12 && dist < rect.width * 0.7
+      const inRing = dist > rect.width * 0.08 && dist < rect.width * 0.95
       if (!inRing || now - o.lastT > 500) {
         o.last = angle
         o.total = 0
