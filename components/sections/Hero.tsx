@@ -52,7 +52,7 @@ function HeroInner() {
   return (
     <section
       id="top-home"
-      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-6 sm:px-10 pt-32 pb-40"
+      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-6 sm:px-12 pt-32 pb-40"
     >
       <MouseGradient />
 

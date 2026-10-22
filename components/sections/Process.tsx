@@ -15,7 +15,7 @@ const steps = [
 export default function Process() {
   const { ease, speed, stagger } = useMotionTheme()
   return (
-    <section id="process" className="py-40 px-6 sm:px-10 border-t border-[var(--border)]">
+    <section id="process" className="py-40 px-6 sm:px-12 border-t border-[var(--border)]">
       <div className="max-w-6xl mx-auto">
         <Parallax amount={18}>
           <Reveal>

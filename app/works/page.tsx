@@ -12,7 +12,7 @@ export const metadata = {
 export default async function WorksIndex() {
   const works = await getWorks()
   return (
-    <div className="pt-32 pb-40 px-6 sm:px-10">
+    <div className="pt-32 pb-40 px-6 sm:px-12">
       <div className="max-w-6xl mx-auto">
         <Reveal>
           <Link href="/" className="inline-flex items-center gap-2 text-[11px] sm:text-[10px] tracking-[0.35em] uppercase text-[var(--muted-fg)] hover:text-[var(--accent)] transition-colors">

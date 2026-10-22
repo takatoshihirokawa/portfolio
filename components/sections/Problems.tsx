@@ -18,7 +18,7 @@ const problems = [
 export default function Problems() {
   const { ease, speed, stagger } = useMotionTheme()
   return (
-    <section id="problems" className="py-40 px-6 sm:px-10">
+    <section id="problems" className="py-40 px-6 sm:px-12">
       <div className="max-w-6xl mx-auto">
         <Parallax amount={18}>
           <Reveal>

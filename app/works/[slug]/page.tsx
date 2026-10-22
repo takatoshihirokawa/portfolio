@@ -42,7 +42,7 @@ async function WorkContent({ params }: { params: Promise<{ slug: string }> }) {
   const num = String(index + 1).padStart(2, "0")
 
   return (
-    <article className="pt-32 pb-40 px-6 sm:px-10">
+    <article className="pt-32 pb-40 px-6 sm:px-12">
       <div className="max-w-6xl mx-auto">
         <Reveal>
           <Link

@@ -77,7 +77,7 @@ export function IntroProvider({ children }: { children: React.ReactNode }) {
                 <div className="h-full bg-[var(--accent)]" style={{ width: `${progress}%` }} />
               </div>
             </div>
-            <div className="px-6 sm:px-10 pb-8 flex items-end justify-between">
+            <div className="px-6 sm:px-12 pb-8 flex items-end justify-between">
               <span className="font-display text-[11px] tracking-[0.35em] uppercase text-[var(--muted-fg)]">Takatoshi Hirokawa</span>
               <span className="font-display text-5xl sm:text-6xl font-light tabular-nums leading-none">
                 {String(progress).padStart(3, "0")}

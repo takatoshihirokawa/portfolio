@@ -170,7 +170,7 @@ export default function Works({ works, total }: { works: Work[]; total: number }
   const [featured, ...rest] = works
 
   return (
-    <section id="works" className="py-40 px-6 sm:px-10 border-t border-[var(--border)]">
+    <section id="works" className="py-40 px-6 sm:px-12 border-t border-[var(--border)]">
       <div className="max-w-6xl mx-auto">
 
         <Parallax amount={18} className="flex items-end justify-between mb-20">

@@ -14,7 +14,7 @@ export default function Contact() {
     "w-full bg-transparent border border-[var(--border)] px-4 py-4 text-base text-[var(--fg)] placeholder:text-[var(--muted-fg)] focus:border-[var(--accent)] focus:outline-none transition-colors"
 
   return (
-    <section id="contact" className="py-40 px-6 sm:px-10 border-t border-[var(--border)]">
+    <section id="contact" className="py-40 px-6 sm:px-12 border-t border-[var(--border)]">
       <div className="max-w-6xl mx-auto">
         <Parallax amount={18}>
         <motion.div

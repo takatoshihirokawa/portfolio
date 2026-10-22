@@ -93,7 +93,7 @@ function FadeUp({ children, delay = 0 }: { children: React.ReactNode; delay?: nu
 
 export default function About() {
   return (
-    <section id="about" className="py-40 px-6 sm:px-10">
+    <section id="about" className="py-40 px-6 sm:px-12">
       <div className="max-w-6xl mx-auto">
 
         <Parallax amount={18}>
