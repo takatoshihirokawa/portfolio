@@ -10,7 +10,6 @@ import Parallax from "@/components/ui/Parallax"
 import BlockReveal from "@/components/ui/BlockReveal"
 import Decode from "@/components/ui/Decode"
 import Magnetic from "@/components/ui/Magnetic"
-import WorksStack from "@/components/sections/WorksStack"
 
 function useTilt() {
   const ref = useRef<HTMLDivElement>(null)
@@ -202,11 +201,7 @@ export default function Works({ works, total }: { works: Work[]; total: number }
           </motion.div>
         </Parallax>
 
-        <div className="md:hidden">
-          <WorksStack works={works} />
-        </div>
-
-        <div className="hidden md:grid grid-cols-2 gap-px bg-[var(--border)] border border-[var(--border)]">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-[var(--border)] border border-[var(--border)]">
           <FeaturedCard work={featured} index={0} />
           {rest.map((work, i) => (
             <WorkCard key={work.slug} work={work} index={i + 1} />
