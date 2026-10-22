@@ -1,3 +1,4 @@
+import { Suspense } from "react"
 import { notFound } from "next/navigation"
 import Link from "next/link"
 import Image from "next/image"
@@ -22,7 +23,15 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 const label = "text-[11px] sm:text-[9px] tracking-[0.4em] uppercase text-[var(--muted-fg)] mb-3 block"
 
-export default async function WorkPage({ params }: { params: Promise<{ slug: string }> }) {
+export default function WorkPage({ params }: { params: Promise<{ slug: string }> }) {
+  return (
+    <Suspense fallback={<div className="min-h-screen" />}>
+      <WorkContent params={params} />
+    </Suspense>
+  )
+}
+
+async function WorkContent({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
   const index = works.findIndex((w) => w.slug === slug)
   if (index === -1) notFound()

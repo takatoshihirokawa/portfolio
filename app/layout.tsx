@@ -27,6 +27,7 @@ const syne = Syne({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://portfolio-nu-inky-79.vercel.app"),
   title: "Takatoshi Hirokawa | WebとデジタルのAI・制作",
   description:
     "廣川貴理のポートフォリオ。Web・デジタル企画からWebアプリ開発、SNS・広告施策、AI活用支援まで。",
