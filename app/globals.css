@@ -19,9 +19,21 @@ html[data-theme="light"] {
 }
 
 /* Faint engineering grid on both themes */
+/* Drawn as a fixed layer (not a body background) so it centers exactly like the content */
 body {
-  --grid-minor: rgba(240, 240, 240, 0.03);
-  --grid-major: rgba(240, 240, 240, 0.06);
+  --grid-minor: rgba(240, 240, 240, 0.02);
+  --grid-major: rgba(240, 240, 240, 0.045);
+}
+html[data-theme="light"] body {
+  --grid-minor: rgba(12, 12, 12, 0.025);
+  --grid-major: rgba(12, 12, 12, 0.05);
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
   background-image:
     linear-gradient(var(--grid-major) 1px, transparent 1px),
     linear-gradient(90deg, var(--grid-major) 1px, transparent 1px),
@@ -29,10 +41,6 @@ body {
     linear-gradient(90deg, var(--grid-minor) 1px, transparent 1px);
   background-size: 120px 120px, 120px 120px, 24px 24px, 24px 24px;
   background-position: center top;
-}
-html[data-theme="light"] body {
-  --grid-minor: rgba(12, 12, 12, 0.035);
-  --grid-major: rgba(12, 12, 12, 0.07);
 }
 html[data-theme="light"] body::after { opacity: 0.012; }
 html[data-theme="light"] .marquee-track {
@@ -134,7 +142,7 @@ html.glitching footer {
   animation: glitch-shake 0.7s steps(1) both;
 }
 
-html.glitching body::before {
+html.glitching::after {
   content: "";
   position: fixed;
   inset: 0;
