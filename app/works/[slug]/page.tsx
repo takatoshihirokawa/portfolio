@@ -135,7 +135,7 @@ export default async function WorkPage({ params }: { params: Promise<{ slug: str
         {work.screenshot && (
           <Reveal className="mt-28">
             <span className={label}>Screens</span>
-            <div className="border border-[var(--border)] bg-[var(--muted)] max-h-[80vh] overflow-y-auto">
+            <div className="border border-[var(--border)] bg-[var(--muted)]">
               <Image
                 src={work.screenshot}
                 alt={`${work.title} の画面`}
@@ -145,7 +145,6 @@ export default async function WorkPage({ params }: { params: Promise<{ slug: str
                 className="w-full h-auto"
               />
             </div>
-            <p className="mt-3 text-[11px] sm:text-[9px] tracking-[0.3em] uppercase text-[var(--muted-fg)]">Scroll inside to see more</p>
           </Reveal>
         )}
 

@@ -51,7 +51,7 @@ const pillars = [
 const fields = pillars.flatMap((p) => p.items)
 
 const stats = [
-  { target: 15, suffix: "+", label: "Years\nExperience" },
+  { target: 20, suffix: "+", label: "Years\nExperience" },
   { target: 60, suffix: "+", label: "Projects\nDelivered" },
   { target: fields.length, suffix: "", label: "Service\nAreas" },
 ]
