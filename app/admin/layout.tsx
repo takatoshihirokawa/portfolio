@@ -4,7 +4,7 @@ import { getAdminSession } from "@/lib/admin"
 import LoginForm from "@/components/admin/LoginForm"
 import { signOut } from "./actions"
 
-export const metadata = { title: "Admin | Takatoshi Hirokawa", robots: { index: false, follow: false } }
+export const metadata = { title: "Admin | Takatoshi Hirokawa", robots: { index: false, follow: false }, appleWebApp: { title: "TH Admin" } }
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   return (
