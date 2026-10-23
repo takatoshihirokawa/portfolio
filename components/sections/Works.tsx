@@ -102,13 +102,14 @@ function FeaturedCard({ work, index }: { work: Work; index: number }) {
   )
 }
 
-function WorkCard({ work, index }: { work: Work; index: number }) {
+function WorkCard({ work, index, mobileOnly = false }: { work: Work; index: number; mobileOnly?: boolean }) {
   const tilt = useTilt()
   const { ease, speed, dist, stagger } = useMotionTheme()
   const num = String(index + 1).padStart(2, "0")
 
   return (
     <motion.div
+      className={mobileOnly ? "md:hidden" : undefined}
       initial={{ opacity: 0, y: dist + 10 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
@@ -204,7 +205,7 @@ export default function Works({ works, total }: { works: Work[]; total: number }
         <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-[var(--border)] border border-[var(--border)]">
           <FeaturedCard work={featured} index={0} />
           {rest.map((work, i) => (
-            <WorkCard key={work.slug} work={work} index={i + 1} />
+            <WorkCard key={work.slug} work={work} index={i + 1} mobileOnly={i + 1 >= 7} />
           ))}
         </div>
 

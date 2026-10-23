@@ -40,7 +40,7 @@ async function fetchWorks(_version: number): Promise<WorkRow[]> {
 }
 
 export async function getFeaturedWorks(): Promise<WorkRow[]> {
-  return (await getWorks()).slice(0, 7)
+  return (await getWorks()).slice(0, 10)
 }
 
 export async function getWork(slug: string): Promise<{ work: WorkRow; prev: WorkRow; next: WorkRow; index: number } | null> {
