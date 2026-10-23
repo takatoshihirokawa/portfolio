@@ -1,0 +1,29 @@
+name: Weekly backup of works
+
+on:
+  schedule:
+    - cron: "43 18 * * 0"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Export published works
+        env:
+          SUPABASE_URL: https://mccgdiqudmlaxqoiekel.supabase.co
+          SUPABASE_KEY: sb_publishable_Dm8_Fnakeq4Bp14UxsFfnA_NdOaVTOb
+        run: |
+          curl -sf "$SUPABASE_URL/rest/v1/portfolio_works?select=*&order=year.desc,created_at.desc,sort_order.asc" \
+            -H "apikey: $SUPABASE_KEY" -H "Authorization: Bearer $SUPABASE_KEY" \
+            | python3 -c "import json,sys; d=json.load(sys.stdin); assert len(d)>0; json.dump(d, open('data/backup/works.json','w'), ensure_ascii=False, indent=1)"
+      - name: Commit if changed
+        run: |
+          git config user.name "portfolio-backup"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/backup/works.json
+          git diff --cached --quiet || git commit -m "Backup works ($(date -u +%Y-%m-%d))" && git push

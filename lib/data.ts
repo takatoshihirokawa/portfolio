@@ -15,7 +15,7 @@ function fallback(): WorkRow[] {
 }
 
 export async function getWorks(): Promise<WorkRow[]> {
-  return fetchWorks(2)
+  return fetchWorks(3)
 }
 
 // Bump the version to drop entries cached by an older query shape.
