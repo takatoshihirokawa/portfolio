@@ -19,14 +19,14 @@ async function AdminShell({ children }: { children: React.ReactNode }) {
 
   if (!user) {
     return (
-      <div className="min-h-screen pt-32 pb-40 px-6 sm:px-12 flex items-start justify-center">
+      <div className="admin-root min-h-screen cursor-auto pt-32 pb-40 px-6 sm:px-12 flex items-start justify-center">
         <LoginForm />
       </div>
     )
   }
   if (!isAdmin) {
     return (
-      <div className="min-h-screen pt-32 px-6 sm:px-12 max-w-6xl mx-auto">
+      <div className="admin-root min-h-screen cursor-auto pt-32 px-6 sm:px-12 max-w-6xl mx-auto">
         <p className="text-base leading-8">{user.email} には管理権限がありません。</p>
         <form action={signOut}><button className="mt-6 text-xs tracking-[0.2em] uppercase underline">ログアウト</button></form>
       </div>
@@ -34,23 +34,24 @@ async function AdminShell({ children }: { children: React.ReactNode }) {
   }
 
   return (
-    <div className="min-h-screen pt-28 pb-32 px-6 sm:px-12">
-      <div className="max-w-6xl mx-auto">
-        <div className="flex items-center justify-between border-b border-[var(--border)] pb-5 mb-10">
-          <nav className="flex items-center gap-6 text-[11px] sm:text-[10px] tracking-[0.3em] uppercase">
-            <Link href="/admin" className="text-[var(--fg)] hover:text-[var(--accent)]">Works</Link>
-            <Link href="/admin?tab=inbox" className="text-[var(--muted-fg)] hover:text-[var(--accent)]">Inbox</Link>
-            <Link href="/admin/works/new" className="text-[var(--accent)]">+ New</Link>
-            <Link href="/" className="text-[var(--muted-fg)] hover:text-[var(--accent)]">Site ↗</Link>
+    <div className="admin-root min-h-screen cursor-auto pb-32">
+      <header className="sticky top-0 z-40 bg-[var(--bg)]/90 backdrop-blur-md border-b border-[var(--border)]">
+        <div className="max-w-6xl mx-auto px-6 sm:px-12 h-14 flex items-center justify-between gap-4">
+          <nav className="flex items-center gap-5 sm:gap-7 text-sm overflow-x-auto whitespace-nowrap">
+            <Link href="/admin" className="font-medium hover:text-[var(--accent)]">実績</Link>
+            <Link href="/admin?tab=inbox" className="text-[var(--muted-fg)] hover:text-[var(--accent)]">問い合わせ</Link>
+            <Link href="/admin?tab=settings" className="text-[var(--muted-fg)] hover:text-[var(--accent)]">合言葉</Link>
+            <Link href="/admin/works/new" className="text-[var(--accent)]">＋ 新規</Link>
           </nav>
-          <form action={signOut}>
-            <button className="text-[11px] sm:text-[10px] tracking-[0.3em] uppercase text-[var(--muted-fg)] hover:text-[var(--fg)]">
-              {user.email} · Logout
-            </button>
-          </form>
+          <div className="flex items-center gap-5 text-sm shrink-0">
+            <a href="/" target="_blank" rel="noopener noreferrer" className="hidden sm:inline text-[var(--muted-fg)] hover:text-[var(--accent)]">サイトを見る ↗</a>
+            <form action={signOut}>
+              <button className="text-[var(--muted-fg)] hover:text-[var(--fg)]" title={user.email}>ログアウト</button>
+            </form>
+          </div>
         </div>
-        {children}
-      </div>
+      </header>
+      <div className="max-w-6xl mx-auto px-6 sm:px-12 pt-10">{children}</div>
     </div>
   )
 }

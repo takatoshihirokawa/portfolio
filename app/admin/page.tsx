@@ -3,6 +3,7 @@ import Link from "next/link"
 import { getAdminSession } from "@/lib/admin"
 import { deleteWork, setSubmissionStatus } from "./actions"
 import PassphraseForm from "@/components/admin/PassphraseForm"
+import DeleteButton from "@/components/admin/DeleteButton"
 
 type SP = Promise<{ tab?: string; saved?: string; deleted?: string }>
 
@@ -17,7 +18,12 @@ export default function AdminHome({ searchParams }: { searchParams: SP }) {
 async function AdminHomeContent({ searchParams }: { searchParams: SP }) {
   const sp = await searchParams
   const { supabase } = await getAdminSession()
-  const tab = sp.tab === "inbox" ? "inbox" : "works"
+  const tab = sp.tab === "inbox" || sp.tab === "settings" ? sp.tab : "works"
+
+  if (tab === "settings") {
+    const { data: hasPassphrase } = await supabase.rpc("portfolio_has_passphrase")
+    return <PassphraseForm hasPassphrase={hasPassphrase === true} />
+  }
 
   if (tab === "inbox") {
     const { data: rows } = await supabase
@@ -65,13 +71,11 @@ async function AdminHomeContent({ searchParams }: { searchParams: SP }) {
     .order("year", { ascending: false })
     .order("created_at", { ascending: false })
     .order("sort_order", { ascending: true })
-  const { data: hasPassphrase } = await supabase.rpc("portfolio_has_passphrase")
 
   return (
     <div>
       {sp.saved && <p className="mb-6 text-sm text-[var(--accent)]">保存しました。</p>}
       {sp.deleted && <p className="mb-6 text-sm text-[var(--accent)]">削除しました。</p>}
-      <PassphraseForm hasPassphrase={hasPassphrase === true} />
       <div className="flex items-end justify-between mb-8">
         <p className="font-display text-2xl font-light tracking-wide">実績（{works?.length ?? 0}）</p>
         <Link href="/admin/works/new" className="text-xs tracking-[0.2em] uppercase border border-[var(--accent)] text-[var(--accent)] px-5 py-3 hover:bg-[var(--accent)] hover:text-[var(--bg)] transition-colors">
@@ -93,10 +97,10 @@ async function AdminHomeContent({ searchParams }: { searchParams: SP }) {
                 {!w.published && <span className="ml-2 text-red-500">Draft</span>}
               </p>
             </div>
-            <Link href={`${w.secret ? "/private" : "/works"}/${w.slug}`} target="_blank" className="hidden sm:inline text-[11px] tracking-widest uppercase text-[var(--muted-fg)] hover:text-[var(--accent)]">View ↗</Link>
+            <Link href={`${w.secret ? "/private" : "/works"}/${w.slug}`} target="_blank" rel="noopener noreferrer" className="hidden sm:inline text-sm text-[var(--muted-fg)] hover:text-[var(--accent)]">見る ↗</Link>
             <form action={deleteWork}>
               <input type="hidden" name="id" value={w.id} />
-              <button className="text-[11px] tracking-widest uppercase text-[var(--muted-fg)] hover:text-red-500">Delete</button>
+              <DeleteButton title={w.title} />
             </form>
           </div>
         ))}

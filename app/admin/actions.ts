@@ -1,7 +1,7 @@
 "use server"
 
 import { redirect } from "next/navigation"
-import { revalidateTag } from "next/cache"
+import { revalidatePath, revalidateTag } from "next/cache"
 import { getAdminSession } from "@/lib/admin"
 import { normalizePassphrase } from "@/lib/secret"
 
@@ -45,6 +45,7 @@ export async function saveWork(_prev: SaveState, fd: FormData): Promise<SaveStat
   const { error } = await q
   if (error) return { error: error.message.includes("duplicate") ? "このスラッグは既に使われています" : error.message }
   revalidateTag("works", "max")
+  revalidatePath("/admin")
   redirect("/admin?saved=1")
 }
 
@@ -54,7 +55,9 @@ export async function deleteWork(fd: FormData) {
   if (!id) return
   await supabase.from("portfolio_works").delete().eq("id", id)
   revalidateTag("works", "max")
-  redirect("/admin?deleted=1")
+  // Without this the list can keep showing the deleted row.
+  revalidatePath("/admin")
+  redirect(`/admin?deleted=${Date.now()}`)
 }
 
 export type PassphraseState = { error?: string; ok?: boolean }
@@ -74,6 +77,7 @@ export async function setSubmissionStatus(fd: FormData) {
   const status = str(fd, "status")
   if (!id || !["new", "replied", "archived"].includes(status)) return
   await supabase.from("portfolio_contact_submissions").update({ status }).eq("id", id)
+  revalidatePath("/admin")
   redirect("/admin?tab=inbox")
 }
 

@@ -64,6 +64,10 @@ body {
 
 * { box-sizing: border-box; }
 
+/* Admin screens use their own header and the normal cursor. */
+body:has(.admin-root) .site-chrome { display: none; }
+body:has(.admin-root) { cursor: auto; }
+
 html { scroll-behavior: smooth; }
 
 /* Mobile: one step larger for readability */

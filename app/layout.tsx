@@ -54,11 +54,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="min-h-full flex flex-col">
         <GridAlign />
         <GridCanvas />
-        <CustomCursor />
-        <Header />
+        <div className="site-chrome contents"><CustomCursor /><Header /></div>
         <main className="flex-1">{children}</main>
-        <Footer />
-        <BackToTop />
+        <div className="site-chrome contents"><Footer /><BackToTop /></div>
       </body>
     </html>
   )
