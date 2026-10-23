@@ -26,8 +26,9 @@ export default function Lab({ works }: { works: Work[] }) {
             <p className="text-[11px] sm:text-[10px] tracking-[0.4em] uppercase text-[var(--accent)] mb-2"><Decode text="[05] LAB" /></p>
             <BlockReveal as="p" className="font-display text-3xl sm:text-4xl font-light tracking-wide" delay={0.15}>Lab</BlockReveal>
           </motion.div>
-          <p className="text-base text-[var(--muted-fg)] leading-8 sm:max-w-sm sm:text-right">
-            頼まれた仕事とは別に、自分で作って、自分で動かしているもの。作るだけでなく、回し続けるところまで。
+          <p className="text-base text-[var(--muted-fg)] leading-8 sm:text-right">
+            <span className="inline-block">自分で作り、運用している</span><span className="inline-block">サービスと仕組み。</span><br />
+            <span className="inline-block">ここで試したことを、</span><span className="inline-block">仕事に活かしています。</span>
           </p>
         </Parallax>
 

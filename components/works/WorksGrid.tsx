@@ -69,7 +69,8 @@ export function WorksTabs({ works }: { works: Work[] }) {
         </div>
       ) : (
         <p className="mb-14 text-base leading-8 text-[var(--muted-fg)] max-w-2xl">
-          頼まれた仕事とは別に、自分で作って、自分で動かしているものです。作るだけでなく、毎日回し続けるところまでやっています。
+          <span className="inline-block">自分で作り、運用している</span><span className="inline-block">サービスと仕組み。</span><br />
+          <span className="inline-block">ここで試したことを、</span><span className="inline-block">仕事に活かしています。</span>
         </p>
       )}
 
