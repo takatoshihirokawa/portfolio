@@ -31,13 +31,14 @@ function useTilt() {
 
 function FeaturedCard({ work, index }: { work: Work; index: number }) {
   const tilt = useTilt()
-  const { ease, speed, dist } = useMotionTheme()
+  const { theme, speed, dist } = useMotionTheme()
   const num = String(index + 1).padStart(2, "0")
+  const dark = theme === "dark"
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: dist + 10 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={dark ? { clipPath: "inset(0 0 100% 0)", y: dist } : { opacity: 0, y: dist + 10 }}
+      whileInView={dark ? { clipPath: "inset(0 0 0% 0)", y: 0 } : { opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px 0px" }}
       transition={{ duration: 1.2 * speed, ease: [0.2, 0.8, 0.2, 1] }}
       className="md:col-span-2 h-full"
@@ -104,14 +105,15 @@ function FeaturedCard({ work, index }: { work: Work; index: number }) {
 
 function WorkCard({ work, index, mobileOnly = false }: { work: Work; index: number; mobileOnly?: boolean }) {
   const tilt = useTilt()
-  const { ease, speed, dist, stagger } = useMotionTheme()
+  const { theme, speed, dist, stagger } = useMotionTheme()
   const num = String(index + 1).padStart(2, "0")
+  const dark = theme === "dark"
 
   return (
     <motion.div
       className={mobileOnly ? "md:hidden" : undefined}
-      initial={{ opacity: 0, y: dist + 10 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={dark ? { clipPath: "polygon(0 0, 0 0, 0 100%, 0 100%)", x: -dist / 2, rotate: -2 } : { opacity: 0, y: dist + 10 }}
+      whileInView={dark ? { clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)", x: 0, rotate: 0 } : { opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px 0px" }}
       transition={{ duration: 1.1 * speed, ease: [0.2, 0.8, 0.2, 1], delay: (index % 2) * stagger }}
     >
@@ -202,7 +204,7 @@ export default function Works({ works }: { works: Work[] }) {
           </motion.div>
         </Parallax>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-[var(--border)] border border-[var(--border)]">
+        <div className="works-grid grid grid-cols-1 md:grid-cols-2 gap-px bg-[var(--border)] border border-[var(--border)]">
           <FeaturedCard work={featured} index={0} />
           {rest.map((work, i) => (
             <WorkCard key={work.slug} work={work} index={i + 1} mobileOnly={i + 1 >= 7} />

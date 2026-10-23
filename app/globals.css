@@ -159,3 +159,85 @@ html.glitching body::after { opacity: 0.2; }
 ::-webkit-scrollbar { width: 3px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb { background: var(--muted-fg); border-radius: 2px; }
+
+/* ───────── The dark side (only after circling the face) ───────── */
+
+/* Scanlines, vignette and a spotlight that follows the pointer */
+.dark-fx {
+  background:
+    radial-gradient(420px circle at var(--mx, 50%) var(--my, 40%), color-mix(in srgb, var(--accent) 9%, transparent), transparent 70%),
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.025) 0 1px, transparent 1px 3px),
+    radial-gradient(ellipse at center, transparent 55%, rgba(0, 0, 0, 0.55) 100%);
+  mix-blend-mode: screen;
+  animation: dark-flicker 6s steps(1) infinite;
+}
+@keyframes dark-flicker {
+  0%, 96%, 100% { opacity: 1; }
+  97% { opacity: 0.6; }
+  98% { opacity: 1; }
+  99% { opacity: 0.75; }
+}
+
+/* Sections lean with scroll speed */
+html[data-theme="dark"] main section:not(#top-home) {
+  transform: skewY(calc(var(--skew, 0) * 1deg));
+  transform-origin: 50% 0;
+  position: relative;
+  overflow-x: clip;
+}
+
+/* Giant outlined section numbers */
+html[data-theme="dark"] :is(#problems, #process, #about, #works, #lab, #contact)::before {
+  position: absolute;
+  top: 2.5rem;
+  right: -0.06em;
+  z-index: 0;
+  pointer-events: none;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(9rem, 34vw, 26rem);
+  line-height: 0.8;
+  letter-spacing: -0.06em;
+  color: transparent;
+  -webkit-text-stroke: 1px color-mix(in srgb, var(--accent) 35%, transparent);
+  animation: ghost-drift linear both;
+  animation-timeline: view();
+}
+html[data-theme="dark"] #problems::before { content: "01"; }
+html[data-theme="dark"] #process::before  { content: "02"; }
+html[data-theme="dark"] #about::before    { content: "03"; }
+html[data-theme="dark"] #works::before    { content: "04"; }
+html[data-theme="dark"] #lab::before      { content: "05"; }
+html[data-theme="dark"] #contact::before  { content: "06"; }
+html[data-theme="dark"] :is(#problems, #process, #about, #works, #lab, #contact) > * { position: relative; z-index: 1; }
+@keyframes ghost-drift {
+  from { transform: translateY(18vh); }
+  to   { transform: translateY(-18vh); }
+}
+
+/* Headings: huge, tight, uppercase */
+html[data-theme="dark"] main section span.font-display.text-3xl {
+  font-size: clamp(2.4rem, 8vw, 5rem);
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* Works: cards float apart, staggered columns, monochrome until hovered */
+html[data-theme="dark"] .works-grid {
+  gap: 1.5rem;
+  background: transparent;
+  border: 0;
+}
+html[data-theme="dark"] .works-grid > * > a > div { outline: 1px solid var(--border); }
+html[data-theme="dark"] .works-grid img {
+  filter: grayscale(1) contrast(1.15) brightness(0.85);
+  transition: filter 0.5s, transform 0.7s;
+}
+html[data-theme="dark"] .works-grid a:hover img { filter: none; }
+@media (min-width: 768px) {
+  html[data-theme="dark"] .works-grid { gap: 2.5rem 2.5rem; }
+  html[data-theme="dark"] .works-grid > :nth-child(2n + 3) { translate: 0 7rem; }
+  html[data-theme="dark"] .works-grid { padding-bottom: 7rem; }
+}

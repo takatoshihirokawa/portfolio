@@ -5,6 +5,7 @@ import CustomCursor from "@/components/ui/CustomCursor"
 import Header from "@/components/layout/Header"
 import Footer from "@/components/layout/Footer"
 import BackToTop from "@/components/ui/BackToTop"
+import DarkFx from "@/components/ui/DarkFx"
 import GridAlign from "@/components/ui/GridAlign"
 import GridCanvas from "@/components/ui/GridCanvas"
 
@@ -44,19 +45,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       suppressHydrationWarning
       className={`${inter.variable} ${notoSansJP.variable} ${syne.variable}`}
     >
-      <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(){try{var s=localStorage.getItem("theme");var t=s==="dark"||s==="light"?s:(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.dataset.theme=t;}catch(e){}})();`,
-          }}
-        />
-      </head>
       <body className="min-h-full flex flex-col">
         <GridAlign />
         <GridCanvas />
         <div className="site-chrome contents"><CustomCursor /><Header /></div>
         <main className="flex-1">{children}</main>
-        <div className="site-chrome contents"><Footer /><BackToTop /></div>
+        <div className="site-chrome contents"><Footer /><BackToTop /><DarkFx /></div>
       </body>
     </html>
   )

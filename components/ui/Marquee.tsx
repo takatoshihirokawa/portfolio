@@ -19,7 +19,19 @@ const ITEMS = [
 
 export default function Marquee() {
   const theme = useTheme()
-  const baseVelocity = theme === "light" ? -28 : -36
+  if (theme === "dark") {
+    // The hidden side: two warning-tape bands crossing each other.
+    return (
+      <div className="relative h-56 sm:h-72 overflow-hidden select-none">
+        <Tape className="absolute left-[-10%] right-[-10%] top-1/2 -translate-y-1/2 rotate-[-6deg] bg-[var(--accent)] text-[var(--bg)]" velocity={-70} />
+        <Tape className="absolute left-[-10%] right-[-10%] top-1/2 -translate-y-1/2 rotate-[5deg] border-y border-[var(--accent)] bg-[var(--bg)] text-[var(--accent)]" velocity={55} />
+      </div>
+    )
+  }
+  return <Tape className="relative border-y border-[var(--border)] py-6" velocity={-28} light />
+}
+
+function Tape({ className, velocity: baseVelocity, light = false }: { className: string; velocity: number; light?: boolean }) {
   const x = useMotionValue(0)
   const trackRef = useRef<HTMLDivElement>(null)
   const { scrollY } = useScroll()
@@ -44,14 +56,21 @@ export default function Marquee() {
 
   const repeated = [...ITEMS, ...ITEMS, ...ITEMS]
   return (
-    <div className="relative border-y border-[var(--border)] overflow-hidden py-6 select-none">
-      <motion.div ref={trackRef} style={{ x }} className="flex gap-8 sm:gap-14 w-max will-change-transform">
-        {repeated.map((item, i) => (
-          <span key={i} className="flex items-center gap-8 sm:gap-14 text-xs sm:text-[10px] tracking-[0.2em] sm:tracking-[0.3em] text-[var(--muted-fg)] whitespace-nowrap">
-            {item}
-            <span className="text-[var(--accent)] text-base leading-none">·</span>
-          </span>
-        ))}
+    <div className={`overflow-hidden ${className}`}>
+      <motion.div ref={trackRef} style={{ x }} className={`flex w-max will-change-transform ${light ? "gap-8 sm:gap-14" : "gap-6 py-3"}`}>
+        {repeated.map((item, i) =>
+          light ? (
+            <span key={i} className="flex items-center gap-8 sm:gap-14 text-xs sm:text-[10px] tracking-[0.2em] sm:tracking-[0.3em] text-[var(--muted-fg)] whitespace-nowrap">
+              {item}
+              <span className="text-[var(--accent)] text-base leading-none">·</span>
+            </span>
+          ) : (
+            <span key={i} className="flex items-center gap-6 text-2xl sm:text-4xl font-bold tracking-tight whitespace-nowrap">
+              {item}
+              <span className="text-xl leading-none">✕</span>
+            </span>
+          )
+        )}
       </motion.div>
     </div>
   )

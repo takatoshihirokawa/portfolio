@@ -11,14 +11,16 @@ export function glitchToggleTheme() {
   window.setTimeout(() => {
     const next = html.dataset.theme === "light" ? "dark" : "light"
     html.dataset.theme = next
-    try { localStorage.setItem("theme", next) } catch {}
     window.dispatchEvent(new CustomEvent("theme:flip", { detail: next }))
   }, 280)
   window.setTimeout(() => html.classList.remove("glitching"), 700)
 }
 
 export function useTheme(): Theme {
-  const [theme, setTheme] = useState<Theme>("light")
+  // Pages always load light; read the live value so parts remounted after the flip start dark.
+  const [theme, setTheme] = useState<Theme>(() =>
+    typeof document !== "undefined" && document.documentElement.dataset.theme === "dark" ? "dark" : "light"
+  )
   useEffect(() => {
     const html = document.documentElement
     const read = () => setTheme(html.dataset.theme === "light" ? "light" : "dark")
@@ -30,9 +32,9 @@ export function useTheme(): Theme {
   return theme
 }
 
-// Dark: snappy, expressive. Light: calmer, longer, shorter travel.
+// Dark (the hidden side): fast, long travel. Light (the official site): calm.
 const PRESETS = {
-  dark:  { ease: [0.16, 1, 0.3, 1] as const,    speed: 1,    dist: 40, stagger: 0.08 },
+  dark:  { ease: [0.83, 0, 0.17, 1] as const,   speed: 0.85, dist: 90, stagger: 0.12 },
   light: { ease: [0.25, 0.9, 0.2, 1] as const,  speed: 1.15, dist: 32, stagger: 0.1 },
 }
 

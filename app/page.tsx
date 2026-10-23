@@ -8,12 +8,14 @@ import Contact from "@/components/sections/Contact"
 import Marquee from "@/components/ui/Marquee"
 import { getFeaturedWorks, getLabWorks } from "@/lib/data"
 import { IntroProvider } from "@/components/ui/Intro"
+import ThemeKey from "@/components/ui/ThemeKey"
 
 export default async function Home() {
   const [featured, lab] = await Promise.all([getFeaturedWorks(), getLabWorks()])
   return (
     <IntroProvider>
       <Hero />
+      <ThemeKey>
       <Marquee />
       <Problems />
       <Process />
@@ -21,6 +23,7 @@ export default async function Home() {
       <Works works={featured} />
       <Lab works={lab} />
       <Contact />
+      </ThemeKey>
     </IntroProvider>
   )
 }

@@ -32,7 +32,7 @@ export default function Lab({ works }: { works: Work[] }) {
           </p>
         </Parallax>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-px bg-[var(--border)] border border-[var(--border)]">
+        <div className={`grid grid-cols-1 ${works.length >= 3 ? "sm:grid-cols-3" : "sm:grid-cols-2"} gap-px bg-[var(--border)] border border-[var(--border)]`}>
           {works.slice(0, 3).map((w, i) => (
             <motion.div
               key={w.slug}
