@@ -10,7 +10,8 @@ const COLUMNS =
 function fallback(): WorkRow[] {
   const list = staticWorks.map((w, i) => ({ ...w, id: w.slug, published: true, pinned: false, sort_order: i }))
   const front = ["clippick", "lab-threads-autopost"]
-  return [...front.map((s) => list.find((w) => w.slug === s)!).filter(Boolean), ...list.filter((w) => !front.includes(w.slug))]
+  const ordered = [...front.map((s) => list.find((w) => w.slug === s)!).filter(Boolean), ...list.filter((w) => !front.includes(w.slug))]
+  return ordered.filter((w) => w.slug !== "lab-plant-blog").sort((a, b) => b.year - a.year)
 }
 
 export async function getWorks(): Promise<WorkRow[]> {
@@ -23,6 +24,7 @@ export async function getWorks(): Promise<WorkRow[]> {
       .select(COLUMNS)
       .eq("published", true)
       .order("pinned", { ascending: false })
+      .order("year", { ascending: false })
       .order("created_at", { ascending: false })
       .order("sort_order", { ascending: true })
     if (error || !data || data.length === 0) return fallback()

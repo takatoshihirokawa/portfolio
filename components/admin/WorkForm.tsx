@@ -90,7 +90,7 @@ export default function WorkForm({ values = {} }: { values?: Values }) {
       <div className="flex flex-wrap items-center gap-8">
         <label className="flex items-center gap-2 text-sm"><input type="checkbox" name="published" defaultChecked={v.published ?? true} className="accent-[var(--accent)]" /> 公開する</label>
         <label className="flex items-center gap-2 text-sm"><input type="checkbox" name="pinned" defaultChecked={v.pinned ?? false} className="accent-[var(--accent)]" /> 上に固定</label>
-        <span className="text-xs text-[var(--muted-fg)]">並びは新しく追加した順。固定したものが一番上に来ます。トップには上から 7 件表示。</span>
+        <span className="text-xs text-[var(--muted-fg)]">並びは実施年の新しい順（同じ年の中では追加が新しい順）。固定したものが一番上に来ます。トップには上から 7 件表示。</span>
       </div>
 
       {state.error && <p className="text-sm text-red-500">{state.error}</p>}

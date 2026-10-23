@@ -61,6 +61,7 @@ async function AdminHomeContent({ searchParams }: { searchParams: SP }) {
     .from("portfolio_works")
     .select("id, slug, title, year, category, published, pinned, thumbnail")
     .order("pinned", { ascending: false })
+    .order("year", { ascending: false })
     .order("created_at", { ascending: false })
     .order("sort_order", { ascending: true })
 
