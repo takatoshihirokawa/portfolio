@@ -9,8 +9,8 @@ const COLUMNS =
 
 function fallback(): WorkRow[] {
   const list = staticWorks.map((w, i) => ({ ...w, id: w.slug, published: true, pinned: false, sort_order: i }))
-  const lab = list.find((w) => w.slug === "lab-threads-autopost")
-  return lab ? [lab, ...list.filter((w) => w !== lab)] : list
+  const front = ["clippick", "lab-threads-autopost"]
+  return [...front.map((s) => list.find((w) => w.slug === s)!).filter(Boolean), ...list.filter((w) => !front.includes(w.slug))]
 }
 
 export async function getWorks(): Promise<WorkRow[]> {

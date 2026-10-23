@@ -19,6 +19,22 @@ export type Work = {
 
 export const works: Work[] = [
   {
+    slug: "clippick",
+    title: "ClipPick 長い動画から縦型ショートを作る Web サービス",
+    year: 2026,
+    category: "App / Service",
+    tags: ["Planning", "Design", "Development"],
+    client: "自社サービス",
+    affiliation: "Freelance",
+    role: "企画・設計・デザイン・開発・運用",
+    url: "https://clippick.jp/",
+    summary: "会社の YouTube、ウェビナー、インスタライブなど、仕事で扱う長い動画から、AI が見どころを見つけて縦型（9:16）のショート動画に仕上げる Web サービス「ClipPick」を企画・開発。テロップ、BGM、投稿文まで一度に作り、ブラウザだけで完結する。企画から LP、アプリ、決済、運用まで一人で担当。",
+    background: "1 時間のウェビナーや配信は、終わったあとのアーカイブがほとんど見られない。ショート動画にすれば届くが、見どころを探して見返すだけで半日かかり、編集を外注するほどでもない。地方の会社やお店ほど「撮ったけど使えていない動画」が眠っていると感じ、見返す時間を「選ぶ時間」に変える道具として作った。",
+    approach: "動画をアップロードすると、文字起こしをもとに AI がショート向きの場面を「選んだ理由」と一緒に提案。話している人の顔を追いかけて縦に切り出し、テロップ・見出し・BGM を付けて書き出し、投稿文とハッシュタグも同時に作る。180 分までの動画に対応し、大きなファイルも途中から再開できるアップロード、ブラウザを閉じても続く解析、ワークスペースごとのクレジット管理（お客さんごとに分けられる）と Stripe 決済まで実装。画面は Next.js、データと認証は Supabase、文字起こし・見どころ選定・動画の書き出しはバックグラウンドの処理基盤で動かしている。",
+    thumbnail: "/images/works/clippick.webp",
+    screenshot: null,
+  },
+  {
     slug: "kamiculum-learning-platform",
     title: "カミキュラム 美容室向け教育・学習Webアプリ",
     year: 2026,
