@@ -23,7 +23,7 @@ export async function submitContact(_prev: ContactState, formData: FormData): Pr
 async function notifySlack(name: string, email: string, message: string) {
   const url = process.env.SLACK_CONTACT_WEBHOOK_URL
   if (!url) return
-  const site = process.env.NEXT_PUBLIC_SITE_URL ?? "https://portfolio-nu-inky-79.vercel.app"
+  const site = process.env.NEXT_PUBLIC_SITE_URL ?? "https://takatoshihirokawa.com"
   const esc = (t: string) => t.replace(/[<>&]/g, (c) => ({ "<": "&lt;", ">": "&gt;", "&": "&amp;" })[c]!)
   const quoted = esc(message.length > 2500 ? `${message.slice(0, 2500)}…` : message)
   try {
