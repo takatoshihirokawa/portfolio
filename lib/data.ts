@@ -15,9 +15,14 @@ function fallback(): WorkRow[] {
 }
 
 export async function getWorks(): Promise<WorkRow[]> {
+  return fetchWorks(2)
+}
+
+// Bump the version to drop entries cached by an older query shape.
+async function fetchWorks(_version: number): Promise<WorkRow[]> {
   "use cache"
   cacheTag("works")
-  cacheLife("hours")
+  cacheLife("minutes")
   try {
     const { data, error } = await createPublicClient()
       .from("portfolio_works")
