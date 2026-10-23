@@ -40,7 +40,7 @@ async function AdminShell({ children }: { children: React.ReactNode }) {
           <nav className="flex items-center gap-5 sm:gap-7 text-sm overflow-x-auto whitespace-nowrap">
             <Link href="/admin" className="font-medium hover:text-[var(--accent)]">実績</Link>
             <Link href="/admin?tab=inbox" className="text-[var(--muted-fg)] hover:text-[var(--accent)]">問い合わせ</Link>
-            <Link href="/admin?tab=settings" className="text-[var(--muted-fg)] hover:text-[var(--accent)]">合言葉</Link>
+            <Link href="/admin?tab=settings" className="text-[var(--muted-fg)] hover:text-[var(--accent)]">設定</Link>
             <Link href="/admin/works/new" className="text-[var(--accent)]">＋ 新規</Link>
           </nav>
           <div className="flex items-center gap-5 text-sm shrink-0">

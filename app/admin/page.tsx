@@ -3,6 +3,7 @@ import Link from "next/link"
 import { getAdminSession } from "@/lib/admin"
 import { deleteWork, setSubmissionStatus } from "./actions"
 import PassphraseForm from "@/components/admin/PassphraseForm"
+import PasswordForm from "@/components/admin/PasswordForm"
 import DeleteButton from "@/components/admin/DeleteButton"
 
 type SP = Promise<{ tab?: string; saved?: string; deleted?: string }>
@@ -22,7 +23,12 @@ async function AdminHomeContent({ searchParams }: { searchParams: SP }) {
 
   if (tab === "settings") {
     const { data: hasPassphrase } = await supabase.rpc("portfolio_has_passphrase")
-    return <PassphraseForm hasPassphrase={hasPassphrase === true} />
+    return (
+      <div>
+        <PasswordForm />
+        <PassphraseForm hasPassphrase={hasPassphrase === true} />
+      </div>
+    )
   }
 
   if (tab === "inbox") {
