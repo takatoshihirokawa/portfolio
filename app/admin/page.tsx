@@ -59,9 +59,10 @@ async function AdminHomeContent({ searchParams }: { searchParams: SP }) {
 
   const { data: works } = await supabase
     .from("portfolio_works")
-    .select("id, slug, title, year, category, published, featured, sort_order, thumbnail")
+    .select("id, slug, title, year, category, published, pinned, thumbnail")
+    .order("pinned", { ascending: false })
+    .order("created_at", { ascending: false })
     .order("sort_order", { ascending: true })
-    .order("year", { ascending: false })
 
   return (
     <div>
@@ -82,8 +83,8 @@ async function AdminHomeContent({ searchParams }: { searchParams: SP }) {
             <div className="min-w-0">
               <Link href={`/admin/works/${w.id}`} className="text-base font-medium hover:text-[var(--accent)] line-clamp-1">{w.title}</Link>
               <p className="text-[11px] tracking-widest uppercase text-[var(--muted-fg)] mt-1">
-                {w.year} · {w.category} · #{w.sort_order}
-                {w.featured && <span className="ml-2 text-[var(--accent)]">Featured</span>}
+                {w.year} · {w.category}
+                {w.pinned && <span className="ml-2 text-[var(--accent)]">Pinned</span>}
                 {!w.published && <span className="ml-2 text-red-500">Draft</span>}
               </p>
             </div>

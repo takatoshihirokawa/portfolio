@@ -35,8 +35,7 @@ export async function saveWork(_prev: SaveState, fd: FormData): Promise<SaveStat
     thumbnail: str(fd, "thumbnail") || null,
     screenshot: str(fd, "screenshot") || null,
     published: fd.get("published") === "on",
-    featured: fd.get("featured") === "on",
-    sort_order: Number(str(fd, "sort_order")) || 0,
+    pinned: fd.get("pinned") === "on",
   }
   const q = id
     ? supabase.from("portfolio_works").update(row).eq("id", id)

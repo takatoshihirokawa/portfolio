@@ -7,7 +7,7 @@ import { createBrowserSupabase } from "@/lib/supabase/browser"
 type Values = {
   id?: string; slug?: string; title?: string; year?: number; category?: string; tags?: string[]; client?: string
   affiliation?: string; role?: string; url?: string | null; summary?: string; background?: string; approach?: string
-  thumbnail?: string | null; screenshot?: string | null; published?: boolean; featured?: boolean; sort_order?: number
+  thumbnail?: string | null; screenshot?: string | null; published?: boolean; pinned?: boolean
 }
 
 const input = "w-full bg-transparent border border-[var(--border)] px-4 py-3 text-base focus:border-[var(--accent)] focus:outline-none"
@@ -89,8 +89,8 @@ export default function WorkForm({ values = {} }: { values?: Values }) {
 
       <div className="flex flex-wrap items-center gap-8">
         <label className="flex items-center gap-2 text-sm"><input type="checkbox" name="published" defaultChecked={v.published ?? true} className="accent-[var(--accent)]" /> 公開する</label>
-        <label className="flex items-center gap-2 text-sm"><input type="checkbox" name="featured" defaultChecked={v.featured ?? false} className="accent-[var(--accent)]" /> トップに表示（Featured）</label>
-        <label className="flex items-center gap-2 text-sm">並び順 <input name="sort_order" type="number" defaultValue={v.sort_order ?? 0} className="w-20 bg-transparent border border-[var(--border)] px-2 py-1" /></label>
+        <label className="flex items-center gap-2 text-sm"><input type="checkbox" name="pinned" defaultChecked={v.pinned ?? false} className="accent-[var(--accent)]" /> 上に固定</label>
+        <span className="text-xs text-[var(--muted-fg)]">並びは新しく追加した順。固定したものが一番上に来ます。トップには上から 7 件表示。</span>
       </div>
 
       {state.error && <p className="text-sm text-red-500">{state.error}</p>}

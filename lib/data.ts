@@ -2,13 +2,15 @@ import { cacheLife, cacheTag } from "next/cache"
 import { createPublicClient } from "@/lib/supabase/public"
 import { works as staticWorks, type Work } from "@/lib/works"
 
-export type WorkRow = Work & { id: string; published: boolean; featured: boolean; sort_order: number }
+export type WorkRow = Work & { id: string; published: boolean; pinned: boolean; sort_order: number }
 
 const COLUMNS =
-  "id, slug, title, year, category, tags, client, affiliation, role, url, summary, background, approach, thumbnail, screenshot, published, featured, sort_order"
+  "id, slug, title, year, category, tags, client, affiliation, role, url, summary, background, approach, thumbnail, screenshot, published, pinned, sort_order"
 
 function fallback(): WorkRow[] {
-  return staticWorks.map((w, i) => ({ ...w, id: w.slug, published: true, featured: i < 6 || w.slug === "lab-threads-autopost", sort_order: i }))
+  const list = staticWorks.map((w, i) => ({ ...w, id: w.slug, published: true, pinned: false, sort_order: i }))
+  const lab = list.find((w) => w.slug === "lab-threads-autopost")
+  return lab ? [lab, ...list.filter((w) => w !== lab)] : list
 }
 
 export async function getWorks(): Promise<WorkRow[]> {
@@ -20,8 +22,9 @@ export async function getWorks(): Promise<WorkRow[]> {
       .from("portfolio_works")
       .select(COLUMNS)
       .eq("published", true)
+      .order("pinned", { ascending: false })
+      .order("created_at", { ascending: false })
       .order("sort_order", { ascending: true })
-      .order("year", { ascending: false })
     if (error || !data || data.length === 0) return fallback()
     return data as WorkRow[]
   } catch {
@@ -30,10 +33,7 @@ export async function getWorks(): Promise<WorkRow[]> {
 }
 
 export async function getFeaturedWorks(): Promise<WorkRow[]> {
-  const all = await getWorks()
-  const featured = all.filter((w) => w.featured)
-  const rest = all.filter((w) => !w.featured)
-  return [...featured, ...rest].slice(0, 7)
+  return (await getWorks()).slice(0, 7)
 }
 
 export async function getWork(slug: string): Promise<{ work: WorkRow; prev: WorkRow; next: WorkRow; index: number } | null> {
