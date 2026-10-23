@@ -8,7 +8,7 @@ const COLUMNS =
   "id, slug, title, year, category, tags, client, affiliation, role, url, summary, background, approach, thumbnail, screenshot, published, featured, sort_order"
 
 function fallback(): WorkRow[] {
-  return staticWorks.map((w, i) => ({ ...w, id: w.slug, published: true, featured: i < 6, sort_order: i }))
+  return staticWorks.map((w, i) => ({ ...w, id: w.slug, published: true, featured: i < 6 || w.slug === "lab-threads-autopost", sort_order: i }))
 }
 
 export async function getWorks(): Promise<WorkRow[]> {
