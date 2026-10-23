@@ -4,7 +4,7 @@ import { useActionState, useEffect, useRef } from "react"
 import { motion, useAnimationControls } from "framer-motion"
 import { unlock, type UnlockState } from "@/app/actions/secret"
 
-// Speech bubble with a passphrase field. `tail` puts the pointer on top-left (from the header face) or hides it.
+// Speech bubble with a passphrase field. `tail` adds the pointer at the top center, toward the face above it.
 export default function UnlockForm({ tail = false, autoFocus = false }: { tail?: boolean; autoFocus?: boolean }) {
   const [state, action, pending] = useActionState<UnlockState, FormData>(unlock, {})
   const shake = useAnimationControls()
@@ -23,9 +23,9 @@ export default function UnlockForm({ tail = false, autoFocus = false }: { tail?:
       className="relative w-[min(300px,calc(100vw-32px))] rounded-2xl border border-[var(--border)] bg-[var(--bg)] p-4 shadow-[0_12px_40px_-12px_rgba(0,0,0,0.35)]"
     >
       {tail && (
-        <span className="absolute -top-[7px] left-[18px] w-3 h-3 rotate-45 bg-[var(--bg)] border-l border-t border-[var(--border)]" />
+        <span className="absolute -top-[7px] left-1/2 -ml-1.5 w-3 h-3 rotate-45 bg-[var(--bg)] border-l border-t border-[var(--border)]" />
       )}
-      <p className="text-sm mb-3">{state.error ? state.error : "合言葉は？"}</p>
+      <p className="text-sm mb-3 text-center">{state.error ? state.error : "合言葉は？"}</p>
       <div className="flex gap-2">
         <input
           ref={input}

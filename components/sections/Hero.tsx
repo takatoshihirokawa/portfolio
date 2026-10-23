@@ -1,14 +1,15 @@
 "use client"
 
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import dynamic from "next/dynamic"
-import { motion, useMotionValue, useScroll, useSpring, useTransform } from "framer-motion"
+import { AnimatePresence, motion, useAnimationControls, useMotionValue, useScroll, useSpring, useTransform } from "framer-motion"
 import AvatarIllust from "@/components/ui/AvatarIllust"
 import { glitchToggleTheme, useMotionTheme } from "@/lib/theme"
 import { useIntro } from "@/components/ui/Intro"
 import Magnetic from "@/components/ui/Magnetic"
 import Decode from "@/components/ui/Decode"
 import { LAKE } from "@/lib/kawaguchiko"
+import UnlockForm from "@/components/ui/UnlockForm"
 
 const HeroScene = dynamic(() => import("@/components/ui/HeroScene"), { ssr: false })
 
@@ -41,6 +42,40 @@ function MouseGradient() {
   )
 }
 
+// Five quick taps on the face open a passphrase bubble under it.
+function useFaceTaps() {
+  const [open, setOpen] = useState(false)
+  const [taps, setTaps] = useState(0)
+  const last = useRef(0)
+  const box = useRef<HTMLDivElement>(null)
+  const wiggle = useAnimationControls()
+
+  useEffect(() => {
+    if (!open) return
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false)
+    const onDown = (e: PointerEvent) => !box.current?.contains(e.target as Node) && setOpen(false)
+    window.addEventListener("keydown", onKey)
+    window.addEventListener("pointerdown", onDown)
+    return () => {
+      window.removeEventListener("keydown", onKey)
+      window.removeEventListener("pointerdown", onDown)
+    }
+  }, [open])
+
+  const tap = () => {
+    const now = Date.now()
+    const n = now - last.current < 700 ? taps + 1 : 1
+    last.current = now
+    if (n > 1) wiggle.start({ rotate: [0, -3 - n, 2 + n, 0], transition: { duration: 0.3 } })
+    if (n >= 5) {
+      setTaps(0)
+      setOpen(true)
+    } else setTaps(n)
+  }
+
+  return { open, tap, box, wiggle }
+}
+
 export default function Hero() {
   const { ready, replay } = useIntro()
   if (!ready) return <section className="min-h-screen" />
@@ -54,6 +89,7 @@ function HeroInner() {
   const avatarOpacity = useTransform(scrollY, [0, 450], [1, 0])
   const nameY = useTransform(scrollY, [0, 800], [0, -70])
   const roleY = useTransform(scrollY, [0, 800], [0, -120])
+  const face = useFaceTaps()
 
   return (
     <section
@@ -131,7 +167,7 @@ function HeroInner() {
         </motion.div>
 
         {/* Avatar — tucks under the name, parallax on scroll */}
-        <motion.div style={{ y: avatarY, opacity: avatarOpacity }} className="relative z-20 -mt-7 sm:-mt-10 lg:-mt-14">
+        <motion.div ref={face.box} style={{ y: avatarY, opacity: avatarOpacity }} className="relative z-30 -mt-7 sm:-mt-10 lg:-mt-14">
         <motion.div
           className="w-32 sm:w-40 md:w-44 lg:w-52 xl:w-56 overflow-hidden"
           style={{ aspectRatio: "432.39 / 434" }}
@@ -139,8 +175,29 @@ function HeroInner() {
           animate={{ opacity: 0.85, scale: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 1.1 * speed, ease: spring }}
         >
-          <div data-cursor="spin" className="w-full"><AvatarIllust className="w-full text-[var(--fg)]" onDizzy={glitchToggleTheme} /></div>
+          <motion.div
+            data-cursor="spin"
+            className="w-full"
+            onClick={face.tap}
+            animate={face.wiggle}
+          >
+            <AvatarIllust className="w-full text-[var(--fg)]" onDizzy={glitchToggleTheme} />
+          </motion.div>
         </motion.div>
+        <AnimatePresence>
+          {face.open && (
+            <motion.div
+              className="absolute top-full left-1/2 mt-3"
+              style={{ x: "-50%", transformOrigin: "50% 0%" }}
+              initial={{ opacity: 0, scale: 0.4, y: -8 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.6, y: -6, transition: { duration: 0.15 } }}
+              transition={{ type: "spring", stiffness: 420, damping: 26 }}
+            >
+              <UnlockForm tail autoFocus />
+            </motion.div>
+          )}
+        </AnimatePresence>
         </motion.div>
 
         {/* Location badge */}
