@@ -3,13 +3,14 @@ import Problems from "@/components/sections/Problems"
 import Process from "@/components/sections/Process"
 import Works from "@/components/sections/Works"
 import About from "@/components/sections/About"
+import Lab from "@/components/sections/Lab"
 import Contact from "@/components/sections/Contact"
 import Marquee from "@/components/ui/Marquee"
-import { getFeaturedWorks, getWorks } from "@/lib/data"
+import { getFeaturedWorks, getClientWorks, getLabWorks } from "@/lib/data"
 import { IntroProvider } from "@/components/ui/Intro"
 
 export default async function Home() {
-  const [featured, all] = await Promise.all([getFeaturedWorks(), getWorks()])
+  const [featured, client, lab] = await Promise.all([getFeaturedWorks(), getClientWorks(), getLabWorks()])
   return (
     <IntroProvider>
       <Hero />
@@ -17,7 +18,8 @@ export default async function Home() {
       <Problems />
       <Process />
       <About />
-      <Works works={featured} total={all.length} />
+      <Works works={featured} total={client.length} />
+      <Lab works={lab} />
       <Contact />
     </IntroProvider>
   )

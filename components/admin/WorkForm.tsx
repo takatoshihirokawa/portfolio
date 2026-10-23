@@ -7,7 +7,7 @@ import { createBrowserSupabase } from "@/lib/supabase/browser"
 type Values = {
   id?: string; slug?: string; title?: string; year?: number; category?: string; tags?: string[]; client?: string
   affiliation?: string; role?: string; url?: string | null; summary?: string; background?: string; approach?: string
-  thumbnail?: string | null; screenshot?: string | null; published?: boolean; pinned?: boolean
+  thumbnail?: string | null; screenshot?: string | null; published?: boolean; pinned?: boolean; secret?: boolean
 }
 
 const input = "w-full bg-transparent border border-[var(--border)] px-4 py-3 text-base focus:border-[var(--accent)] focus:outline-none"
@@ -22,7 +22,8 @@ function ImageField({ name, defaultValue, hint }: { name: string; defaultValue?:
     setBusy(true); setErr(null)
     const supabase = createBrowserSupabase()
     const ext = file.name.split(".").pop()?.toLowerCase() || "jpg"
-    const path = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`
+    // Random names: the bucket cannot be listed, so a URL is only known to pages that show it.
+    const path = `${crypto.randomUUID()}.${ext}`
     const { error } = await supabase.storage.from("portfolio").upload(path, file, { cacheControl: "31536000", upsert: false })
     setBusy(false)
     if (error) { setErr(error.message); return }
@@ -90,7 +91,8 @@ export default function WorkForm({ values = {} }: { values?: Values }) {
       <div className="flex flex-wrap items-center gap-8">
         <label className="flex items-center gap-2 text-sm"><input type="checkbox" name="published" defaultChecked={v.published ?? true} className="accent-[var(--accent)]" /> 公開する</label>
         <label className="flex items-center gap-2 text-sm"><input type="checkbox" name="pinned" defaultChecked={v.pinned ?? false} className="accent-[var(--accent)]" /> 上に固定</label>
-        <span className="text-xs text-[var(--muted-fg)]">並びは実施年の新しい順（同じ年の中では追加が新しい順）。固定したものが一番上に来ます。トップには上から PC で 7 件、スマホで 10 件表示。</span>
+        <label className="flex items-center gap-2 text-sm"><input type="checkbox" name="secret" defaultChecked={v.secret ?? false} className="accent-[var(--accent)]" /> 合言葉で見せる（一覧・検索に出さない）</label>
+        <span className="text-xs text-[var(--muted-fg)]">並びは実施年の新しい順（同じ年の中では追加が新しい順）。固定したものが一番上に来ます。トップには上から PC で 7 件、スマホで 10 件表示。Category を「Lab」にすると、Lab（自主開発）に入ります。「合言葉で見せる」にしたものは、合言葉を入れた人だけが /private で見られます。</span>
       </div>
 
       {state.error && <p className="text-sm text-red-500">{state.error}</p>}

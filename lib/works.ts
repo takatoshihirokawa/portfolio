@@ -15,6 +15,7 @@ export type Work = {
   approach: string
   thumbnail: string
   screenshot: string | null
+  secret?: boolean
 }
 
 export const works: Work[] = [
@@ -22,7 +23,7 @@ export const works: Work[] = [
     slug: "clippick",
     title: "ClipPick 長い動画から縦型ショートを作る Web サービス",
     year: 2026,
-    category: "App / Service",
+    category: "Lab",
     tags: ["Planning", "Design", "Development"],
     client: "自社サービス",
     affiliation: "Freelance",

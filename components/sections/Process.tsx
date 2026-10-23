@@ -40,7 +40,7 @@ export default function Process() {
               key={s.en}
               initial={{ opacity: 0, y: 28 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
+              viewport={{ once: true, margin: "-40px 0px" }}
               transition={{ duration: 0.7 * speed, ease, delay: i * stagger * 1.5 }}
               className="relative flex flex-col gap-5 md:pr-12"
             >

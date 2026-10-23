@@ -22,7 +22,7 @@ function Digit({ value, delay }: { value: number; delay: number }) {
 
 export default function Odometer({ value, suffix = "", className }: { value: number; suffix?: string; className?: string }) {
   const ref = useRef<HTMLSpanElement>(null)
-  const inView = useInView(ref, { once: true, margin: "-80px" })
+  const inView = useInView(ref, { once: true, margin: "-80px 0px" })
   const [go, setGo] = useState(false)
   useEffect(() => { if (inView) setGo(true) }, [inView])
   const digits = String(value).split("").map(Number)

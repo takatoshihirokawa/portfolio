@@ -7,8 +7,9 @@ const GLYPHS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#/[]·"
 
 export default function Decode({ text, className, delay = 0 }: { text: string; className?: string; delay?: number }) {
   const ref = useRef<HTMLSpanElement>(null)
-  const inView = useInView(ref, { once: true, margin: "-40px" })
-  const [out, setOut] = useState(text.replace(/\S/g, " "))
+  const inView = useInView(ref, { once: true, margin: "-40px 0px" })
+  // Non-breaking spaces keep the placeholder's size, so the in-view check can fire before any glyph shows.
+  const [out, setOut] = useState(text.replace(/\S/g, "\u00a0"))
 
   useEffect(() => {
     if (!inView) return

@@ -23,10 +23,10 @@ export default function Contact() {
           className="mb-20"
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
+          viewport={{ once: true, margin: "-80px 0px" }}
           transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
         >
-          <p className="text-[11px] sm:text-[10px] tracking-[0.4em] uppercase text-[var(--accent)] mb-2"><Decode text="[05] CONTACT" /></p>
+          <p className="text-[11px] sm:text-[10px] tracking-[0.4em] uppercase text-[var(--accent)] mb-2"><Decode text="[06] CONTACT" /></p>
           <BlockReveal as="p" className="font-display text-3xl sm:text-4xl font-light tracking-wide" delay={0.15}>Let&apos;s Talk</BlockReveal>
           <p className="mt-6 text-base text-[var(--muted-fg)] leading-8 max-w-xl">
             何から頼めばよいか、決まっていなくても大丈夫です。

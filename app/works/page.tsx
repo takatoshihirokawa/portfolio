@@ -1,13 +1,14 @@
 import Link from "next/link"
 import { getWorks } from "@/lib/data"
-import WorksGrid from "@/components/works/WorksGrid"
+import { Suspense } from "react"
+import WorksGrid, { WorksTabs } from "@/components/works/WorksGrid"
 import Reveal from "@/components/ui/Reveal"
 import BlockReveal from "@/components/ui/BlockReveal"
 import Decode from "@/components/ui/Decode"
 
 export const metadata = {
   title: "Works | Takatoshi Hirokawa",
-  description: "Webアプリ、Webサイト、広告・映像の制作実績と、自分で試した自動化の仕組み。",
+  description: "Webアプリ、Webサイト、広告・映像の制作実績と、自分で作って動かしている自主開発（Lab）。",
 }
 
 export default async function WorksIndex() {
@@ -27,11 +28,13 @@ export default async function WorksIndex() {
               <BlockReveal as="p" className="font-display text-4xl sm:text-5xl font-light tracking-wide" delay={0.15}>制作実績</BlockReveal>
             </div>
             <p className="text-base text-[var(--muted-fg)] leading-8 sm:max-w-sm sm:text-right">
-              Webアプリ・Webサイト・広告映像まで。広告会社時代のプロデュース案件と、独立後の企画〜開発案件に加え、自分で試した自動化の仕組み（Lab）も載せています。
+              Webアプリ・Webサイト・広告映像まで。広告会社時代のプロデュース案件と、独立後の企画〜開発案件です。自分で作って動かしているものは「Lab」にまとめています。
             </p>
           </div>
         </Reveal>
-        <WorksGrid works={works} />
+        <Suspense fallback={<WorksGrid works={works.filter((w) => w.category !== "Lab")} />}>
+          <WorksTabs works={works} />
+        </Suspense>
       </div>
     </div>
   )

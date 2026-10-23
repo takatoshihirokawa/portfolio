@@ -41,7 +41,7 @@ export default function Problems() {
               key={p.title}
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
+              viewport={{ once: true, margin: "-40px 0px" }}
               transition={{ duration: 0.6 * speed, ease, delay: (i % 3) * stagger }}
               className="group border-r border-b border-[var(--border)] p-6 sm:py-12 sm:px-[47px] flex flex-col gap-4 hover:bg-[var(--muted)] transition-colors duration-500"
             >

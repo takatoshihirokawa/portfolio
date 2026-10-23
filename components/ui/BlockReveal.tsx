@@ -24,7 +24,7 @@ export default function BlockReveal({
         className="block"
         initial={{ clipPath: "inset(0 100% 0 0)" }}
         whileInView={{ clipPath: "inset(0 0% 0 0)" }}
-        viewport={{ once: true, margin: "-60px" }}
+        viewport={{ once: true, margin: "-60px 0px" }}
         transition={{ duration: d * 0.5, ease, delay: delay + d * 0.5 }}
       >
         {children}
@@ -34,7 +34,7 @@ export default function BlockReveal({
         className="absolute inset-0 bg-[var(--accent)] pointer-events-none"
         initial={{ clipPath: "inset(0 100% 0 0)" }}
         whileInView={{ clipPath: ["inset(0 100% 0 0)", "inset(0 0% 0 0)", "inset(0 0 0 100%)"] }}
-        viewport={{ once: true, margin: "-60px" }}
+        viewport={{ once: true, margin: "-60px 0px" }}
         transition={{ duration: d, ease, times: [0, 0.5, 1], delay }}
       />
     </span>

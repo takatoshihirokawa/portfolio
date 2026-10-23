@@ -1,12 +1,13 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import Link from "next/link"
 import { motion, AnimatePresence } from "framer-motion"
 import AvatarIllust from "@/components/ui/AvatarIllust"
 import { useMotionTheme } from "@/lib/theme"
 import FlipText from "@/components/ui/FlipText"
 import Magnetic from "@/components/ui/Magnetic"
+import UnlockForm from "@/components/ui/UnlockForm"
 
 const navLinks = [
   { jp: "できること", en: "Service", href: "/#problems" },
@@ -22,6 +23,11 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [origin, setOrigin] = useState({ x: 0, y: 0 })
   const { ease } = useMotionTheme()
+  // Five quick taps on the face open the passphrase bubble.
+  const [bubble, setBubble] = useState(false)
+  const [taps, setTaps] = useState(0)
+  const lastTap = useRef(0)
+  const bubbleRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50)
@@ -41,7 +47,33 @@ export default function Header() {
     return () => window.removeEventListener("keydown", onKey)
   }, [menuOpen])
 
+  useEffect(() => {
+    if (!bubble) return
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setBubble(false)
+    const onDown = (e: PointerEvent) => {
+      if (!bubbleRef.current?.contains(e.target as Node)) setBubble(false)
+    }
+    window.addEventListener("keydown", onKey)
+    window.addEventListener("pointerdown", onDown)
+    return () => {
+      window.removeEventListener("keydown", onKey)
+      window.removeEventListener("pointerdown", onDown)
+    }
+  }, [bubble])
+
   const close = () => setMenuOpen(false)
+
+  const onFace = (e: React.MouseEvent) => {
+    const now = Date.now()
+    const n = now - lastTap.current < 700 ? taps + 1 : 1
+    lastTap.current = now
+    setTaps(n)
+    if (n >= 2) e.preventDefault()
+    if (n >= 5) {
+      setTaps(0)
+      setBubble(true)
+    }
+  }
 
   return (
     <header
@@ -53,12 +85,17 @@ export default function Header() {
         <Link
           href="/"
           aria-label="Home"
-          onClick={close}
+          onClick={(e) => { close(); onFace(e) }}
           className="group flex items-center gap-3"
         >
-          <span className="w-10 h-10 rounded-full bg-[#efefef] text-[#0c0c0c] border border-[var(--border)] overflow-hidden flex items-end justify-center transition-transform duration-500 group-hover:rotate-[-8deg] group-hover:scale-105">
+          <motion.span
+            key={taps}
+            animate={taps > 1 ? { rotate: [0, -6 - taps * 3, 4 + taps * 2, 0] } : undefined}
+            transition={{ duration: 0.35 }}
+            className="w-10 h-10 rounded-full bg-[#efefef] text-[#0c0c0c] border border-[var(--border)] overflow-hidden flex items-end justify-center transition-transform duration-500 group-hover:rotate-[-8deg] group-hover:scale-105"
+          >
             <AvatarIllust compact className="w-[112%] translate-y-[10%]" />
-          </span>
+          </motion.span>
           <span className="hidden sm:block font-display text-[11px] tracking-[0.3em] uppercase text-[var(--muted-fg)] group-hover:text-[var(--fg)] transition-colors">
             Takatoshi Hirokawa
           </span>
@@ -93,6 +130,26 @@ export default function Header() {
         </button>
         </Magnetic>
       </div>
+
+      <AnimatePresence>
+        {bubble && (
+          <div className="absolute top-[60px] left-0 right-0 z-20 pointer-events-none">
+            <div className="max-w-6xl mx-auto px-4 sm:px-6">
+              <motion.div
+                ref={bubbleRef}
+                className="inline-block pointer-events-auto"
+                style={{ transformOrigin: "24px 0px" }}
+                initial={{ opacity: 0, scale: 0.4, y: -6 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.6, y: -4, transition: { duration: 0.15 } }}
+                transition={{ type: "spring", stiffness: 420, damping: 26 }}
+              >
+                <UnlockForm tail autoFocus />
+              </motion.div>
+            </div>
+          </div>
+        )}
+      </AnimatePresence>
 
       <AnimatePresence>
         {menuOpen && (

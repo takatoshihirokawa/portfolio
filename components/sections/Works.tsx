@@ -38,7 +38,7 @@ function FeaturedCard({ work, index }: { work: Work; index: number }) {
     <motion.div
       initial={{ opacity: 0, y: dist + 10 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
+      viewport={{ once: true, margin: "-60px 0px" }}
       transition={{ duration: 1.2 * speed, ease: [0.2, 0.8, 0.2, 1] }}
       className="md:col-span-2 h-full"
     >
@@ -112,7 +112,7 @@ function WorkCard({ work, index, mobileOnly = false }: { work: Work; index: numb
       className={mobileOnly ? "md:hidden" : undefined}
       initial={{ opacity: 0, y: dist + 10 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
+      viewport={{ once: true, margin: "-60px 0px" }}
       transition={{ duration: 1.1 * speed, ease: [0.2, 0.8, 0.2, 1], delay: (index % 2) * stagger }}
     >
       <Link href={`/works/${work.slug}`} data-cursor="view">

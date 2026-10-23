@@ -49,7 +49,7 @@ function FadeUp({ children, delay = 0 }: { children: React.ReactNode; delay?: nu
     <motion.div
       initial={{ opacity: 0, y: dist }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
+      viewport={{ once: true, margin: "-80px 0px" }}
       transition={{ duration: 0.75 * speed, ease, delay }}
     >
       {children}

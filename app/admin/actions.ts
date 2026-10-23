@@ -36,6 +36,7 @@ export async function saveWork(_prev: SaveState, fd: FormData): Promise<SaveStat
     screenshot: str(fd, "screenshot") || null,
     published: fd.get("published") === "on",
     pinned: fd.get("pinned") === "on",
+    secret: fd.get("secret") === "on",
   }
   const q = id
     ? supabase.from("portfolio_works").update(row).eq("id", id)
@@ -53,6 +54,17 @@ export async function deleteWork(fd: FormData) {
   await supabase.from("portfolio_works").delete().eq("id", id)
   revalidateTag("works", "max")
   redirect("/admin?deleted=1")
+}
+
+export type PassphraseState = { error?: string; ok?: boolean }
+
+export async function setPassphrase(_prev: PassphraseState, fd: FormData): Promise<PassphraseState> {
+  const supabase = await requireAdmin()
+  const p = str(fd, "passphrase")
+  if (p.length < 6) return { error: "6文字以上にしてください" }
+  const { error } = await supabase.rpc("portfolio_set_passphrase", { p })
+  if (error) return { error: error.message }
+  return { ok: true }
 }
 
 export async function setSubmissionStatus(fd: FormData) {
