@@ -23,7 +23,7 @@ export const works: Work[] = [
     slug: "clippick",
     title: "ClipPick 長い動画から縦型ショートを作る Web サービス",
     year: 2026,
-    category: "Lab",
+    category: "App / Service",
     tags: ["Planning", "Design", "Development"],
     client: "自社サービス",
     affiliation: "Freelance",
