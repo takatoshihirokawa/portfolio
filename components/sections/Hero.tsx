@@ -235,10 +235,11 @@ function HeroInner() {
             <p className="text-xl sm:text-2xl text-[var(--fg)] text-center leading-relaxed tracking-wide font-medium">
               何から頼めばよいか、<br className="sm:hidden" />決まっていなくても。
             </p>
-            <p className="text-[15px] sm:text-lg text-[var(--muted-fg)] text-center leading-loose tracking-wide">
-              ホームページ・Webアプリの制作から、<br className="sm:hidden" />
-              受付や管理の仕組みづくり、AI活用まで。<br />
-              困りごとの整理から、作って動かすところまで一緒に。
+            <p className="text-[15px] max-[340px]:text-[14px] max-[340px]:tracking-normal sm:text-lg text-[var(--muted-fg)] text-center leading-loose tracking-wide">
+              {/* Phrases wrap as whole units, so narrow screens never split one mid-word. */}
+              <span className="inline-block">ホームページ・</span><span className="inline-block">Webアプリの制作から、</span><br className="sm:hidden" />
+              <span className="inline-block">受付や管理の</span><span className="inline-block">仕組みづくり、</span><span className="inline-block">AI活用まで。</span><br />
+              <span className="inline-block">困りごとの整理から、</span><span className="inline-block">作って動かすところまで</span><span className="inline-block">一緒に。</span>
             </p>
           </div>
 

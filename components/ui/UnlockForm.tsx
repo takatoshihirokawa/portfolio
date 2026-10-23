@@ -30,8 +30,11 @@ export default function UnlockForm({ tail = false, autoFocus = false }: { tail?:
         <input
           ref={input}
           name="passphrase"
-          type="password"
+          type="text"
           autoComplete="off"
+          autoCapitalize="none"
+          autoCorrect="off"
+          spellCheck={false}
           autoFocus={autoFocus}
           required
           className="min-w-0 flex-1 rounded-full bg-transparent border border-[var(--border)] px-4 py-2 text-base focus:border-[var(--accent)] focus:outline-none"

@@ -3,12 +3,12 @@
 import { cookies } from "next/headers"
 import { redirect } from "next/navigation"
 import { checkPassphrase } from "@/lib/data"
-import { SECRET_COOKIE } from "@/lib/secret"
+import { SECRET_COOKIE, normalizePassphrase } from "@/lib/secret"
 
 export type UnlockState = { error?: string; at?: number }
 
 export async function unlock(_prev: UnlockState, fd: FormData): Promise<UnlockState> {
-  const p = String(fd.get("passphrase") ?? "").trim()
+  const p = normalizePassphrase(String(fd.get("passphrase") ?? ""))
   if (!p || !(await checkPassphrase(p))) return { error: "ちがうみたい", at: Date.now() }
   ;(await cookies()).set(SECRET_COOKIE, p, {
     httpOnly: true,

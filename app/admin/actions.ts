@@ -3,6 +3,7 @@
 import { redirect } from "next/navigation"
 import { revalidateTag } from "next/cache"
 import { getAdminSession } from "@/lib/admin"
+import { normalizePassphrase } from "@/lib/secret"
 
 async function requireAdmin() {
   const session = await getAdminSession()
@@ -60,7 +61,7 @@ export type PassphraseState = { error?: string; ok?: boolean }
 
 export async function setPassphrase(_prev: PassphraseState, fd: FormData): Promise<PassphraseState> {
   const supabase = await requireAdmin()
-  const p = str(fd, "passphrase")
+  const p = normalizePassphrase(str(fd, "passphrase"))
   if (p.length < 6) return { error: "6文字以上にしてください" }
   const { error } = await supabase.rpc("portfolio_set_passphrase", { p })
   if (error) return { error: error.message }
