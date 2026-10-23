@@ -43,7 +43,7 @@ function MouseGradient() {
   )
 }
 
-// Five quick taps on the face open a passphrase bubble under it.
+// Five quick taps on the face open a passphrase bubble under it. While it is open the face stays fully visible, even if the keyboard scrolls the page.
 function useFaceTaps() {
   const [open, setOpen] = useState(false)
   const [taps, setTaps] = useState(0)
@@ -197,7 +197,7 @@ function HeroInner() {
         )}
 
         {/* Avatar — tucks under the name, parallax on scroll */}
-        <motion.div ref={face.box} style={{ y: avatarY, opacity: avatarOpacity }} className={`relative z-30 ${dark ? "-mt-10 sm:-mt-20 lg:-mt-28" : "-mt-7 sm:-mt-10 lg:-mt-14"}`}>
+        <motion.div ref={face.box} style={{ y: avatarY, opacity: face.open ? 1 : avatarOpacity }} className={`relative z-30 ${dark ? "-mt-10 sm:-mt-20 lg:-mt-28" : "-mt-7 sm:-mt-10 lg:-mt-14"}`}>
         {dark && <SpinRing />}
         <motion.div
           className="w-32 sm:w-40 md:w-44 lg:w-52 xl:w-56 overflow-hidden"
