@@ -11,6 +11,8 @@ export function glitchToggleTheme() {
   window.setTimeout(() => {
     const next = html.dataset.theme === "light" ? "dark" : "light"
     html.dataset.theme = next
+    // Phones tint their status bar from theme-color.
+    document.querySelector('meta[name="theme-color"]')?.setAttribute("content", next === "dark" ? "#080808" : "#efefef")
     window.dispatchEvent(new CustomEvent("theme:flip", { detail: next }))
   }, 280)
   window.setTimeout(() => html.classList.remove("glitching"), 700)

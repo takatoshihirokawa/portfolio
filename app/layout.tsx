@@ -1,4 +1,4 @@
-import type { Metadata } from "next"
+import type { Metadata, Viewport } from "next"
 import { Inter, Noto_Sans_JP, Syne } from "next/font/google"
 import "./globals.css"
 import CustomCursor from "@/components/ui/CustomCursor"
@@ -28,6 +28,9 @@ const syne = Syne({
   weight: ["400", "700", "800"],
   display: "swap",
 })
+
+// The page runs under the phone's status bar; the header pads itself and paints that strip (see Header).
+export const viewport: Viewport = { themeColor: "#efefef", viewportFit: "cover" }
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://takatoshihirokawa.com"),
