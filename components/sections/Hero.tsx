@@ -87,12 +87,12 @@ function SpinRing() {
       className="absolute left-1/2 top-[46%] w-[165%] -translate-x-1/2 -translate-y-1/2 pointer-events-none"
       initial={{ opacity: 0, scale: 0.6 }}
       animate={{ opacity: 1, scale: 1, rotate: 360 }}
-      transition={{ opacity: { duration: 0.8 }, scale: { duration: 0.8 }, rotate: { duration: 28, repeat: Infinity, ease: "linear" } }}
+      transition={{ opacity: { duration: 0.8 }, scale: { duration: 0.8 }, rotate: { duration: 60, repeat: Infinity, ease: "linear" } }}
     >
       <defs>
         <path id="spin-ring" d="M100,100 m-82,0 a82,82 0 1,1 164,0 a82,82 0 1,1 -164,0" />
       </defs>
-      <text fill="var(--accent)" style={{ fontSize: 9.2, letterSpacing: "0.32em", fontFamily: "var(--font-display)" }}>
+      <text fill="var(--muted-fg)" style={{ fontSize: 7.6, letterSpacing: "0.42em", fontFamily: "var(--font-display)" }}>
         <textPath href="#spin-ring">{text}</textPath>
       </text>
     </motion.svg>
@@ -121,7 +121,6 @@ function HeroInner() {
       className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-6 sm:px-12 pt-32 pb-40"
     >
       <MouseGradient />
-      {dark && <div aria-hidden className="hero-scan" />}
       {false && <HeroScene />}
 
       {/* Lake Kawaguchi shoreline — ripples live inside it */}
@@ -209,7 +208,7 @@ function HeroInner() {
         >
           <motion.div
             data-cursor="spin"
-            className={`w-full ${dark ? "dark-glitch" : ""}`}
+            className="w-full"
             onClick={face.tap}
             animate={face.wiggle}
           >
