@@ -169,7 +169,7 @@ function WorkCard({ work, index, mobileOnly = false }: { work: Work; index: numb
   )
 }
 
-export default function Works({ works, total }: { works: Work[]; total: number }) {
+export default function Works({ works }: { works: Work[] }) {
   const [featured, ...rest] = works
 
   return (
@@ -196,7 +196,7 @@ export default function Works({ works, total }: { works: Work[]; total: number }
               href="/works"
               className="group inline-flex items-center gap-3 whitespace-nowrap text-[11px] sm:text-[10px] tracking-[0.3em] uppercase text-[var(--muted-fg)] hover:text-[var(--accent)] transition-colors"
             >
-              All {total} works
+              All works
               <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>
             </Link>
           </motion.div>
@@ -222,7 +222,7 @@ export default function Works({ works, total }: { works: Work[]; total: number }
             className="group relative block text-[11px] sm:text-[10px] tracking-[0.35em] uppercase px-10 py-4 border border-[var(--fg)] text-[var(--fg)] overflow-hidden transition-colors duration-300 hover:text-[var(--bg)]"
           >
             <span className="absolute inset-0 bg-[var(--fg)] translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
-            <span className="relative">すべての実績を見る（{total}）</span>
+            <span className="relative">すべての実績を見る</span>
           </Link>
           </Magnetic>
         </motion.div>

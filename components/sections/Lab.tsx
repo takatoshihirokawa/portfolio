@@ -66,7 +66,7 @@ export default function Lab({ works }: { works: Work[] }) {
             href="/works?tab=lab"
             className="group inline-flex items-center gap-3 whitespace-nowrap text-[11px] sm:text-[10px] tracking-[0.3em] uppercase text-[var(--muted-fg)] hover:text-[var(--accent)] transition-colors"
           >
-            All {works.length} lab projects
+            All lab projects
             <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>
           </Link>
         </div>

@@ -6,11 +6,11 @@ import About from "@/components/sections/About"
 import Lab from "@/components/sections/Lab"
 import Contact from "@/components/sections/Contact"
 import Marquee from "@/components/ui/Marquee"
-import { getFeaturedWorks, getClientWorks, getLabWorks } from "@/lib/data"
+import { getFeaturedWorks, getLabWorks } from "@/lib/data"
 import { IntroProvider } from "@/components/ui/Intro"
 
 export default async function Home() {
-  const [featured, client, lab] = await Promise.all([getFeaturedWorks(), getClientWorks(), getLabWorks()])
+  const [featured, lab] = await Promise.all([getFeaturedWorks(), getLabWorks()])
   return (
     <IntroProvider>
       <Hero />
@@ -18,7 +18,7 @@ export default async function Home() {
       <Problems />
       <Process />
       <About />
-      <Works works={featured} total={client.length} />
+      <Works works={featured} />
       <Lab works={lab} />
       <Contact />
     </IntroProvider>
