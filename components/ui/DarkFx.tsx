@@ -9,11 +9,14 @@ export default function DarkFx() {
   const theme = useTheme()
   const dark = theme === "dark"
   const [welcome, setWelcome] = useState(false)
+  // On phones the button would cover the hero buttons, so it waits until the hero is scrolled past.
+  const [pastHero, setPastHero] = useState(false)
   const first = useRef(true)
 
   const { scrollY } = useScroll()
   const velocity = useSpring(useVelocity(scrollY), { damping: 40, stiffness: 300 })
   const skew = useTransform(velocity, [-3000, 0, 3000], [3.5, 0, -3.5], { clamp: true })
+  useMotionValueEvent(scrollY, "change", (y) => setPastHero(y > window.innerHeight * 0.8))
   useMotionValueEvent(skew, "change", (v) => {
     if (dark) document.documentElement.style.setProperty("--skew", v.toFixed(3))
   })
@@ -56,7 +59,7 @@ export default function DarkFx() {
         {dark && (
           <motion.button
             onClick={glitchToggleTheme}
-            className="fixed left-4 bottom-4 z-[65] font-display text-[11px] tracking-[0.3em] uppercase border border-[var(--accent)] text-[var(--accent)] bg-[var(--bg)]/70 backdrop-blur px-3 sm:px-4 py-2 sm:py-2.5 hover:bg-[var(--accent)] hover:text-[var(--bg)] transition-colors"
+            className={`fixed left-4 bottom-4 z-[65] ${pastHero ? "" : "max-sm:hidden"} font-display text-[11px] tracking-[0.3em] uppercase border border-[var(--accent)] text-[var(--accent)] bg-[var(--bg)]/70 backdrop-blur px-3 sm:px-4 py-2 sm:py-2.5 hover:bg-[var(--accent)] hover:text-[var(--bg)] transition-colors`}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0, transition: { delay: 1 } }}
             exit={{ opacity: 0, y: 20 }}

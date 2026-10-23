@@ -156,8 +156,8 @@ function HeroInner() {
 
       <div className="w-full max-w-5xl mx-auto relative z-10 flex flex-col items-center">
 
-        {/* Role */}
-        <motion.p
+        {/* Role (the dark side shows it on the ring around the face instead) */}
+        {!dark && <motion.p
           style={{ y: roleY }}
           className="text-[11px] sm:text-[10px] tracking-[0.3em] sm:tracking-[0.4em] uppercase text-[var(--accent)] mb-10 text-center"
           initial={{ opacity: 0, y: 10 }}
@@ -165,7 +165,7 @@ function HeroInner() {
           transition={{ delay: 0.1, duration: 0.7 }}
         >
           <a href="/#process" className="hover:opacity-70 transition-opacity"><Decode text="PLAN · MAKE · RUN" delay={0.3} /></a>
-        </motion.p>
+        </motion.p>}
 
         {/* Name — two tight lines, in front of the avatar (the dark side gets a giant, scattering version) */}
         {dark ? (
