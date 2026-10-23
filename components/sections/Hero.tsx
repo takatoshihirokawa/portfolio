@@ -10,6 +10,7 @@ import Magnetic from "@/components/ui/Magnetic"
 import Decode from "@/components/ui/Decode"
 import { LAKE } from "@/lib/kawaguchiko"
 import UnlockForm from "@/components/ui/UnlockForm"
+import DarkName from "@/components/ui/DarkName"
 
 const HeroScene = dynamic(() => import("@/components/ui/HeroScene"), { ssr: false })
 
@@ -76,6 +77,28 @@ function useFaceTaps() {
   return { open, tap, box, wiggle }
 }
 
+// Dark side: a ring of text slowly circling the face.
+function SpinRing() {
+  const text = "OPEN FOR WORK · KAWAGUCHIKO, YAMANASHI · PLAN · MAKE · RUN · "
+  return (
+    <motion.svg
+      aria-hidden
+      viewBox="0 0 200 200"
+      className="absolute left-1/2 top-[46%] w-[165%] -translate-x-1/2 -translate-y-1/2 pointer-events-none"
+      initial={{ opacity: 0, scale: 0.6 }}
+      animate={{ opacity: 1, scale: 1, rotate: 360 }}
+      transition={{ opacity: { duration: 0.8 }, scale: { duration: 0.8 }, rotate: { duration: 28, repeat: Infinity, ease: "linear" } }}
+    >
+      <defs>
+        <path id="spin-ring" d="M100,100 m-82,0 a82,82 0 1,1 164,0 a82,82 0 1,1 -164,0" />
+      </defs>
+      <text fill="var(--accent)" style={{ fontSize: 9.2, letterSpacing: "0.32em", fontFamily: "var(--font-display)" }}>
+        <textPath href="#spin-ring">{text}</textPath>
+      </text>
+    </motion.svg>
+  )
+}
+
 export default function Hero() {
   const { ready, replay } = useIntro()
   if (!ready) return <section className="min-h-screen" />
@@ -83,7 +106,8 @@ export default function Hero() {
 }
 
 function HeroInner() {
-  const { ease: spring, speed } = useMotionTheme()
+  const { ease: spring, speed, theme } = useMotionTheme()
+  const dark = theme === "dark"
   const { scrollY } = useScroll()
   const avatarY = useTransform(scrollY, [0, 800], [0, 160])
   const avatarOpacity = useTransform(scrollY, [0, 450], [1, 0])
@@ -97,6 +121,7 @@ function HeroInner() {
       className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-6 sm:px-12 pt-32 pb-40"
     >
       <MouseGradient />
+      {dark && <div aria-hidden className="hero-scan" />}
       {false && <HeroScene />}
 
       {/* Lake Kawaguchi shoreline — ripples live inside it */}
@@ -142,7 +167,12 @@ function HeroInner() {
           <a href="/#process" className="hover:opacity-70 transition-opacity"><Decode text="PLAN · MAKE · RUN" delay={0.3} /></a>
         </motion.p>
 
-        {/* Name — two tight lines, in front of the avatar */}
+        {/* Name — two tight lines, in front of the avatar (the dark side gets a giant, scattering version) */}
+        {dark ? (
+          <motion.div style={{ y: nameY }} className="relative z-10 w-full">
+            <DarkName />
+          </motion.div>
+        ) : (
         <motion.div style={{ y: nameY }} className="relative z-10 flex flex-col items-center leading-[0.95]">
           <div className="overflow-hidden">
             <motion.p
@@ -165,9 +195,11 @@ function HeroInner() {
             </motion.p>
           </div>
         </motion.div>
+        )}
 
         {/* Avatar — tucks under the name, parallax on scroll */}
-        <motion.div ref={face.box} style={{ y: avatarY, opacity: avatarOpacity }} className="relative z-30 -mt-7 sm:-mt-10 lg:-mt-14">
+        <motion.div ref={face.box} style={{ y: avatarY, opacity: avatarOpacity }} className={`relative z-30 ${dark ? "-mt-10 sm:-mt-20 lg:-mt-28" : "-mt-7 sm:-mt-10 lg:-mt-14"}`}>
+        {dark && <SpinRing />}
         <motion.div
           className="w-32 sm:w-40 md:w-44 lg:w-52 xl:w-56 overflow-hidden"
           style={{ aspectRatio: "432.39 / 434" }}
@@ -177,7 +209,7 @@ function HeroInner() {
         >
           <motion.div
             data-cursor="spin"
-            className="w-full"
+            className={`w-full ${dark ? "dark-glitch" : ""}`}
             onClick={face.tap}
             animate={face.wiggle}
           >
@@ -202,7 +234,7 @@ function HeroInner() {
 
         {/* Location badge */}
         <motion.div
-          className="relative z-20 mt-6 flex flex-col sm:flex-row items-center gap-1.5 sm:gap-3 text-[11px] sm:text-[9px] tracking-[0.35em] uppercase text-[var(--muted-fg)]"
+          className={`relative z-20 ${dark ? "mt-16 sm:mt-20" : "mt-6"} flex flex-col sm:flex-row items-center gap-1.5 sm:gap-3 text-[11px] sm:text-[9px] tracking-[0.35em] uppercase text-[var(--muted-fg)]`}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.85, duration: 0.6 }}
