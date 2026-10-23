@@ -37,7 +37,7 @@ export default function LoginForm() {
       options: { shouldCreateUser: false, emailRedirectTo: `${window.location.origin}/auth/callback?next=/admin` },
     })
     setBusy(false)
-    if (error) setError(error.message)
+    if (error) setError(/rate limit/i.test(error.message) ? "メールを送れる回数の上限に達しました。1 時間ほどおいてから送るか、パスワードでログインしてください。" : error.message)
     else setSent(true)
   }
 
