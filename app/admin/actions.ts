@@ -1,7 +1,7 @@
 "use server"
 
 import { redirect } from "next/navigation"
-import { revalidatePath, revalidateTag } from "next/cache"
+import { revalidatePath, updateTag } from "next/cache"
 import { getAdminSession } from "@/lib/admin"
 import { normalizePassphrase } from "@/lib/secret"
 
@@ -44,7 +44,7 @@ export async function saveWork(_prev: SaveState, fd: FormData): Promise<SaveStat
     : supabase.from("portfolio_works").insert(row)
   const { error } = await q
   if (error) return { error: error.message.includes("duplicate") ? "このスラッグは既に使われています" : error.message }
-  revalidateTag("works", "max")
+  updateTag("works")
   revalidatePath("/admin")
   redirect("/admin?saved=1")
 }
@@ -54,7 +54,7 @@ export async function deleteWork(fd: FormData) {
   const id = str(fd, "id")
   if (!id) return
   await supabase.from("portfolio_works").delete().eq("id", id)
-  revalidateTag("works", "max")
+  updateTag("works")
   // Without this the list can keep showing the deleted row.
   revalidatePath("/admin")
   redirect(`/admin?deleted=${Date.now()}`)
