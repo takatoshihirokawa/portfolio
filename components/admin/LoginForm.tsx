@@ -47,7 +47,7 @@ export default function LoginForm() {
 
   return (
     <div className="max-w-sm w-full">
-      <p className="text-[11px] tracking-[0.3em] uppercase text-[var(--accent)] mb-2">Admin</p>
+      <p className="text-[11px] sm:text-[10px] tracking-[0.4em] uppercase text-[var(--accent)] mb-2">Admin</p>
       <p className="font-display text-3xl font-light tracking-wide mb-8">ログイン</p>
       {mode === "password" ? (
         <form onSubmit={signIn} className="flex flex-col gap-4">

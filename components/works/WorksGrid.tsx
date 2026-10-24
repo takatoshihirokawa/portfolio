@@ -18,7 +18,7 @@ const FILTERS: { key: WorkCategory | "All"; label: string }[] = [
 ]
 
 const chip = (active: boolean) =>
-  `text-[11px] tracking-[0.3em] uppercase px-4 py-2 border transition-all duration-300 ${
+  `text-[11px] sm:text-[10px] tracking-[0.3em] uppercase px-4 py-2 border transition-all duration-300 ${
     active
       ? "border-[var(--accent)] text-[var(--accent)]"
       : "border-[var(--border)] text-[var(--muted-fg)] hover:border-[var(--muted-fg)] hover:text-[var(--fg)]"

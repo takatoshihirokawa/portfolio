@@ -3,9 +3,8 @@
 import { useEffect, useRef, useState } from "react"
 import { AnimatePresence, motion, useMotionValueEvent, useScroll, useSpring, useTransform, useVelocity } from "framer-motion"
 import { glitchToggleTheme, useTheme } from "@/lib/theme"
-import DarkHud from "@/components/ui/DarkHud"
 
-// Everything that only exists on the dark side: scanlines, a spotlight, scroll skew, a HUD, a power-on flash and a way back.
+// Everything that only exists on the dark side: scanlines, a spotlight, scroll skew, a power-on flash and a way back.
 export default function DarkFx() {
   const theme = useTheme()
   const dark = theme === "dark"
@@ -38,7 +37,6 @@ export default function DarkFx() {
   return (
     <>
       {dark && <div aria-hidden className="dark-fx pointer-events-none fixed inset-0 z-[60]" />}
-      {dark && <DarkHud />}
       <AnimatePresence>
         {welcome && (
           <motion.div

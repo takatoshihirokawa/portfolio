@@ -46,7 +46,7 @@ export default function PrivacyPolicy() {
   return (
     <div className="min-h-screen pt-32 pb-40 px-6 sm:px-12">
       <div className="max-w-2xl mx-auto">
-        <Link href="/" className="inline-flex items-center gap-2 text-[11px] tracking-[0.35em] uppercase text-[var(--muted-fg)] hover:text-[var(--accent)] transition-colors">
+        <Link href="/" className="inline-flex items-center gap-2 text-[11px] sm:text-[10px] tracking-[0.35em] uppercase text-[var(--muted-fg)] hover:text-[var(--accent)] transition-colors">
           <span>←</span> Home
         </Link>
         <h1 className="mt-14 mb-4 font-display text-3xl sm:text-4xl font-light tracking-wide">プライバシーポリシー</h1>

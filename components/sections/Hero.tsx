@@ -142,20 +142,6 @@ function HeroInner() {
           strokeLinejoin="round"
           opacity={0.13}
         />
-        {/* Dark side: the shoreline sends out sonar-like contour rings */}
-        {dark && [0, 1, 2].map((i) => (
-          <path
-            key={i}
-            d={LAKE.path}
-            className="sonar"
-            style={{ animationDelay: `${i * 2.2}s` }}
-            fill="none"
-            stroke="var(--accent)"
-            strokeWidth="1"
-            vectorEffect="non-scaling-stroke"
-            strokeLinejoin="round"
-          />
-        ))}
       </motion.svg>
 
       {/* Ambient glow */}
@@ -172,7 +158,7 @@ function HeroInner() {
         {/* Role (the dark side shows it on the ring around the face instead) */}
         {!dark && <motion.p
           style={{ y: roleY }}
-          className="text-[11px] tracking-[0.3em] sm:tracking-[0.3em] uppercase text-[var(--accent)] mb-10 text-center"
+          className="text-[11px] sm:text-[10px] tracking-[0.3em] sm:tracking-[0.4em] uppercase text-[var(--accent)] mb-10 text-center"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1, duration: 0.7 }}
@@ -247,7 +233,7 @@ function HeroInner() {
 
         {/* Location badge */}
         <motion.div
-          className={`relative z-20 ${dark ? "mt-16 sm:mt-20" : "mt-6"} flex flex-col sm:flex-row items-center gap-1.5 sm:gap-3 text-[11px] tracking-[0.35em] uppercase text-[var(--muted-fg)]`}
+          className={`relative z-20 ${dark ? "mt-16 sm:mt-20" : "mt-6"} flex flex-col sm:flex-row items-center gap-1.5 sm:gap-3 text-[11px] sm:text-[9px] tracking-[0.35em] uppercase text-[var(--muted-fg)]`}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.85, duration: 0.6 }}
@@ -261,7 +247,7 @@ function HeroInner() {
         </motion.div>
 
         <motion.p
-          className="relative z-20 mt-3 text-[11px] tracking-[0.3em] uppercase text-[var(--accent)]"
+          className="relative z-20 mt-3 text-[11px] sm:text-[10px] tracking-[0.3em] uppercase text-[var(--accent)]"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 2.2, duration: 1 }}
@@ -292,7 +278,7 @@ function HeroInner() {
             <Magnetic>
             <a
               href="/#works"
-              className="group relative block text-[11px] tracking-[0.35em] uppercase px-8 py-3.5 border border-[var(--accent)] text-[var(--accent)] overflow-hidden transition-colors duration-300 hover:text-[var(--bg)]"
+              className="group relative block text-[11px] sm:text-[10px] tracking-[0.35em] uppercase px-8 py-3.5 border border-[var(--accent)] text-[var(--accent)] overflow-hidden transition-colors duration-300 hover:text-[var(--bg)]"
             >
               <span className="absolute inset-0 bg-[var(--accent)] translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
               <span className="relative">Works</span>
@@ -301,7 +287,7 @@ function HeroInner() {
             <Magnetic strength={0.25}>
             <a
               href="/#contact"
-              className="group text-[11px] tracking-[0.35em] uppercase text-[var(--muted-fg)] hover:text-[var(--fg)] transition-colors flex items-center gap-2"
+              className="group text-[11px] sm:text-[10px] tracking-[0.35em] uppercase text-[var(--muted-fg)] hover:text-[var(--fg)] transition-colors flex items-center gap-2"
             >
               Contact
               <span className="inline-block group-hover:translate-x-1.5 transition-transform duration-300">→</span>
