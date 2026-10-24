@@ -196,8 +196,8 @@ function HeroInner() {
         </motion.div>
         )}
 
-        {/* Avatar — tucks under the name, parallax on scroll */}
-        <motion.div ref={face.box} style={{ y: avatarY, opacity: face.open ? 1 : avatarOpacity }} className={`relative z-30 ${dark ? "-mt-10 sm:-mt-20 lg:-mt-28" : "-mt-7 sm:-mt-10 lg:-mt-14"}`}>
+        {/* Avatar — just below the name (overlapping made letters read as eyebrows), parallax on scroll */}
+        <motion.div ref={face.box} style={{ y: avatarY, opacity: face.open ? 1 : avatarOpacity }} className={`relative z-30 ${dark ? "-mt-10 sm:-mt-20 lg:-mt-28" : "mt-0"}`}>
         {dark && <SpinRing />}
         <motion.div
           className="w-32 sm:w-40 md:w-44 lg:w-52 xl:w-56 overflow-hidden"
