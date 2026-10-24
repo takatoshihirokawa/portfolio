@@ -54,10 +54,11 @@ html[data-theme="light"] ::-webkit-scrollbar-thumb { background: var(--accent); 
   --font-display: var(--font-display);
 }
 
+/* The page colour lives on <html> only (it also tints the phone status bar).
+   A background on <body> as well would paint over the fixed grid canvas behind it. */
 html { background-color: var(--bg); }
 
 body {
-  background-color: var(--bg);
   color: var(--fg);
   font-family: var(--font-sans), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
