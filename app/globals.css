@@ -54,6 +54,8 @@ html[data-theme="light"] ::-webkit-scrollbar-thumb { background: var(--accent); 
   --font-display: var(--font-display);
 }
 
+html { background-color: var(--bg); }
+
 body {
   background-color: var(--bg);
   color: var(--fg);
