@@ -25,7 +25,7 @@ export default function Problems() {
           <Reveal>
             <div className="mb-20 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6">
               <div>
-                <p className="text-[11px] sm:text-[10px] tracking-[0.4em] uppercase text-[var(--accent)] mb-2"><Decode text="[01] PROBLEMS" /></p>
+                <p className="text-[11px] tracking-[0.3em] uppercase text-[var(--accent)] mb-2"><Decode text="[01] PROBLEMS" /></p>
                 <BlockReveal as="p" className="font-display text-3xl sm:text-4xl font-light tracking-wide" delay={0.15}>こんな困りごとから</BlockReveal>
               </div>
               <p className="text-base text-[var(--muted-fg)] leading-8 sm:max-w-sm sm:text-right">
@@ -45,7 +45,7 @@ export default function Problems() {
               transition={{ duration: 0.6 * speed, ease, delay: (i % 3) * stagger }}
               className="group border-r border-b border-[var(--border)] p-6 sm:py-12 sm:px-[47px] flex flex-col gap-4 hover:bg-[var(--muted)] transition-colors duration-500"
             >
-              <span className="font-display text-[11px] sm:text-[10px] tracking-[0.4em] text-[var(--accent)]">
+              <span className="font-display text-[11px] tracking-[0.3em] text-[var(--accent)]">
                 {String(i + 1).padStart(2, "0")}
               </span>
               <p className="text-lg sm:text-xl font-medium leading-snug">{p.title}</p>

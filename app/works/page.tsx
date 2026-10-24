@@ -17,14 +17,14 @@ export default async function WorksIndex() {
     <div className="pt-32 pb-40 px-6 sm:px-12">
       <div className="max-w-6xl mx-auto">
         <Reveal>
-          <Link href="/" className="inline-flex items-center gap-2 text-[11px] sm:text-[10px] tracking-[0.35em] uppercase text-[var(--muted-fg)] hover:text-[var(--accent)] transition-colors">
+          <Link href="/" className="inline-flex items-center gap-2 text-[11px] tracking-[0.35em] uppercase text-[var(--muted-fg)] hover:text-[var(--accent)] transition-colors">
             <span>←</span> Home
           </Link>
         </Reveal>
         <Reveal delay={0.05}>
           <div className="mt-14 mb-16 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6">
             <div>
-              <p className="text-[11px] sm:text-[10px] tracking-[0.4em] uppercase text-[var(--accent)] mb-2"><Decode text="ALL WORKS" /></p>
+              <p className="text-[11px] tracking-[0.3em] uppercase text-[var(--accent)] mb-2"><Decode text="ALL WORKS" /></p>
               <BlockReveal as="p" className="font-display text-4xl sm:text-5xl font-light tracking-wide" delay={0.15}>制作実績</BlockReveal>
             </div>
             <p className="text-base text-[var(--muted-fg)] leading-8 sm:max-w-sm sm:text-right">

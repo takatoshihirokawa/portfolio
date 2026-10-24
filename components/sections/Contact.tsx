@@ -17,18 +17,19 @@ export default function Contact() {
 
   return (
     <section id="contact" className="py-40 px-6 sm:px-12 border-t border-[var(--border)]">
-      <div className="max-w-6xl mx-auto">
-        <Parallax amount={18}>
+      {/* PC: heading and promise on the left, form on the right. Phones stack them. */}
+      <div className="max-w-6xl mx-auto lg:grid lg:grid-cols-12 lg:gap-16">
+        <Parallax amount={18} className="lg:col-span-5">
         <motion.div
-          className="mb-20"
+          className="mb-20 lg:mb-0 lg:sticky lg:top-32"
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px 0px" }}
           transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
         >
-          <p className="text-[11px] sm:text-[10px] tracking-[0.4em] uppercase text-[var(--accent)] mb-2"><Decode text="[06] CONTACT" /></p>
-          <BlockReveal as="p" className="font-display text-3xl sm:text-4xl font-light tracking-wide" delay={0.15}>Let&apos;s Talk</BlockReveal>
-          <p className="mt-6 text-base text-[var(--muted-fg)] leading-8 max-w-xl">
+          <p className="text-[11px] tracking-[0.3em] uppercase text-[var(--accent)] mb-2"><Decode text="[06] CONTACT" /></p>
+          <BlockReveal as="p" className="font-display text-3xl sm:text-4xl font-light tracking-wide" delay={0.15}>相談する</BlockReveal>
+          <p className="mt-6 text-base text-[var(--muted-fg)] leading-8 max-w-xl lg:max-w-none">
             何から頼めばよいか、決まっていなくても大丈夫です。
             単発の制作から、企画・導入、継続的な改善まで。目的と予算に合わせて、一緒に進め方を考えます。
             3営業日以内にご返信します。
@@ -36,7 +37,7 @@ export default function Contact() {
         </motion.div>
         </Parallax>
 
-        <div className="max-w-2xl">
+        <div className="max-w-2xl lg:col-span-7 lg:max-w-none">
           {/* Form */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}

@@ -60,7 +60,7 @@ function Tape({ className, velocity: baseVelocity, light = false }: { className:
       <motion.div ref={trackRef} style={{ x }} className={`flex w-max will-change-transform ${light ? "gap-8 sm:gap-14" : "gap-6 py-3"}`}>
         {repeated.map((item, i) =>
           light ? (
-            <span key={i} className="flex items-center gap-8 sm:gap-14 text-xs sm:text-[10px] tracking-[0.2em] sm:tracking-[0.3em] text-[var(--muted-fg)] whitespace-nowrap">
+            <span key={i} className="flex items-center gap-8 sm:gap-14 text-xs sm:text-[11px] tracking-[0.2em] sm:tracking-[0.3em] text-[var(--muted-fg)] whitespace-nowrap">
               {item}
               <span className="text-[var(--accent)] text-base leading-none">·</span>
             </span>

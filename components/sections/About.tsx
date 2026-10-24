@@ -36,7 +36,7 @@ function StatBox({ target, suffix, label }: { target: number; suffix: string; la
   return (
     <div className="flex flex-col items-center justify-center py-10 gap-2">
       <Odometer value={target} suffix={suffix} className="font-display text-3xl sm:text-4xl font-light text-[var(--accent)] tracking-wide" />
-      <span className="text-[11px] sm:text-[9px] tracking-[0.2em] uppercase text-[var(--muted-fg)] text-center leading-relaxed whitespace-pre-line">
+      <span className="text-[11px] tracking-[0.2em] uppercase text-[var(--muted-fg)] text-center leading-relaxed whitespace-pre-line">
         {label}
       </span>
     </div>
@@ -65,8 +65,8 @@ export default function About() {
         <Parallax amount={18}>
           <FadeUp>
             <div className="mb-20">
-              <p className="text-[11px] sm:text-[10px] tracking-[0.4em] uppercase text-[var(--accent)] mb-2"><Decode text="[03] ABOUT" /></p>
-              <BlockReveal as="p" className="font-display text-3xl sm:text-4xl font-light tracking-wide" delay={0.15}>Who I Am</BlockReveal>
+              <p className="text-[11px] tracking-[0.3em] uppercase text-[var(--accent)] mb-2"><Decode text="[03] ABOUT" /></p>
+              <BlockReveal as="p" className="font-display text-3xl sm:text-4xl font-light tracking-wide" delay={0.15}>プロフィール</BlockReveal>
             </div>
           </FadeUp>
         </Parallax>
@@ -89,7 +89,7 @@ export default function About() {
           <div className="flex flex-col gap-10">
             <FadeUp delay={0.1}>
               <div>
-                <span className="text-[11px] sm:text-[9px] tracking-[0.4em] uppercase text-[var(--muted-fg)] mb-3 block">Name</span>
+                <span className="text-[11px] tracking-[0.3em] uppercase text-[var(--muted-fg)] mb-3 block">Name</span>
                 <p className="font-display text-3xl font-light tracking-wide">廣川 貴理</p>
                 <p className="text-xs text-[var(--muted-fg)] tracking-[0.2em] mt-1">Takatoshi Hirokawa</p>
               </div>
@@ -97,7 +97,7 @@ export default function About() {
 
             <FadeUp delay={0.15}>
               <div>
-                <span className="text-[11px] sm:text-[9px] tracking-[0.4em] uppercase text-[var(--muted-fg)] mb-3 block">Profile</span>
+                <span className="text-[11px] tracking-[0.3em] uppercase text-[var(--muted-fg)] mb-3 block">Profile</span>
                 <p className="text-base leading-8 opacity-80">
                   山梨・河口湖を拠点に、地域の会社やお店の「デジタルまわりの相談相手」として活動。
                   ホームページやWebアプリの制作、受付・管理の仕組みづくり、AI活用まで、
@@ -108,7 +108,7 @@ export default function About() {
 
             <FadeUp delay={0.2}>
               <div>
-                <span className="text-[11px] sm:text-[9px] tracking-[0.4em] uppercase text-[var(--muted-fg)] mb-3 block">Background</span>
+                <span className="text-[11px] tracking-[0.3em] uppercase text-[var(--muted-fg)] mb-3 block">Background</span>
                 <p className="text-base leading-8 opacity-80">
                   広告会社でテレビCMやWebの制作プロデュースを経験した後、事業会社を経て河口湖移住を機に独立。
                   いまは「作る」だけでなく、Bubble・Studio・AIを使って自分で「動くもの」まで作ります。
@@ -121,7 +121,7 @@ export default function About() {
           <div className="flex flex-col gap-10">
             <FadeUp delay={0.1}>
               <div>
-                <span className="text-[11px] sm:text-[9px] tracking-[0.4em] uppercase text-[var(--muted-fg)] mb-4 block">Service</span>
+                <span className="text-[11px] tracking-[0.3em] uppercase text-[var(--muted-fg)] mb-4 block">Service</span>
                 <div className="flex flex-col gap-6">
                   {pillars.map((p, pi) => (
                     <div key={p.title}>
@@ -148,11 +148,11 @@ export default function About() {
 
             <FadeUp delay={0.2}>
               <div>
-                <span className="text-[11px] sm:text-[9px] tracking-[0.4em] uppercase text-[var(--muted-fg)] mb-4 block">Tools</span>
+                <span className="text-[11px] tracking-[0.3em] uppercase text-[var(--muted-fg)] mb-4 block">Tools</span>
                 <div className="flex flex-col gap-4">
                   {Object.entries(tools).map(([category, items]) => (
                     <div key={category} className="flex items-start gap-0">
-                      <span className="text-[11px] sm:text-[9px] tracking-[0.2em] uppercase text-[var(--muted-fg)] w-28 shrink-0 pt-0.5">
+                      <span className="text-[11px] tracking-[0.2em] uppercase text-[var(--muted-fg)] w-28 shrink-0 pt-0.5">
                         {category}
                       </span>
                       <div className="flex flex-wrap gap-x-3 gap-y-1">

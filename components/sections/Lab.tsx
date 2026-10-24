@@ -23,7 +23,7 @@ export default function Lab({ works }: { works: Work[] }) {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <p className="text-[11px] sm:text-[10px] tracking-[0.4em] uppercase text-[var(--accent)] mb-2"><Decode text="[05] LAB" /></p>
+            <p className="text-[11px] tracking-[0.3em] uppercase text-[var(--accent)] mb-2"><Decode text="[05] LAB" /></p>
             <BlockReveal as="p" className="font-display text-3xl sm:text-4xl font-light tracking-wide" delay={0.15}>Lab</BlockReveal>
           </motion.div>
           <p className="text-base text-[var(--muted-fg)] leading-8 sm:text-right">
@@ -65,7 +65,7 @@ export default function Lab({ works }: { works: Work[] }) {
         <div className="mt-10 flex justify-end">
           <Link
             href="/works?tab=lab"
-            className="group inline-flex items-center gap-3 whitespace-nowrap text-[11px] sm:text-[10px] tracking-[0.3em] uppercase text-[var(--muted-fg)] hover:text-[var(--accent)] transition-colors"
+            className="group inline-flex items-center gap-3 whitespace-nowrap text-[11px] tracking-[0.3em] uppercase text-[var(--muted-fg)] hover:text-[var(--accent)] transition-colors"
           >
             All lab projects
             <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>

@@ -5,7 +5,7 @@ import Reveal from "@/components/ui/Reveal"
 import Parallax from "@/components/ui/Parallax"
 import BlockReveal from "@/components/ui/BlockReveal"
 
-const label = "text-[11px] sm:text-[9px] tracking-[0.4em] uppercase text-[var(--muted-fg)] mb-3 block"
+const label = "text-[11px] tracking-[0.3em] uppercase text-[var(--muted-fg)] mb-3 block"
 
 export default function WorkDetail({ found, basePath, back }: { found: FoundWork; basePath: string; back: { href: string; label: string } }) {
   const { work, prev, next, index } = found
@@ -17,7 +17,7 @@ export default function WorkDetail({ found, basePath, back }: { found: FoundWork
         <Reveal>
           <Link
             href={back.href}
-            className="inline-flex items-center gap-2 text-[11px] sm:text-[10px] tracking-[0.35em] uppercase text-[var(--muted-fg)] hover:text-[var(--accent)] transition-colors"
+            className="inline-flex items-center gap-2 text-[11px] tracking-[0.35em] uppercase text-[var(--muted-fg)] hover:text-[var(--accent)] transition-colors"
           >
             <span>←</span> {back.label}
           </Link>
@@ -26,7 +26,7 @@ export default function WorkDetail({ found, basePath, back }: { found: FoundWork
         {/* Header */}
         <header className="mt-14 mb-14 grid grid-cols-1 lg:grid-cols-12 gap-10">
           <Reveal className="lg:col-span-8">
-            <p className="text-[11px] sm:text-[10px] tracking-[0.4em] uppercase text-[var(--accent)] mb-4">
+            <p className="text-[11px] tracking-[0.3em] uppercase text-[var(--accent)] mb-4">
               [{num}] {work.category} · {work.year}
             </p>
             <h1 className="font-display text-3xl sm:text-5xl font-light leading-[1.15] tracking-wide">
@@ -34,7 +34,7 @@ export default function WorkDetail({ found, basePath, back }: { found: FoundWork
             </h1>
             <div className="flex flex-wrap gap-1.5 mt-6">
               {work.tags.map((tag) => (
-                <span key={tag} className="text-[11px] sm:text-[9px] tracking-widest uppercase text-[var(--muted-fg)] border border-[var(--border)] px-2 py-1">
+                <span key={tag} className="text-[11px] tracking-widest uppercase text-[var(--muted-fg)] border border-[var(--border)] px-2 py-1">
                   {tag}
                 </span>
               ))}
@@ -83,7 +83,7 @@ export default function WorkDetail({ found, basePath, back }: { found: FoundWork
           <div className="lg:col-span-4">
             <Parallax amount={14}>
               <Reveal>
-                <p className="text-[11px] sm:text-[10px] tracking-[0.4em] uppercase text-[var(--accent)] mb-2">Story</p>
+                <p className="text-[11px] tracking-[0.3em] uppercase text-[var(--accent)] mb-2">Story</p>
                 <BlockReveal as="p" className="font-display text-3xl font-light tracking-wide" delay={0.15}>課題と進め方</BlockReveal>
               </Reveal>
             </Parallax>
@@ -141,7 +141,7 @@ export default function WorkDetail({ found, basePath, back }: { found: FoundWork
               href={`${basePath}/${w.slug}`}
               className={`group flex flex-col ${align} gap-3 py-10 px-2 sm:px-6 hover:bg-[var(--muted)] transition-colors`}
             >
-              <span className="text-[11px] sm:text-[9px] tracking-[0.4em] uppercase text-[var(--muted-fg)]">
+              <span className="text-[11px] tracking-[0.3em] uppercase text-[var(--muted-fg)]">
                 {dir === "Prev" ? `${arrow} ${dir}` : `${dir} ${arrow}`}
               </span>
               <span className="text-sm sm:text-base font-medium group-hover:text-[var(--accent)] transition-colors leading-snug">

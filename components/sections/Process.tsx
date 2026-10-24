@@ -25,7 +25,7 @@ export default function Process() {
         <Parallax amount={18}>
           <Reveal>
             <div className="mb-20">
-              <p className="text-[11px] sm:text-[10px] tracking-[0.4em] uppercase text-[var(--accent)] mb-2"><Decode text="[02] PROCESS" /></p>
+              <p className="text-[11px] tracking-[0.3em] uppercase text-[var(--accent)] mb-2"><Decode text="[02] PROCESS" /></p>
               <BlockReveal as="p" className="font-display text-3xl sm:text-4xl font-light tracking-wide" delay={0.15}>相談から実行まで</BlockReveal>
             </div>
           </Reveal>
@@ -47,7 +47,7 @@ export default function Process() {
               <span className="font-display text-5xl sm:text-6xl font-light text-[var(--accent)] leading-none">
                 {String(i + 1).padStart(2, "0")}
               </span>
-              <span className="text-[11px] sm:text-[9px] tracking-[0.4em] uppercase text-[var(--muted-fg)]">{s.en}</span>
+              <span className="text-[11px] tracking-[0.3em] uppercase text-[var(--muted-fg)]">{s.en}</span>
               <p className="text-xl font-medium">{s.title}</p>
               <p className="text-base text-[var(--muted-fg)] leading-8">{s.body}</p>
             </motion.div>

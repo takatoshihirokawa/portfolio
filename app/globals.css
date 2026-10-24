@@ -220,6 +220,7 @@ html[data-theme="dark"] :is(#problems, #process, #about, #works, #lab, #contact)
 /* Headings: huge, tight, uppercase */
 html[data-theme="dark"] main section span.font-display.text-3xl {
   font-size: clamp(2.4rem, 8vw, 5rem);
+  word-break: keep-all; /* never split a Japanese word across lines */
   line-height: 0.9;
   letter-spacing: -0.04em;
   text-transform: uppercase;
@@ -245,7 +246,7 @@ html[data-theme="dark"] .works-grid a:hover img { filter: none; }
 }
 
 /* Dark hero: the lake outline as a slow, quiet current */
-html[data-theme="dark"] #lake-outline path {
+html[data-theme="dark"] #lake-outline path:not(.sonar) {
   opacity: 0.32;
   stroke-dasharray: 2 10;
   animation: lake-flow 30s linear infinite;
@@ -258,3 +259,45 @@ html[data-theme="dark"] #contact :is(input, textarea) {
   background: rgba(255, 255, 255, 0.04);
 }
 html[data-theme="dark"] #contact :is(input, textarea)::placeholder { color: #8f8f8f; }
+
+/* Dark: sonar contours from the lake, and a scan line that sweeps each section as it scrolls in */
+@media (prefers-reduced-motion: no-preference) {
+  .sonar {
+    opacity: 0;
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: sonar 6.6s cubic-bezier(0.2, 0.6, 0.3, 1) infinite;
+  }
+  @keyframes sonar {
+    0%   { transform: scale(1);    opacity: 0.45; }
+    100% { transform: scale(1.55); opacity: 0; }
+  }
+
+  html[data-theme="dark"] :is(#problems, #process, #about, #works, #lab, #contact)::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 1px;
+    pointer-events: none;
+    z-index: 2;
+    background: linear-gradient(90deg, transparent, var(--accent) 20%, var(--accent) 80%, transparent);
+    box-shadow: 0 0 18px 2px color-mix(in srgb, var(--accent) 40%, transparent);
+    animation: section-scan linear both;
+    animation-timeline: view();
+    animation-range: entry 0% cover 45%;
+  }
+  @keyframes section-scan {
+    0%   { transform: translateY(0); opacity: 0; }
+    10%  { opacity: 1; }
+    85%  { opacity: 0.8; }
+    100% { transform: translateY(70vh); opacity: 0; }
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sonar { display: none; }
+}
+
+/* Dark HUD crosshair */
+.hud-line { background: color-mix(in srgb, var(--accent) 22%, transparent); will-change: transform; }
