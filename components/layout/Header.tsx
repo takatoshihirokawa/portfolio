@@ -46,7 +46,7 @@ export default function Header() {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 pt-[env(safe-area-inset-top)] transition-all duration-300 ${
-        scrolled && !menuOpen ? "bg-[var(--bg)] border-b border-[var(--border)]" : ""
+        scrolled && !menuOpen ? "sm:bg-[var(--bg)] sm:border-b sm:border-[var(--border)]" : ""
       }`}
     >
       {/* Solid strip under the phone's status bar, so scrolled content never shows through it.
