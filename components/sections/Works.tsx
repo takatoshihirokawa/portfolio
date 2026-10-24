@@ -178,7 +178,7 @@ export default function Works({ works }: { works: Work[] }) {
     <section id="works" className="py-40 px-6 sm:px-12 border-t border-[var(--border)]">
       <div className="max-w-6xl mx-auto">
 
-        <Parallax amount={18} className="flex items-end justify-between mb-20">
+        <Parallax amount={18} className="flex flex-wrap items-end justify-between gap-x-6 gap-y-4 mb-20">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -186,7 +186,7 @@ export default function Works({ works }: { works: Work[] }) {
             transition={{ duration: 0.6 }}
           >
             <p className="text-[11px] sm:text-[10px] tracking-[0.4em] uppercase text-[var(--accent)] mb-2"><Decode text="[04] WORKS" /></p>
-            <BlockReveal as="p" className="font-display text-3xl sm:text-4xl font-light tracking-wide" delay={0.15}>Selected Works</BlockReveal>
+            <BlockReveal as="p" className="font-display text-3xl sm:text-4xl font-light tracking-wide" delay={0.15}>制作実績</BlockReveal>
           </motion.div>
           <motion.div
             initial={{ opacity: 0 }}

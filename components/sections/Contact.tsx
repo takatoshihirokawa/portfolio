@@ -27,7 +27,7 @@ export default function Contact() {
           transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
         >
           <p className="text-[11px] sm:text-[10px] tracking-[0.4em] uppercase text-[var(--accent)] mb-2"><Decode text="[06] CONTACT" /></p>
-          <BlockReveal as="p" className="font-display text-3xl sm:text-4xl font-light tracking-wide" delay={0.15}>Let&apos;s Talk</BlockReveal>
+          <BlockReveal as="p" className="font-display text-3xl sm:text-4xl font-light tracking-wide" delay={0.15}>相談する</BlockReveal>
           <p className="mt-6 text-base text-[var(--muted-fg)] leading-8 max-w-xl">
             何から頼めばよいか、決まっていなくても大丈夫です。
             単発の制作から、企画・導入、継続的な改善まで。目的と予算に合わせて、一緒に進め方を考えます。

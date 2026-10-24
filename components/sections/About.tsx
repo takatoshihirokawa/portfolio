@@ -66,7 +66,7 @@ export default function About() {
           <FadeUp>
             <div className="mb-20">
               <p className="text-[11px] sm:text-[10px] tracking-[0.4em] uppercase text-[var(--accent)] mb-2"><Decode text="[03] ABOUT" /></p>
-              <BlockReveal as="p" className="font-display text-3xl sm:text-4xl font-light tracking-wide" delay={0.15}>Who I Am</BlockReveal>
+              <BlockReveal as="p" className="font-display text-3xl sm:text-4xl font-light tracking-wide" delay={0.15}>プロフィール</BlockReveal>
             </div>
           </FadeUp>
         </Parallax>
