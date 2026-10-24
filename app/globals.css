@@ -164,14 +164,22 @@ html.glitching body::after { opacity: 0.2; }
 
 /* ───────── The dark side (only after circling the face) ───────── */
 
-/* Scanlines, vignette and a spotlight that follows the pointer */
+/* Scanlines (a still layer) and a spotlight that slides with the pointer.
+   The spot moves by transform only, so the screen is not repainted on every mouse move. */
 .dark-fx {
-  background:
-    radial-gradient(420px circle at var(--mx, 50%) var(--my, 40%), color-mix(in srgb, var(--accent) 9%, transparent), transparent 70%),
-    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.025) 0 1px, transparent 1px 3px),
-    radial-gradient(ellipse at center, transparent 55%, rgba(0, 0, 0, 0.55) 100%);
-  mix-blend-mode: screen;
+  background: repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.025) 0 1px, transparent 1px 3px);
   animation: dark-flicker 6s steps(1) infinite;
+}
+.dark-spot {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 840px;
+  height: 840px;
+  pointer-events: none;
+  background: radial-gradient(circle closest-side, color-mix(in srgb, var(--accent) 9%, transparent), transparent 70%);
+  transform: translate3d(calc(50vw - 420px), calc(40vh - 420px), 0);
+  will-change: transform;
 }
 @keyframes dark-flicker {
   0%, 96%, 100% { opacity: 1; }
@@ -180,9 +188,8 @@ html.glitching body::after { opacity: 0.2; }
   99% { opacity: 0.75; }
 }
 
-/* Sections lean with scroll speed */
+/* Sections lean with scroll speed (the skew itself is set per section by DarkFx) */
 html[data-theme="dark"] main section:not(#top-home) {
-  transform: skewY(calc(var(--skew, 0) * 1deg));
   transform-origin: 50% 0;
   position: relative;
   overflow-x: clip;

@@ -13,23 +13,32 @@ export default function DarkFx() {
   // On phones the button would cover the hero buttons, so it waits until the hero is scrolled past.
   const [pastHero, setPastHero] = useState(false)
   const first = useRef(true)
+  const spot = useRef<HTMLDivElement>(null)
+  // Values are written onto the few elements that use them, never onto <html>:
+  // a custom property on the root makes the browser re-check the whole page on every mouse move.
+  const sections = useRef<HTMLElement[]>([])
+  const leaning = () => {
+    if (!sections.current[0]?.isConnected) sections.current = Array.from(document.querySelectorAll<HTMLElement>("main section:not(#top-home)"))
+    return sections.current
+  }
 
   const { scrollY } = useScroll()
   const velocity = useSpring(useVelocity(scrollY), { damping: 40, stiffness: 300 })
   const skew = useTransform(velocity, [-3000, 0, 3000], [3.5, 0, -3.5], { clamp: true })
   useMotionValueEvent(scrollY, "change", (y) => setPastHero(y > window.innerHeight * 0.8))
   useMotionValueEvent(skew, "change", (v) => {
-    if (dark) document.documentElement.style.setProperty("--skew", v.toFixed(3))
+    if (!dark) return
+    const t = `skewY(${v.toFixed(3)}deg)`
+    for (const el of leaning()) el.style.transform = t
   })
 
   useEffect(() => {
     if (first.current) { first.current = false; if (!dark) return }
-    if (!dark) { document.documentElement.style.removeProperty("--skew"); return }
+    if (!dark) { for (const el of leaning()) el.style.transform = ""; return }
     setWelcome(true)
     const t = window.setTimeout(() => setWelcome(false), 650)
     const onMove = (e: PointerEvent) => {
-      document.documentElement.style.setProperty("--mx", `${e.clientX}px`)
-      document.documentElement.style.setProperty("--my", `${e.clientY}px`)
+      if (spot.current) spot.current.style.transform = `translate3d(${e.clientX - 420}px, ${e.clientY - 420}px, 0)`
     }
     window.addEventListener("pointermove", onMove)
     return () => { window.clearTimeout(t); window.removeEventListener("pointermove", onMove) }
@@ -38,6 +47,7 @@ export default function DarkFx() {
   return (
     <>
       {dark && <div aria-hidden className="dark-fx pointer-events-none fixed inset-0 z-[60]" />}
+      {dark && <div ref={spot} aria-hidden className="dark-spot z-[59]" />}
       {dark && <DarkHud />}
       <AnimatePresence>
         {welcome && (

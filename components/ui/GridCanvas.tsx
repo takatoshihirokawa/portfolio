@@ -38,21 +38,37 @@ export default function GridCanvas() {
       draw(performance.now())
     }
 
-    let poly: [number, number][] | null = null
+    // The lake shape as a low-res mask, rebuilt only when the outline moves (scroll/resize).
+    // Looking a point up in it is O(1); testing the polygon for every grid point was the main cost.
+    const MASK = 4
+    let mask: Uint8Array | null = null, maskW = 0, maskH = 0, maskKey = ""
     const updateLake = () => {
       const el = document.getElementById("lake-outline")
-      if (!el) { poly = null; return }
+      if (!el) { mask = null; maskKey = ""; return }
       const r = el.getBoundingClientRect()
-      poly = LAKE.points.map(([px, py]) => [r.left + px * r.width, r.top + py * r.height])
+      const key = `${Math.round(r.left)},${Math.round(r.top)},${Math.round(r.width)},${w},${h}`
+      if (key === maskKey) return
+      maskKey = key
+      maskW = Math.ceil(w / MASK); maskH = Math.ceil(h / MASK)
+      const off = document.createElement("canvas")
+      off.width = maskW; off.height = maskH
+      const o = off.getContext("2d", { willReadFrequently: true })!
+      o.beginPath()
+      LAKE.points.forEach(([px, py], i) => {
+        const x = (r.left + px * r.width) / MASK, y = (r.top + py * r.height) / MASK
+        if (i === 0) o.moveTo(x, y); else o.lineTo(x, y)
+      })
+      o.closePath()
+      o.fill()
+      const data = o.getImageData(0, 0, maskW, maskH).data
+      mask = new Uint8Array(maskW * maskH)
+      for (let i = 0; i < mask.length; i++) mask[i] = data[i * 4 + 3] > 127 ? 1 : 0
     }
     const inside = (x: number, y: number) => {
-      if (!poly) return false
-      let hit = false
-      for (let i = 0, j = poly.length - 1; i < poly.length; j = i++) {
-        const [xi, yi] = poly[i], [xj, yj] = poly[j]
-        if (yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) hit = !hit
-      }
-      return hit
+      if (!mask) return false
+      const mx = (x / MASK) | 0, my = (y / MASK) | 0
+      if (mx < 0 || my < 0 || mx >= maskW || my >= maskH) return false
+      return mask[my * maskW + mx] === 1
     }
 
     const displace = (x: number, y: number, now: number) => {
@@ -78,7 +94,7 @@ export default function GridCanvas() {
       ctx.strokeStyle = color()
       ctx.lineWidth = 1
       const active = ripples.length > 0
-      const step = 6
+      const step = 8
       ctx.beginPath()
       for (let x = originX % CELL; x <= w; x += CELL) {
         if (!active) { ctx.moveTo(x + 0.5, 0); ctx.lineTo(x + 0.5, h); continue }
@@ -123,7 +139,17 @@ export default function GridCanvas() {
       ripples.push({ x: e.clientX, y: e.clientY, t0: performance.now(), amp: 7, speed: 320, life: 2.2 })
       wake()
     }
-    const mo = new MutationObserver(() => draw(performance.now()))
+    // Redraw only when the theme or the grid origin changes, not for every style update
+    // (the dark side writes pointer and skew values onto <html> many times a second).
+    let styleKey = ""
+    const mo = new MutationObserver(() => {
+      const html = document.documentElement
+      const key = `${html.dataset.theme}|${html.style.getPropertyValue("--grid-x")}`
+      if (key === styleKey) return
+      styleKey = key
+      originX = parseFloat(getComputedStyle(html).getPropertyValue("--grid-x")) || 0
+      draw(performance.now())
+    })
     mo.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme", "style"] })
 
     resize()

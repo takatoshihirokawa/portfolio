@@ -15,38 +15,63 @@ export default function DarkName() {
   useEffect(() => {
     const el = root.current
     if (!el) return
+    if (window.matchMedia("(pointer: coarse)").matches) return
     const letters = Array.from(el.querySelectorAll<HTMLSpanElement>("[data-l]"))
-    const touch = window.matchMedia("(pointer: coarse)").matches
-    let px = -9999, py = -9999, raf = 0
     const cur = letters.map(() => ({ x: 0, y: 0 }))
+    // Letter centres relative to the name block, measured once (and on resize) instead of every frame.
+    let centres: { x: number; y: number }[] = []
+    let px = -9999, py = -9999, raf = 0, visible = true, ready = false
 
-    const onMove = (e: PointerEvent) => { px = e.clientX; py = e.clientY }
-    if (!touch) window.addEventListener("pointermove", onMove)
+    const measure = () => {
+      const base = el.getBoundingClientRect()
+      centres = letters.map((l, i) => {
+        const b = l.getBoundingClientRect()
+        return { x: b.left + b.width / 2 - cur[i].x - base.left, y: b.top + b.height / 2 - cur[i].y - base.top }
+      })
+    }
+    // Wait for the entrance animation to finish before measuring.
+    const t = window.setTimeout(() => { measure(); ready = true; start() }, 1700)
 
     const tick = () => {
+      raf = 0
+      if (!ready || !visible) return
+      const base = el.getBoundingClientRect()
+      let moving = false
       letters.forEach((l, i) => {
         let tx = 0, ty = 0
-        if (!touch) {
-          const b = l.getBoundingClientRect()
-          const dx = b.left + b.width / 2 - px
-          const dy = b.top + b.height / 2 - py
-          const d = Math.hypot(dx, dy)
-          const reach = 200
-          if (d < reach) {
-            const f = (1 - d / reach) ** 2
-            tx = (dx / (d || 1)) * f * 16
-            ty = (dy / (d || 1)) * f * 16
-          }
+        const dx = base.left + centres[i].x - px
+        const dy = base.top + centres[i].y - py
+        const d = Math.hypot(dx, dy)
+        const reach = 200
+        if (d < reach) {
+          const f = (1 - d / reach) ** 2
+          tx = (dx / (d || 1)) * f * 16
+          ty = (dy / (d || 1)) * f * 16
         }
         const c = cur[i]
         c.x += (tx - c.x) * 0.08
         c.y += (ty - c.y) * 0.08
+        if (Math.abs(tx - c.x) > 0.05 || Math.abs(ty - c.y) > 0.05) moving = true
         l.style.transform = `translate(${c.x.toFixed(1)}px, ${c.y.toFixed(1)}px)`
       })
-      raf = requestAnimationFrame(tick)
+      // Keep animating only while letters are still easing toward where they should be.
+      if (moving) start()
     }
-    raf = requestAnimationFrame(tick)
-    return () => { cancelAnimationFrame(raf); window.removeEventListener("pointermove", onMove) }
+    const start = () => { if (!raf) raf = requestAnimationFrame(tick) }
+
+    const onMove = (e: PointerEvent) => { px = e.clientX; py = e.clientY; start() }
+    const onResize = () => { if (ready) measure() }
+    const io = new IntersectionObserver(([e]) => { visible = e.isIntersecting; if (visible) start() })
+    io.observe(el)
+    window.addEventListener("pointermove", onMove)
+    window.addEventListener("resize", onResize)
+    return () => {
+      window.clearTimeout(t)
+      cancelAnimationFrame(raf)
+      io.disconnect()
+      window.removeEventListener("pointermove", onMove)
+      window.removeEventListener("resize", onResize)
+    }
   }, [])
 
   let n = 0

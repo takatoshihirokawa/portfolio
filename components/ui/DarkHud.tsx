@@ -33,19 +33,28 @@ export default function DarkHud() {
     const onMove = (e: PointerEvent) => { px = e.clientX; py = e.clientY }
     if (fine) window.addEventListener("pointermove", onMove)
 
+    // Section positions and page height, read only when the layout changes (not every frame).
+    let tops: [number, string][] = [], max = 1
+    const measure = () => {
+      max = document.documentElement.scrollHeight - window.innerHeight
+      tops = SECTIONS.flatMap(([id, name]) => {
+        const el = document.getElementById(id)
+        return el ? [[el.getBoundingClientRect().top + window.scrollY, name] as [number, string]] : []
+      })
+    }
+    measure()
+    const ro = new ResizeObserver(measure)
+    ro.observe(document.body)
+
     const tick = () => {
-      const max = document.documentElement.scrollHeight - window.innerHeight
       const p = max > 0 ? Math.min(1, window.scrollY / max) : 0
       if (pct.current) pct.current.textContent = String(Math.round(p * 100)).padStart(3, "0")
       if (bar.current) bar.current.style.transform = `scaleX(${p})`
       if (mbar.current) mbar.current.style.transform = `scaleX(${p})`
 
-      const mid = window.innerHeight * 0.4
+      const mid = window.scrollY + window.innerHeight * 0.4
       let label = SECTIONS[0][1]
-      for (const [id, name] of SECTIONS) {
-        const el = document.getElementById(id)
-        if (el && el.getBoundingClientRect().top <= mid) label = name
-      }
+      for (const [top, name] of tops) if (top <= mid) label = name
       if (label !== last && sec.current) { sec.current.textContent = label; last = label }
 
       if (clock.current) clock.current.textContent = jst.format(new Date())
@@ -63,7 +72,7 @@ export default function DarkHud() {
       raf = requestAnimationFrame(tick)
     }
     raf = requestAnimationFrame(tick)
-    return () => { cancelAnimationFrame(raf); window.removeEventListener("pointermove", onMove) }
+    return () => { cancelAnimationFrame(raf); ro.disconnect(); window.removeEventListener("pointermove", onMove) }
   }, [])
 
   return (
