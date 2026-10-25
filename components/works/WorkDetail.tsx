@@ -29,7 +29,7 @@ export default function WorkDetail({ found, basePath, back }: { found: FoundWork
             <p className="text-[11px] sm:text-[10px] tracking-[0.4em] uppercase text-[var(--accent)] mb-4">
               [{num}] {work.category} · {work.year}
             </p>
-            <h1 className="font-display text-3xl sm:text-5xl font-light leading-[1.15] tracking-wide">
+            <h1 className="font-display text-3xl sm:text-5xl font-light leading-[1.15] tracking-wide [overflow-wrap:anywhere]">
               {work.title}
             </h1>
             <div className="flex flex-wrap gap-1.5 mt-6">
@@ -139,12 +139,12 @@ export default function WorkDetail({ found, basePath, back }: { found: FoundWork
             <Link
               key={dir}
               href={`${basePath}/${w.slug}`}
-              className={`group flex flex-col ${align} gap-3 py-10 px-2 sm:px-6 hover:bg-[var(--muted)] transition-colors`}
+              className={`group min-w-0 flex flex-col ${align} gap-3 py-10 px-2 sm:px-6 hover:bg-[var(--muted)] transition-colors`}
             >
               <span className="text-[11px] sm:text-[9px] tracking-[0.4em] uppercase text-[var(--muted-fg)]">
                 {dir === "Prev" ? `${arrow} ${dir}` : `${dir} ${arrow}`}
               </span>
-              <span className="text-sm sm:text-base font-medium group-hover:text-[var(--accent)] transition-colors leading-snug">
+              <span className="max-w-full text-sm sm:text-base font-medium group-hover:text-[var(--accent)] transition-colors leading-snug [overflow-wrap:anywhere]">
                 {w.title}
               </span>
             </Link>
