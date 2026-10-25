@@ -144,7 +144,7 @@ export default function WorkDetail({ found, basePath, back }: { found: FoundWork
               <span className="text-[11px] sm:text-[9px] tracking-[0.4em] uppercase text-[var(--muted-fg)]">
                 {dir === "Prev" ? `${arrow} ${dir}` : `${dir} ${arrow}`}
               </span>
-              <span className="max-w-full text-sm sm:text-base font-medium group-hover:text-[var(--accent)] transition-colors leading-snug [overflow-wrap:anywhere]">
+              <span className="max-w-full line-clamp-2 text-sm sm:text-base font-medium group-hover:text-[var(--accent)] transition-colors leading-snug [overflow-wrap:anywhere]">
                 {w.title}
               </span>
             </Link>
