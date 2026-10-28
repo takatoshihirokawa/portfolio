@@ -62,7 +62,7 @@ export default function WorkForm({ values = {} }: { values?: Values }) {
         <div>
           <span className={label}>Category</span>
           <select name="category" defaultValue={v.category ?? "Web"} className={input}>
-            {["App / Service", "Web", "Advertising", "Lab", "Other"].map((c) => <option key={c} value={c}>{c}</option>)}
+            {["App / Service", "Web", "Advertising", "AI Support", "Lab", "Other"].map((c) => <option key={c} value={c}>{c}</option>)}
           </select>
         </div>
       </div>

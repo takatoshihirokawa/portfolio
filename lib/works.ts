@@ -1,4 +1,4 @@
-export type WorkCategory = "App / Service" | "Web" | "Advertising" | "Lab" | "Other"
+export type WorkCategory = "App / Service" | "Web" | "Advertising" | "AI Support" | "Lab" | "Other"
 
 export type Work = {
   slug: string
