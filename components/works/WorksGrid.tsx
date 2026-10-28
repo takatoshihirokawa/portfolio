@@ -44,7 +44,7 @@ export function WorksTabs({ works }: { works: Work[] }) {
     <div>
       <div className="flex items-end gap-8 border-b border-[var(--border)] mb-8">
         {([
-          ["works", "Works", "制作実績", client.length],
+          ["works", "Works", "実績", client.length],
           ["lab", "Lab", "自主開発", lab.length],
         ] as const).map(([key, en, jp, n]) => (
           <button

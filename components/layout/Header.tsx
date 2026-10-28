@@ -11,7 +11,7 @@ import Magnetic from "@/components/ui/Magnetic"
 const navLinks = [
   { jp: "できること", en: "Service", href: "/#problems" },
   { jp: "プロフィール", en: "About", href: "/#about" },
-  { jp: "制作実績", en: "Works", href: "/works" },
+  { jp: "実績", en: "Works", href: "/works" },
   { jp: "相談する", en: "Contact", href: "/#contact" },
 ]
 

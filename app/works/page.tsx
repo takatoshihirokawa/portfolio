@@ -8,7 +8,7 @@ import Decode from "@/components/ui/Decode"
 
 export const metadata = {
   title: "Works | Takatoshi Hirokawa",
-  description: "Webアプリ、Webサイト、広告・映像の制作実績と、自分で作って動かしている自主開発（Lab）。",
+  description: "Webアプリ、Webサイト、広告・映像の実績と、自分で作って動かしている自主開発（Lab）。",
 }
 
 export default async function WorksIndex() {
@@ -25,7 +25,7 @@ export default async function WorksIndex() {
           <div className="mt-14 mb-16 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6">
             <div>
               <p className="text-[11px] sm:text-[10px] tracking-[0.4em] uppercase text-[var(--accent)] mb-2"><Decode text="ALL WORKS" /></p>
-              <BlockReveal as="p" className="font-display text-4xl sm:text-5xl font-light tracking-wide" delay={0.15}>制作実績</BlockReveal>
+              <BlockReveal as="p" className="font-display text-4xl sm:text-5xl font-light tracking-wide" delay={0.15}>実績</BlockReveal>
             </div>
             <p className="text-base text-[var(--muted-fg)] leading-8 sm:max-w-sm sm:text-right">
               Webアプリ・Webサイト・広告映像まで。広告会社時代のプロデュース案件と、独立後の企画〜開発案件です。自分で作って動かしているものは「Lab」にまとめています。

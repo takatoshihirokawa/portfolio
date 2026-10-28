@@ -186,7 +186,7 @@ export default function Works({ works }: { works: Work[] }) {
             transition={{ duration: 0.6 }}
           >
             <p className="text-[11px] sm:text-[10px] tracking-[0.4em] uppercase text-[var(--accent)] mb-2"><Decode text="[04] WORKS" /></p>
-            <BlockReveal as="p" className="font-display text-3xl sm:text-4xl font-light tracking-wide" delay={0.15}>制作実績</BlockReveal>
+            <BlockReveal as="p" className="font-display text-3xl sm:text-4xl font-light tracking-wide" delay={0.15}>実績</BlockReveal>
           </motion.div>
           <motion.div
             initial={{ opacity: 0 }}
