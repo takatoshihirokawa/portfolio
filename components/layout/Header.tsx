@@ -149,7 +149,7 @@ export default function Header() {
                   transition={{ duration: 0.8, ease, delay: 0.3 + i * 0.08 }}
                   style={{ transformOrigin: "left", borderBottomWidth: 1 }}
                 >
-                  <a href={link.href} onClick={close} className="group flex items-end justify-between py-6 active:text-[var(--accent)]">
+                  <a href={link.href} onClick={close} className="group flex items-end justify-between gap-4 py-6 active:text-[var(--accent)]">
                     <span className="flex items-end gap-4">
                       <motion.span
                         className="font-display text-[11px] tracking-[0.3em] text-[var(--accent)] pb-2"
@@ -161,7 +161,7 @@ export default function Header() {
                       </motion.span>
                       <span className="overflow-hidden">
                         <motion.span
-                          className="block text-[2rem] font-medium tracking-wide leading-none"
+                          className="block whitespace-nowrap text-[clamp(1.3rem,7vw,2rem)] font-medium tracking-wide leading-none"
                           initial={{ y: "110%" }}
                           animate={{ y: 0 }}
                           transition={{ duration: 0.7, ease, delay: 0.35 + i * 0.08 }}
@@ -171,7 +171,7 @@ export default function Header() {
                       </span>
                     </span>
                     <motion.span
-                      className="font-display text-[11px] tracking-[0.3em] uppercase text-[var(--muted-fg)] pb-2"
+                      className="shrink-0 font-display text-[11px] tracking-[0.3em] uppercase text-[var(--muted-fg)] pb-2"
                       initial={{ opacity: 0, x: 16 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.5, ease, delay: 0.5 + i * 0.08 }}
