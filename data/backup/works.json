@@ -1,5 +1,61 @@
 [
  {
+  "id": "bde0c141-e84e-4f58-82d8-42e0591e2653",
+  "slug": "korero-claude-code-support",
+  "title": "株式会社コレロ Claude Code 導入サポート",
+  "year": 2026,
+  "category": "AI Support",
+  "tags": [
+   "Planning",
+   "Direction",
+   "AI"
+  ],
+  "client": "株式会社コレロ",
+  "affiliation": "Freelance",
+  "role": "企画・ディレクション・AI 活用",
+  "url": "http://korero.jp/",
+  "summary": "クリエイティブマネジメント会社・株式会社コレロに、AI コーディングツール「Claude Code」の導入をサポート。インストールと初期設定から、一緒に簡単なアプリを作る体験、日々の業務に合わせた使い方の提案まで伴走した。",
+  "background": "広告・プロモーションの企画制作やキャスティングを手がける株式会社コレロから、AI を日々の仕事にもっと活かしたいとご相談をいただいた。Claude Code のようなコーディング向けの AI は、企画や制作の仕事にどう役立つのかが見えにくい。そこで、導入の手順だけでなく、実際の業務で使える形になるまでを一緒に進める伴走型のサポートを行った。",
+  "approach": "まず Mac へのインストールと初期設定を一緒に行い、ターミナルに慣れていなくても迷わず起動できる状態を整えた。次に、その場で簡単な Web アプリを一緒に作り、「話しかけるだけで動くものができる」感覚を体験してもらった。そのうえで日々の業務をヒアリングし、キャスティング候補の整理、企画書のたたき台づくり、見積やスケジュール表の作成、メールの下書きといった場面ごとに、Claude Code をどう使うかを具体的に提案。覚えることを増やさず、翌日から一人で使えることを重視して進めた。導入後も、使っていて出てきた疑問に答えるフォローを続けている。",
+  "thumbnail": "/images/works/korero-claude-code-support.webp",
+  "screenshot": null,
+  "published": true,
+  "featured": false,
+  "pinned": false,
+  "sort_order": 0,
+  "created_at": "2026-10-28T08:47:54.623155+00:00",
+  "updated_at": "2026-10-28T08:50:29.721828+00:00",
+  "secret": false
+ },
+ {
+  "id": "ae52a983-ed4c-410b-b4f5-2ff944d9270b",
+  "slug": "lab-mac-voice-input",
+  "title": "Voice Input：Mac 用 AI 音声入力アプリ",
+  "year": 2026,
+  "category": "Lab",
+  "tags": [
+   "Planning",
+   "Development",
+   "AI"
+  ],
+  "client": "自主運用",
+  "affiliation": "Freelance",
+  "role": "企画・設計・開発・運用",
+  "url": null,
+  "summary": "キーを押しながら話すだけで、AI が文字起こしと文章の整えを行い、カーソルの位置にそのまま入力する Mac 用の音声入力アプリ。仕事用とプライベート用で文体を切り替えられる。企画から設計・開発までを Claude Code を活用して進め、日々の文章入力に使っている。",
+  "background": "音声入力は便利で、話した内容を AI が読みやすく整えてくれる体験はとても快適。一方で、こうしたアプリの多くはそれなりの月額料金がかかり、毎日使うほど負担が気になる。それなら自分に必要な機能だけを備えたアプリを作ってしまおうと考え、開発に取り組んだ。",
+  "approach": "キーを押している間だけ録音し、離すと音声を文字起こしして、AI がフィラーや言い直しを取り除きながら、話した内容は要約せずに読みやすく整える。結果はカーソルの位置に自動で入力し、クリップボードにも残す。仕事向けのオフィシャルモードと、友人とのやり取り向けのカジュアルモードを用意し、普段の自分の書き方に合わせて使い分けられるようにした。メニューバーに常駐し、履歴の検索・再コピー、録音キーの変更、ログイン時の自動起動を管理画面から設定できる。録音の準備ができた瞬間に控えめなチャイムを鳴らし、話し始めの言葉が切れないよう工夫した。Mac アプリは Electron、サーバーは Next.js（Vercel）で構築し、文字起こしに OpenAI、文章の整えに Claude を使用。API キーはサーバー側だけに置き、アプリは GitHub Actions で自動ビルドしてインストーラーで配布できるようにした。",
+  "thumbnail": "/images/works/lab-mac-voice-input.webp",
+  "screenshot": null,
+  "published": true,
+  "featured": false,
+  "pinned": false,
+  "sort_order": 0,
+  "created_at": "2026-10-28T03:08:28.071546+00:00",
+  "updated_at": "2026-10-28T03:35:38.976764+00:00",
+  "secret": false
+ },
+ {
   "id": "00245896-0de6-497d-a83d-bac669188afe",
   "slug": "portfolio-site-renewal",
   "title": "takatoshihirokawa.com ポートフォリオサイト リニューアル",
@@ -40,7 +96,7 @@
    "Design",
    "Development"
   ],
-  "client": "自社サービス",
+  "client": "KOSOA inc.",
   "affiliation": "Freelance",
   "role": "企画・設計・デザイン・開発・運用",
   "url": "https://clippick.jp/",
@@ -54,7 +110,7 @@
   "pinned": false,
   "sort_order": 0,
   "created_at": "2026-10-23T00:01:00+00:00",
-  "updated_at": "2026-10-23T04:52:16.610339+00:00",
+  "updated_at": "2026-10-26T08:49:21.906369+00:00",
   "secret": false
  },
  {
@@ -693,32 +749,6 @@
   "secret": false
  },
  {
-  "id": "81869326-3272-4f4b-a729-b091fd9de0f1",
-  "slug": "empathy-all-people-treasure-visual-production-2023",
-  "title": "EMPATHY ALL PEOPLE. × TREASURE Visual Production",
-  "year": 2023,
-  "category": "Advertising",
-  "tags": [
-   "Produce"
-  ],
-  "client": "株式会社エスモード・アート",
-  "affiliation": "Agency",
-  "role": "制作プロデュース",
-  "url": null,
-  "summary": "2023年、EMPATHY ALL PEOPLE.のイメージモデルにTREASUREを起用したブランドビジュアル制作を担当。スチール撮影の制作プロデュースを行った。",
-  "background": "EMPATHY ALL PEOPLE.のイメージモデルとして韓国アーティスト・TREASUREを起用し、ブランドのプロモーションビジュアルを制作。ブランドとアーティスト双方のイメージを活かしたスチール表現が求められた。",
-  "approach": "制作プロデューサーとして、スチール撮影に向けた準備から当日の進行、制作物の完成までを担当。クリエイティブチームと連携しながら、ブランドの世界観とTREASUREの存在感が両立するビジュアル制作を進行した。",
-  "thumbnail": "/images/works/empathy-all-people-treasure-visual-production-2023.webp",
-  "screenshot": "/images/works/empathy-all-people-treasure-visual-production-2023-full.webp",
-  "published": true,
-  "featured": false,
-  "pinned": false,
-  "sort_order": 45,
-  "created_at": "2026-10-22T00:00:00+00:00",
-  "updated_at": "2026-10-23T03:20:27.086615+00:00",
-  "secret": false
- },
- {
   "id": "89f38da7-b2b6-4568-bcce-c37ca7bc01c3",
   "slug": "project-xeno-rockman-x-dive-promotion-movie",
   "title": "Project XENO × ROCKMAN X DiVE Promotion Movie",
@@ -740,32 +770,6 @@
   "featured": false,
   "pinned": false,
   "sort_order": 47,
-  "created_at": "2026-10-22T00:00:00+00:00",
-  "updated_at": "2026-10-23T03:20:27.086615+00:00",
-  "secret": false
- },
- {
-  "id": "c013e0ea-f32f-444c-9c88-db0ed7b11c76",
-  "slug": "g9-gaku-visual-production-2023",
-  "title": "G-9（ガク） Visual Production",
-  "year": 2023,
-  "category": "Advertising",
-  "tags": [
-   "Produce"
-  ],
-  "client": "株式会社エスモード・アート",
-  "affiliation": "Agency",
-  "role": "制作プロデュース",
-  "url": null,
-  "summary": "佐野勇斗プロデュースブランド「G-9（ガク）」のスチール撮影・ムービー制作をプロデュース。",
-  "background": "佐野勇斗がプロデュースするブランド「G-9（ガク）」のビジュアル制作。ブランドの世界観やプロダクトの魅力を伝えるため、スチール撮影とムービー制作を実施した。",
-  "approach": "ブランドコンセプトと佐野勇斗自身のイメージを踏まえ、スチールとムービーで統一感のあるビジュアル表現を設計。撮影・映像制作に関わるスタッフと連携しながら、制作進行およびアウトプット全体のクオリティをプロデュースした。",
-  "thumbnail": "/images/works/g9-gaku-visual-production-2023.webp",
-  "screenshot": "/images/works/g9-gaku-visual-production-2023-full.webp",
-  "published": true,
-  "featured": false,
-  "pinned": false,
-  "sort_order": 48,
   "created_at": "2026-10-22T00:00:00+00:00",
   "updated_at": "2026-10-23T03:20:27.086615+00:00",
   "secret": false
