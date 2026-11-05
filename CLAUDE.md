@@ -1,5 +1,9 @@
 # このリポジトリでの作業ルール
 
+既存のルールは AGENTS.md にある。必ずあわせて読むこと。
+
+@AGENTS.md
+
 ## 外部メモリ（Notion「AI共通メモリ」）
 
 AIとやった作業の最終結果は、Notionの「AI共通メモリ」＞「作業ログ」に積み上げている。記録と読み返しの手順はスキル `notion-memory`。スキルが使えないときは、Notionのページ「AI共通メモリ」（https://www.notion.so/40fe4e613e19816aa099c8ae73cdb880 ）に書かれたルールに従う。
