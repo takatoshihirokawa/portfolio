@@ -33,13 +33,15 @@ export default function Lab({ works }: { works: Work[] }) {
         </Parallax>
 
         <div className={`grid grid-cols-1 ${works.length >= 3 ? "sm:grid-cols-3" : "sm:grid-cols-2"} gap-px bg-[var(--border)] border border-[var(--border)]`}>
-          {works.slice(0, 3).map((w, i) => (
+          {/* PC shows up to 6 (3 x 2), phones up to 4 */}
+          {works.slice(0, 6).map((w, i) => (
             <motion.div
               key={w.slug}
+              className={i >= 4 ? "max-sm:hidden" : undefined}
               initial={{ opacity: 0, y: dist }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px 0px" }}
-              transition={{ duration: 1 * speed, ease: [0.2, 0.8, 0.2, 1], delay: i * stagger }}
+              transition={{ duration: 1 * speed, ease: [0.2, 0.8, 0.2, 1], delay: (i % 3) * stagger }}
             >
               <Link href={`/works/${w.slug}`} data-cursor="view" className="group flex sm:flex-col gap-4 sm:gap-0 h-full bg-[var(--bg)] p-4 sm:p-0">
                 <div className="relative w-28 sm:w-full shrink-0 aspect-video overflow-hidden bg-[var(--muted)]">
