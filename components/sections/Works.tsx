@@ -207,7 +207,7 @@ export default function Works({ works }: { works: Work[] }) {
         <div className="works-grid grid grid-cols-1 md:grid-cols-2 gap-px bg-[var(--border)] border border-[var(--border)]">
           <FeaturedCard work={featured} index={0} />
           {rest.map((work, i) => (
-            <WorkCard key={work.slug} work={work} index={i + 1} mobileOnly={i + 1 >= 7} />
+            <WorkCard key={work.slug} work={work} index={i + 1} mobileOnly={i + 1 >= 9} />
           ))}
         </div>
 

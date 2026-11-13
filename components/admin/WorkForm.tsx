@@ -92,7 +92,7 @@ export default function WorkForm({ values = {} }: { values?: Values }) {
         <label className="flex items-center gap-2 text-sm"><input type="checkbox" name="published" defaultChecked={v.published ?? true} className="accent-[var(--accent)]" /> 公開する</label>
         <label className="flex items-center gap-2 text-sm"><input type="checkbox" name="pinned" defaultChecked={v.pinned ?? false} className="accent-[var(--accent)]" /> 上に固定</label>
         <label className="flex items-center gap-2 text-sm"><input type="checkbox" name="secret" defaultChecked={v.secret ?? false} className="accent-[var(--accent)]" /> 合言葉で見せる（一覧・検索に出さない）</label>
-        <span className="text-xs text-[var(--muted-fg)]">並びは実施年の新しい順（同じ年の中では追加が新しい順）。固定したものが一番上に来ます。トップには上から PC で 7 件、スマホで 10 件表示。Category を「Lab」にすると、Lab（自主開発）に入ります。「合言葉で見せる」にしたものは、合言葉を入れた人だけが /private で見られます。</span>
+        <span className="text-xs text-[var(--muted-fg)]">並びは実施年の新しい順（同じ年の中では追加が新しい順）。固定したものが一番上に来ます。トップには上から PC で 9 件、スマホで 10 件表示。Category を「Lab」にすると、Lab（自主開発）に入ります。「合言葉で見せる」にしたものは、合言葉を入れた人だけが /private で見られます。</span>
       </div>
 
       {state.error && <p className="text-sm text-red-500">{state.error}</p>}
