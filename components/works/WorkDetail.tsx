@@ -4,12 +4,14 @@ import type { FoundWork } from "@/lib/data"
 import Reveal from "@/components/ui/Reveal"
 import Parallax from "@/components/ui/Parallax"
 import BlockReveal from "@/components/ui/BlockReveal"
+import { parseWorkLinks } from "@/lib/work-links"
 
 const label = "text-[11px] sm:text-[9px] tracking-[0.4em] uppercase text-[var(--muted-fg)] mb-3 block"
 
 export default function WorkDetail({ found, basePath, back }: { found: FoundWork; basePath: string; back: { href: string; label: string } }) {
   const { work, prev, next, index } = found
   const num = String(index + 1).padStart(2, "0")
+  const links = parseWorkLinks(work.url)
 
   return (
     <article className="pt-32 pb-40 px-6 sm:px-12">
@@ -97,17 +99,22 @@ export default function WorkDetail({ found, basePath, back }: { found: FoundWork
               <span className={label}>Approach</span>
               <p className="text-base leading-9 opacity-80">{work.approach}</p>
             </Reveal>
-            {work.url && (
+            {links.length > 0 && (
               <Reveal delay={0.1}>
-                <a
-                  href={work.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group inline-flex items-center gap-3 text-xs tracking-[0.3em] uppercase text-[var(--accent)] border-b border-[var(--accent)] pb-1 hover:gap-5 transition-all duration-300"
-                >
-                  Visit Site
-                  <span className="group-hover:translate-x-1 transition-transform duration-300">↗</span>
-                </a>
+                <div className="flex flex-wrap gap-x-10 gap-y-5">
+                  {links.map((l) => (
+                    <a
+                      key={l.href}
+                      href={l.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group inline-flex items-center gap-3 text-xs tracking-[0.3em] uppercase text-[var(--accent)] border-b border-[var(--accent)] pb-1 hover:gap-5 transition-all duration-300"
+                    >
+                      {l.label ?? "Visit Site"}
+                      <span className="group-hover:translate-x-1 transition-transform duration-300">↗</span>
+                    </a>
+                  ))}
+                </div>
               </Reveal>
             )}
           </div>
