@@ -78,7 +78,7 @@ export default function WorkForm({ values = {} }: { values?: Values }) {
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div><span className={label}>Tags（カンマ区切り）</span><input name="tags" defaultValue={v.tags?.join(", ")} placeholder="Direction, Development" className={input} /></div>
-        <div><span className={label}>URL</span><input name="url" defaultValue={v.url ?? ""} placeholder="https://" className={input} /></div>
+        <div><span className={label}>URL（複数なら1行に1つ「ラベル https://…」）</span><textarea name="url" rows={3} defaultValue={v.url ?? ""} placeholder={"https://\nAI Review https://…"} className={input} /></div>
       </div>
 
       <div><span className={label}>Summary（一覧・冒頭）</span><textarea name="summary" rows={3} defaultValue={v.summary} className={input} /></div>
