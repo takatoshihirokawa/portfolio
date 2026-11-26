@@ -28,7 +28,7 @@ const stats = [
 
 const tools = {
   Design: ["Adobe XD", "Illustrator", "Photoshop"],
-  Development: ["Bubble", "Studio", "Next.js"],
+  Development: ["Next.js", "Supabase", "Stripe"],
   AI: ["Claude Code", "Dify"],
 }
 
@@ -111,7 +111,7 @@ export default function About() {
                 <span className="text-[11px] sm:text-[9px] tracking-[0.4em] uppercase text-[var(--muted-fg)] mb-3 block">Background</span>
                 <p className="text-base leading-8 opacity-80">
                   広告会社でテレビCMやWebの制作プロデュースを経験した後、事業会社を経て河口湖移住を機に独立。
-                  いまは「作る」だけでなく、Bubble・Studio・AIを使って自分で「動くもの」まで作ります。
+                  いまは「作る」だけでなく、AIも活用して自分で「動くもの」まで作ります。
                 </p>
               </div>
             </FadeUp>
