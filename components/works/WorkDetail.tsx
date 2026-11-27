@@ -5,6 +5,7 @@ import Reveal from "@/components/ui/Reveal"
 import Parallax from "@/components/ui/Parallax"
 import BlockReveal from "@/components/ui/BlockReveal"
 import { parseWorkLinks } from "@/lib/work-links"
+import { parseWorkVideos } from "@/lib/work-videos"
 
 const label = "text-[11px] sm:text-[9px] tracking-[0.4em] uppercase text-[var(--muted-fg)] mb-3 block"
 
@@ -12,6 +13,7 @@ export default function WorkDetail({ found, basePath, back }: { found: FoundWork
   const { work, prev, next, index } = found
   const num = String(index + 1).padStart(2, "0")
   const links = parseWorkLinks(work.url)
+  const videos = parseWorkVideos(work.videos)
 
   return (
     <article className="pt-32 pb-40 px-6 sm:px-12">
@@ -61,6 +63,33 @@ export default function WorkDetail({ found, basePath, back }: { found: FoundWork
             />
           </div>
         </Reveal>
+        )}
+
+        {/* Videos: tap to play, nothing loads until then */}
+        {videos.length > 0 && (
+          <Reveal className="mt-10">
+            <span className={label}>Movies</span>
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
+              {videos.map((v) => (
+                <figure key={v.src} className="min-w-0">
+                  <video
+                    src={v.src}
+                    poster={v.poster ?? undefined}
+                    controls
+                    playsInline
+                    preload={v.poster ? "none" : "metadata"}
+                    className="block w-full aspect-[9/16] object-cover bg-[var(--muted)] border border-[var(--border)]"
+                  />
+                  {v.label && (
+                    <figcaption className="mt-2 text-xs text-[var(--muted-fg)] leading-snug">
+                      {/* Break before a bracket, never inside a word */}
+                      {v.label.split(/(?=（)/).map((part) => <span key={part} className="inline-block">{part}</span>)}
+                    </figcaption>
+                  )}
+                </figure>
+              ))}
+            </div>
+          </Reveal>
         )}
 
         {/* Meta */}

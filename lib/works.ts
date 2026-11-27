@@ -15,6 +15,7 @@ export type Work = {
   approach: string
   thumbnail: string
   screenshot: string | null
+  videos?: string | null
   secret?: boolean
 }
 

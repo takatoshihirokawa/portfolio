@@ -5,7 +5,7 @@ import { works as staticWorks, type Work } from "@/lib/works"
 export type WorkRow = Work & { id: string; published: boolean; pinned: boolean; sort_order: number }
 
 const COLUMNS =
-  "id, slug, title, year, category, tags, client, affiliation, role, url, summary, background, approach, thumbnail, screenshot, published, pinned, sort_order"
+  "id, slug, title, year, category, tags, client, affiliation, role, url, summary, background, approach, thumbnail, screenshot, videos, published, pinned, sort_order"
 
 // Lab = things built and run on my own, shown apart from client work.
 export const isLab = (w: Work) => w.category === "Lab"
@@ -16,7 +16,7 @@ function fallback(): WorkRow[] {
 }
 
 export async function getWorks(): Promise<WorkRow[]> {
-  return fetchWorks(4)
+  return fetchWorks(5)
 }
 
 // Bump the version to drop entries cached by an older query shape.

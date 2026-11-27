@@ -7,7 +7,7 @@ import { createBrowserSupabase } from "@/lib/supabase/browser"
 type Values = {
   id?: string; slug?: string; title?: string; year?: number; category?: string; tags?: string[]; client?: string
   affiliation?: string; role?: string; url?: string | null; summary?: string; background?: string; approach?: string
-  thumbnail?: string | null; screenshot?: string | null; published?: boolean; pinned?: boolean; secret?: boolean
+  thumbnail?: string | null; screenshot?: string | null; videos?: string | null; published?: boolean; pinned?: boolean; secret?: boolean
 }
 
 const input = "w-full bg-transparent border border-[var(--border)] px-4 py-3 text-base focus:border-[var(--accent)] focus:outline-none"
@@ -87,6 +87,10 @@ export default function WorkForm({ values = {} }: { values?: Values }) {
 
       <ImageField name="thumbnail" defaultValue={v.thumbnail} hint="16:9 推奨" />
       <ImageField name="screenshot" defaultValue={v.screenshot} hint="縦長の全画面スクショ（任意）" />
+      <div>
+        <span className={label}>Videos <span className="normal-case tracking-normal opacity-60">— 1行に1本「ラベル /videos/works/〇〇.mp4」（任意）</span></span>
+        <textarea name="videos" rows={3} defaultValue={v.videos ?? ""} placeholder={"ClipPick /videos/works/example.mp4"} className={input} />
+      </div>
 
       <div className="flex flex-wrap items-center gap-8">
         <label className="flex items-center gap-2 text-sm"><input type="checkbox" name="published" defaultChecked={v.published ?? true} className="accent-[var(--accent)]" /> 公開する</label>

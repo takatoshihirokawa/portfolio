@@ -35,6 +35,7 @@ export async function saveWork(_prev: SaveState, fd: FormData): Promise<SaveStat
     approach: str(fd, "approach"),
     thumbnail: str(fd, "thumbnail") || null,
     screenshot: str(fd, "screenshot") || null,
+    videos: str(fd, "videos") || null,
     published: fd.get("published") === "on",
     pinned: fd.get("pinned") === "on",
     secret: fd.get("secret") === "on",
